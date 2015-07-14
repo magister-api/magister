@@ -1,10 +1,10 @@
 <?php
 namespace Magister\Models;
 
+use Config;
 use Magister\Services\Auth\Authenticable;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Support\Contracts\Authenticable as AuthenticableContract;
-use Config;
+use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
 
 /**
  * Class User
@@ -15,13 +15,20 @@ class User extends Model implements AuthenticableContract
     use Authenticable;
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['Geboortedatum'];
+
+    /**
      * Get the url associated with the model.
      *
      * @return string
      */
     public function getUrl()
     {
-        return Config::get('locations.user');
+        return Config::get('url.user');
     }
 
     /**
@@ -31,6 +38,6 @@ class User extends Model implements AuthenticableContract
      */
     public static function profile()
     {
-        return static::get();
+        return static::first();
     }
 }

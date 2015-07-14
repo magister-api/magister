@@ -1,6 +1,8 @@
 <?php
 namespace Magister\Services\Support;
 
+use InvalidArgumentException;
+
 /**
  * Class Manager
  * @package Magister
@@ -22,7 +24,7 @@ abstract class Manager
     protected $drivers = [];
 
     /**
-     * Create a new AuthManager instance.
+     * Create a new manager instance.
      *
      * @param \Magister\Magister $app
      */
@@ -39,10 +41,10 @@ abstract class Manager
     abstract public function getDefaultDriver();
 
     /**
-     * Get the auth driver instance.
+     * Get the driver instance.
      *
      * @param string $driver
-     * @return \Magister\Services\Auth\Auth
+     * @return mixed
      */
     public function driver($driver = null)
     {
@@ -72,7 +74,7 @@ abstract class Manager
             return $this->{$method}();
         }
 
-        throw new \InvalidArgumentException(sprintf('Driver "%s" is not supported.', $driver));
+        throw new InvalidArgumentException(sprintf('Driver "%s" is not supported.', $driver));
     }
 
     /**
@@ -86,7 +88,7 @@ abstract class Manager
     }
 
     /**
-     * Dynamically call the auth instance.
+     * Dynamically call the driver instance.
      *
      * @param string $method
      * @param array $parameters

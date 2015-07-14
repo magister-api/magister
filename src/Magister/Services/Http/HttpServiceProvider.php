@@ -1,8 +1,9 @@
 <?php
 namespace Magister\Services\Http;
 
-use Magister\Services\Support\ServiceProvider;
 use GuzzleHttp\Client;
+use Magister\Services\Support\ServiceProvider;
+use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 
 /**
  * Class HttpServiceProvider
@@ -29,11 +30,15 @@ class HttpServiceProvider extends ServiceProvider
     {
         $this->app->singleton('http', function($app)
         {
-            return new Client([
-                'base_uri' => $app['url'],
-                'cookies' => true,
-                'http_errors' => false
-            ]);
+            $client = new Client(['base_url' => "https://{$app['school']}.magister.net/api/"]);
+
+            $client->setDefaultOption('exceptions', false);
+
+            $client->setDefaultOption('cookies', new SessionCookieJar($app['cookie']));
+
+            CacheSubscriber::attach($client);
+
+            return $client;
         });
     }
 }

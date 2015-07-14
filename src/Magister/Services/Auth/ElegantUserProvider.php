@@ -1,9 +1,8 @@
 <?php
 namespace Magister\Services\Auth;
 
-use GuzzleHttp\Exception\ClientException;
-use Magister\Services\Support\Contracts\UserProvider;
 use GuzzleHttp\Client;
+use Magister\Services\Contracts\Auth\UserProvider;
 
 /**
  * Class ElegantUserProvider
@@ -21,12 +20,12 @@ class ElegantUserProvider implements UserProvider
     /**
      * The active connection.
      *
-     * @var \Magister\Services\Http\Http
+     * @var \GuzzleHttp\Client
      */
     protected $client;
 
     /**
-     * Create a new ElegantUserProvider instance.
+     * Create a new elegant user provider instance.
      *
      * @param \GuzzleHttp\Client $client
      * @param string $model
@@ -38,6 +37,26 @@ class ElegantUserProvider implements UserProvider
     }
 
     /**
+     * Retrieve a user by their unique token.
+     *
+     * @return \Magister\Services\Database\Elegant\Model|null
+     */
+    public function retrieveByToken()
+    {
+        return $this->createModel()->newQuery()->first();
+    }
+
+    /**
+     * Remove the token for the given user in storage.
+     *
+     * @return void
+     */
+    public function removeToken()
+    {
+        $this->client->getDefaultOption('cookies')->clear();
+    }
+
+    /**
      * Retrieve a user by the given credentials.
      *
      * @param array $credentials
@@ -45,19 +64,11 @@ class ElegantUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        $response = $this->client->post('sessie', $credentials);
+        $body = ['body' => $credentials];
 
-        return $this->createModel()->newQuery()->first();
-    }
+        $this->client->post('sessie', $body);
 
-    /**
-     * Clear the cookies from the client.
-     *
-     * @return void
-     */
-    public function clearCookies()
-    {
-        $this->client->getConfig('cookies')->clear();
+        return $this->retrieveByToken();
     }
 
     /**

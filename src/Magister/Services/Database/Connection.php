@@ -1,10 +1,11 @@
 <?php
 namespace Magister\Services\Database;
 
+use Closure;
+use Exception;
+use GuzzleHttp\Client;
 use Magister\Services\Database\Query\Builder;
 use Magister\Services\Database\Query\Processors\Processor;
-use GuzzleHttp\Client;
-use Closure;
 
 /**
  * Class Connection
@@ -34,7 +35,7 @@ class Connection implements ConnectionInterface
     protected $time;
 
     /**
-     * Create a new Connection instance.
+     * Create a new connection instance.
      *
      * @param \GuzzleHttp\Client $client
      */
@@ -48,70 +49,112 @@ class Connection implements ConnectionInterface
     /**
      * Start a query against the server.
      *
-     * @param string $url
+     * @param string $query
      * @return \Magister\Services\Database\Query\Builder
      */
-    public function url($url)
+    public function query($query)
     {
         $processor = $this->getProcessor();
 
-        $query = new Builder($this, $processor);
+        $builder = new Builder($this, $processor);
 
-        return $query->from($url);
+        return $builder->from($query);
     }
 
     /**
      * Run a select statement against the server.
      *
-     * @param string $url
+     * @param string $query
      * @param array $bindings
      * @return mixed
      */
-    public function select($url, $bindings = [])
+    public function select($query, $bindings = [])
     {
-        return $this->run($url, $bindings, function ($me, $url, $bindings)
+        return $this->run($query, $bindings, function ($me, $query, $bindings)
         {
-            $url = $me->prepareBindings($bindings, $url);
+            list($query, $bindings) = $me->prepareBindings($query, $bindings);
 
-            $statement = $me->getClient()->get($url);
+            // For select statements, we'll simply execute the query and return an array
+            // of the result set. Each element in the array will be a single
+            // row from the response, and will either be an array or objects.
+            $statement = $me->getClient()->get($query, ['query' => $bindings]);
 
-            return json_decode($statement->getBody(), true);
+            return $statement->json();
         });
+    }
+
+    /**
+     * Prepare the query bindings for execution.
+     *
+     * @param string $query
+     * @param array $bindings
+     * @return array
+     */
+    public function prepareBindings($query, array $bindings)
+    {
+        foreach ($bindings as $key => $value)
+        {
+            $search = ':' . $key;
+
+            if (strpos($query, $search) !== false)
+            {
+                $query = str_replace($search, $value, $query);
+
+                unset($bindings[$key]);
+            }
+        }
+
+        return [$query, $bindings];
     }
 
     /**
      * Run a statement and log its execution context.
      *
+     * @param string $query
      * @param array $bindings
      * @param \Closure $callback
      * @return mixed
      */
-    public function run($url, $bindings, Closure $callback)
+    public function run($query, $bindings, Closure $callback)
     {
         $start = microtime(true);
 
-        $result = $callback($this, $url, $bindings);
+        $result = $this->runQueryCallback($query, $bindings, $callback);
 
+        // Once we have run the query we will calculate the time that it took to run and
+        // then log the query, bindings, and execution time so we will report them on
+        // the event that the developer needs them. We'll log time in milliseconds.
         $this->time = $this->getElapsedTime($start);
 
         return $result;
     }
 
     /**
-     * Prepare the query bindings for execution.
+     * Run a SQL statement.
      *
+     * @param string $query
      * @param array $bindings
-     * @param string $url
-     * @return array
+     * @param \Closure $callback
+     * @return mixed
+     * @throws \Magister\Services\Database\QueryException
      */
-    public function prepareBindings(array $bindings, $url)
+    protected function runQueryCallback($query, $bindings, Closure $callback)
     {
-        foreach ($bindings as $key => $value)
+        try
         {
-            $url = str_replace(':' . $key, $value, $url);
+            $result = $callback($this, $query, $bindings);
+        }
+        catch (Exception $e)
+        {
+            // If an exception occurs when attempting to run a request, we'll format the error
+            // message to include the bindings, which will make this exception a
+            // lot more helpful to the developer instead of just the client's errors.
+            list($query, $bindings) = $this->prepareBindings($query, $bindings);
+
+            throw new QueryException($query, $bindings, $e);
         }
 
-        return $url;
+        return $result;
     }
 
     /**

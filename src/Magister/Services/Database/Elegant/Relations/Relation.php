@@ -1,8 +1,8 @@
 <?php
 namespace Magister\Services\Database\Elegant\Relations;
 
-use Magister\Services\Database\Elegant\Builder;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Database\Elegant\Builder;
 
 /**
  * Class Relation
@@ -11,7 +11,7 @@ use Magister\Services\Database\Elegant\Model;
 abstract class Relation
 {
     /**
-     * The Eloquent query builder instance.
+     * The Elegant query builder instance.
      *
      * @var \Magister\Services\Database\Elegant\Builder
      */
@@ -71,7 +71,7 @@ abstract class Relation
     }
 
     /**
-     * Get the base query builder driving the Eloquent builder.
+     * Get the base query builder driving the Elegant builder.
      *
      * @return \Magister\Services\Database\Query\Builder
      */

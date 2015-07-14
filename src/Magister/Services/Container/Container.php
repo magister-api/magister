@@ -1,14 +1,16 @@
 <?php
 namespace Magister\Services\Container;
 
-use InvalidArgumentException;
 use Closure;
+use ArrayAccess;
+use InvalidArgumentException;
+use Magister\Services\Contracts\Container\Container as ContainerContract;
 
 /**
  * Class Container
  * @package Magister
  */
-class Container implements \ArrayAccess
+class Container implements ArrayAccess, ContainerContract
 {
     /**
      * The container's bindings.
@@ -24,13 +26,8 @@ class Container implements \ArrayAccess
      * @param mixed $concrete
      * @return void
      */
-    public function bind($abstract, $concrete = null)
+    public function bind($abstract, $concrete)
     {
-        if (is_null($concrete))
-        {
-            $concrete = $abstract;
-        }
-
         $this->bindings[$abstract] = $concrete;
     }
 

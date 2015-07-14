@@ -24,7 +24,7 @@ class Builder
     protected $model;
 
     /**
-     * Create a new Builder instance.
+     * Create a new elegant builder instance.
      *
      * @param \Magister\Services\Database\Query\Builder $query
      */
@@ -37,7 +37,7 @@ class Builder
      * Find a model by its primary key.
      *
      * @param mixed $id
-     * @return \Magister\Services\Database\Elegant\Model|\Magister\Services\Database\Elegant\Collection|null
+     * @return \Magister\Services\Database\Elegant\Model|\Magister\Services\Support\Collection|null
      */
     public function find($id)
     {
@@ -57,7 +57,7 @@ class Builder
     /**
      * Execute the query as a select statement.
      *
-     * @return \Magister\Services\Database\Elegant\Collection|static[]
+     * @return \Magister\Services\Support\Collection|static[]
      */
     public function get()
     {
@@ -92,6 +92,20 @@ class Builder
     }
 
     /**
+     * Get the hydrated models.
+     *
+     * @return array
+     */
+    public function getModels()
+    {
+        $results = $this->query->get();
+
+        $connection = $this->model->getConnectionName();
+
+        return $this->model->hydrate($results, $connection)->all();
+    }
+
+    /**
      * Get the underlying query builder instance.
      *
      * @return \Magister\Services\Database\Query\Builder|static
@@ -112,20 +126,6 @@ class Builder
         $this->query = $query;
 
         return $this;
-    }
-
-    /**
-     * Get the hydrated models.
-     *
-     * @return array
-     */
-    public function getModels()
-    {
-        $results = $this->query->get();
-
-        $connection = $this->model->getConnectionName();
-
-        return $this->model->hydrate($results, $connection)->all();
     }
 
     /**

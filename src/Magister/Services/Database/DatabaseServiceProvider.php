@@ -1,8 +1,8 @@
 <?php
 namespace Magister\Services\Database;
 
-use Magister\Services\Support\ServiceProvider;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Support\ServiceProvider;
 
 /**
  * Class DatabaseServiceProvider

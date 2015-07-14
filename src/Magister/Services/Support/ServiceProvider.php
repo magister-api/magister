@@ -2,7 +2,7 @@
 namespace Magister\Services\Support;
 
 use Magister\Magister;
-use Magister\Exceptions\BadMethodCallException;
+use BadMethodCallException;
 
 /**
  * Class ServiceProvider
@@ -18,7 +18,7 @@ abstract class ServiceProvider
     protected $app;
 
     /**
-     * Create a new ServiceProvider instance.
+     * Create a new service provider instance.
      *
      * @param \Magister\Magister $app
      */
@@ -39,7 +39,7 @@ abstract class ServiceProvider
      *
      * @param string $method
      * @param array $parameters
-     * @throws \Magister\Exceptions\BadMethodCallException
+     * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)
     {

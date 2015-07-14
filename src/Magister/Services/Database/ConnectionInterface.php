@@ -10,17 +10,17 @@ interface ConnectionInterface
     /**
      * Start a query against the server.
      *
-     * @param string $url
+     * @param string $query
      * @return \Magister\Services\Database\Query\Builder
      */
-    public function url($url);
+    public function query($query);
 
     /**
      * Run a select statement against the server.
      *
-     * @param string $url
+     * @param string $query
      * @param array $bindings
      * @return mixed
      */
-    public function select($url, $bindings = []);
+    public function select($query, $bindings = []);
 }

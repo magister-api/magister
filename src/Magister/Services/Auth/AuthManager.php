@@ -10,13 +10,6 @@ use Magister\Services\Support\Manager;
 class AuthManager extends Manager
 {
     /**
-     * The default driver name.
-     *
-     * @var string
-     */
-    protected $default;
-
-    /**
      * Create a new driver instance.
      *
      * @param string $driver
@@ -24,13 +17,19 @@ class AuthManager extends Manager
      */
     protected function createDriver($driver)
     {
-        return parent::createDriver($driver);
+        $guard = parent::createDriver($driver);
+
+        $guard->setCookieJar($this->app['cookie']);
+
+        $guard->setDispatcher($this->app['events']);
+
+        return $guard;
     }
 
     /**
      * Create an instance of the Elegant driver.
      *
-     * @return \Magister\Services\Auth\Auth
+     * @return \Magister\Services\Auth\Guard
      */
     public function createElegantDriver()
     {

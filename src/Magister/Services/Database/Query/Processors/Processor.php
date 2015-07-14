@@ -16,24 +16,8 @@ class Processor
      * @param array $results
      * @return array
      */
-    public function processSelect(Builder $builder, $results)
+    public function process(Builder $builder, $results)
     {
-        if ( ! isset($results['Fouttype']))
-        {
-            if (array_key_exists('Items', $results))
-            {
-                return reset($results);
-            }
-            elseif ( ! is_array(current($results)))
-            {
-                return [$results];
-            }
-            else
-            {
-                return $results;
-            }
-        }
-
-        return [];
+        return process($results);
     }
 }

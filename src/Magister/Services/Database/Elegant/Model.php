@@ -1,13 +1,17 @@
 <?php
 namespace Magister\Services\Database\Elegant;
 
-use Magister\Services\Support\Contracts\Arrayable;
-use Magister\Services\Support\Contracts\Jsonable;
+use DateTime;
+use LogicException;
+use RuntimeException;
+use Magister\Services\Support\Collection;
+use Magister\Services\Contracts\Support\Jsonable;
+use Magister\Services\Contracts\Support\Arrayable;
+use Magister\Services\Database\Elegant\Relations\HasOne;
+use Magister\Services\Database\Elegant\Relations\HasMany;
+use Magister\Services\Database\Elegant\Relations\Relation;
 use Magister\Services\Database\Query\Builder as QueryBuilder;
 use Magister\Services\Database\ConnectionResolverInterface as Resolver;
-use Magister\Services\Database\Elegant\Relations\HasOne;
-use Magister\Exceptions\LogicException;
-use Magister\Services\Database\Elegant\Relations\Relation;
 
 /**
  * Class Model
@@ -21,13 +25,6 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * @var string
      */
     protected $connection;
-
-    /**
-     * The url associated with the model.
-     *
-     * @var string
-     */
-    protected $url;
 
     /**
      * The primary key for the model.
@@ -58,11 +55,18 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     protected $relations = [];
 
     /**
-     * Create a new Model instance.
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [];
+
+    /**
+     * Create a new model instance.
      *
      * @param array $attributes
      */
-    public function __construct(array $attributes = array())
+    public function __construct(array $attributes = [])
     {
         $this->fill($attributes);
     }
@@ -84,87 +88,9 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     }
 
     /**
-     * Set a given attribute on the model.
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return void
-     */
-    public function setAttribute($key, $value)
-    {
-        $this->attributes[$key] = $value;
-    }
-
-    /**
-     * Set the array of model attributes without checking.
-     *
-     * @param array $attributes
-     * @return void
-     */
-    public function setRawAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-    }
-
-    /**
-     * Get an attribute from the model.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function getAttribute($key)
-    {
-        $inAttributes = array_key_exists($key, $this->attributes);
-
-        if ($inAttributes)
-        {
-            return $this->attributes[$key];
-        }
-
-        if (array_key_exists($key, $this->relations))
-        {
-            return $this->relations[$key];
-        }
-
-        if (method_exists($this, $key))
-        {
-            return $this->getRelationshipFromMethod($key);
-        }
-    }
-
-    /**
-     * Get a relationship value from a method.
-     *
-     * @param string $method
-     * @return mixed
-     * @throws \Magister\Exceptions\LogicException
-     */
-    protected function getRelationshipFromMethod($method)
-    {
-        $relations = $this->$method();
-
-        if ( ! $relations instanceof Relation)
-        {
-            throw new LogicException('Relationship method must return an object of type ' . 'Magister\Services\Database\Elegant\Relations\Relation');
-        }
-
-        return $this->relations[$method] = $relations->getResults();
-    }
-
-    /**
-     * Get all of the current attributes on the model.
-     *
-     * @return array
-     */
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
-
-    /**
      * Get all of the items from the model.
      *
-     * @return \Magister\Services\Database\Elegant\Collection
+     * @return \Magister\Services\Support\Collection
      */
     public static function all()
     {
@@ -177,7 +103,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Find a model by its primary key.
      *
      * @param mixed $id
-     * @return \Magister\Services\Database\Elegant\Collection|static|null
+     * @return \Magister\Services\Support\Collection|static|null
      */
     public static function find($id)
     {
@@ -200,17 +126,41 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     }
 
     /**
-     * Define a relationship.
+     * Define a one-to-one relationship.
      *
      * @param string $related
+     * @param string $foreignKey
      * @param string $localKey
-     * @return \Magister\Services\Database\Elegant\Relation
+     * @return \Magister\Services\Database\Elegant\Relations\HasOne
      */
-    public function hasOne($related, $localKey)
+    public function hasOne($related, $foreignKey = null, $localKey = null)
     {
+        $foreignKey = $foreignKey ?: $this->getForeignKey();
+
         $instance = new $related;
 
-        return new HasOne($instance->newQuery(), $this, $localKey);
+        $localKey = $localKey ?: $this->getKeyName();
+
+        return new HasOne($instance->newQuery(), $this, $foreignKey, $localKey);
+    }
+
+    /**
+     * Define a one-to-many relationship.
+     *
+     * @param string $related
+     * @param string $foreignKey
+     * @param string $localKey
+     * @return \Magister\Services\Database\Elegant\Relations\HasMany
+     */
+    public function hasMany($related, $foreignKey = null, $localKey = null)
+    {
+        $foreignKey = $foreignKey ?: $this->getForeignKey();
+
+        $instance = new $related;
+
+        $localKey = $localKey ?: $this->getKeyName();
+
+        return new HasMany($instance->newQuery(), $this, $foreignKey, $localKey);
     }
 
     /**
@@ -247,7 +197,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param array $items
      * @param string|null $connection
-     * @return \Magister\Services\Database\Elegant\Collection
+     * @return \Magister\Services\Support\Collection
      */
     public static function hydrate(array $items, $connection = null)
     {
@@ -278,7 +228,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      */
     public function newQuery()
     {
-        $builder = $this->newSchemaBuilder(
+        $builder = $this->newElegantBuilder(
             $this->newQueryBuilder()
         );
 
@@ -286,12 +236,12 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     }
 
     /**
-     * Create a new schema builder instance.
+     * Create a new Elegant builder instance.
      *
      * @param \Magister\Services\Database\Query\Builder $query
      * @return \Magister\Services\Database\Elegant\Builder
      */
-    public function newSchemaBuilder($query)
+    public function newElegantBuilder($query)
     {
         return new Builder($query);
     }
@@ -312,11 +262,216 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Create a new collection instance.
      *
      * @param array $models
-     * @return \Magister\Services\Database\Elegant\Collection
+     * @return \Magister\Services\Support\Collection
      */
     public function newCollection(array $models = [])
     {
         return new Collection($models);
+    }
+
+    /**
+     * Set a given attribute on the model.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+    public function setAttribute($key, $value)
+    {
+        $this->attributes[$key] = $value;
+    }
+
+    /**
+     * Set the array of model attributes without checking.
+     *
+     * @param array $attributes
+     * @return void
+     */
+    public function setRawAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+    }
+
+    /**
+     * Get an attribute from the model.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function getAttribute($key)
+    {
+        if (array_has($this->attributes, $key))
+        {
+            return $this->getAttributeValue($key);
+        }
+
+        return $this->getRelationValue($key);
+    }
+
+    /**
+     * Get a plain attribute (not a relationship).
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function getAttributeValue($key)
+    {
+        $value = $this->getAttributeFromArray($key);
+
+        if (in_array($key, $this->getDates()))
+        {
+            if ( ! is_null($value))
+            {
+                return $this->asDateTime($value);
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * Get a relationship.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function getRelationValue($key)
+    {
+        // If the key already exists in the relationships array, it just means the
+        // relationship has already been loaded, so we'll just return it out of
+        // here because there is no need to query within the relations twice.
+        if ($this->relationLoaded($key))
+        {
+            return $this->relations[$key];
+        }
+
+        // If the "attribute" exists as a method on the model, we will just assume
+        // it is a relationship and will load and return results from the query
+        // and hydrate the relationship's value on the "relationships" array.
+        if (method_exists($this, $key))
+        {
+            return $this->getRelationshipFromMethod($key);
+        }
+    }
+
+    /**
+     * Get an attribute from the $attributes array.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    protected function getAttributeFromArray($key)
+    {
+        return array_get($this->attributes, $key);
+    }
+
+    /**
+     * Get a relationship value from a method.
+     *
+     * @param string $method
+     * @return mixed
+     * @throws \LogicException
+     */
+    protected function getRelationshipFromMethod($method)
+    {
+        $relations = $this->$method();
+
+        if ( ! $relations instanceof Relation)
+        {
+            throw new LogicException('Relationship method must return an object of type ' . 'Magister\Services\Database\Elegant\Relations\Relation');
+        }
+
+        return $this->relations[$method] = $relations->getResults();
+    }
+
+    /**
+     * Get the attributes that should be converted to dates.
+     *
+     * @return array
+     */
+    public function getDates()
+    {
+        return $this->dates;
+    }
+
+    /**
+     * Return a timestamp as a DateTime object.
+     *
+     * @param mixed $value
+     * @return \DateTime
+     */
+    protected function asDateTime($value)
+    {
+        return new DateTime($value);
+    }
+
+    /**
+     * Get all of the current attributes on the model.
+     *
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Get all the loaded relations for the instance.
+     *
+     * @return array
+     */
+    public function getRelations()
+    {
+        return $this->relations;
+    }
+
+    /**
+     * Get a specified relationship.
+     *
+     * @param string $relation
+     * @return mixed
+     */
+    public function getRelation($relation)
+    {
+        return $this->relations[$relation];
+    }
+
+    /**
+     * Determine if the given relation is loaded.
+     *
+     * @param string $key
+     * @return bool
+     */
+    public function relationLoaded($key)
+    {
+        return array_key_exists($key, $this->relations);
+    }
+
+    /**
+     * Set the specific relationship in the model.
+     *
+     * @param string $relation
+     * @param mixed $value
+     * @return $this
+     */
+    public function setRelation($relation, $value)
+    {
+        $this->relations[$relation] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the entire relations array on the model.
+     *
+     * @param array $relations
+     * @return $this
+     */
+    public function setRelations(array $relations)
+    {
+        $this->relations = $relations;
+
+        return $this;
     }
 
     /**
@@ -385,14 +540,14 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     }
 
     /**
-     * Set the url associated with the model.
+     * Get the url associated with the model.
      *
      * @return void
      * @throws \RuntimeException
      */
-    public function setUrl()
+    public function getUrl()
     {
-        throw new \RuntimeException("The Model class does not implement a setDefaultUrl method.");
+        throw new RuntimeException("The Model class does not implement a getUrl() method.");
     }
 
     /**
@@ -424,6 +579,16 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     public function setKeyName($key)
     {
         $this->primaryKey = $key;
+    }
+
+    /**
+     * Get the default foreign key name for the model.
+     *
+     * @return string
+     */
+    public function getForeignKey()
+    {
+        return snake_case(class_basename($this)) . '_id';
     }
 
     /**
@@ -563,5 +728,15 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
         $instance = new static;
 
         return call_user_func_array([$instance, $method], $parameters);
+    }
+
+    /**
+     * Convert the model to its string representation.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toJson();
     }
 }

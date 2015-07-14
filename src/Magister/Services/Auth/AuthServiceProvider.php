@@ -28,11 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->app->singleton('auth', function($app)
         {
-            $auth = new AuthManager($app);
-
-            $auth->setDefaultDriver('Elegant');
-
-            return $auth;
+            return new AuthManager($app);
         });
     }
 
@@ -43,6 +39,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->auth->attempt($this->app['credentials']);
+        if ($this->app->bound('credentials'))
+        {
+            $auth = $this->app->auth;
+
+            if ( ! $auth->check())
+            {
+                $auth->attempt($this->app['credentials']);
+            }
+        }
     }
 }

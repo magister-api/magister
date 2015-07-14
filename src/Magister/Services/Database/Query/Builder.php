@@ -1,9 +1,10 @@
 <?php
 namespace Magister\Services\Database\Query;
 
+use BadMethodCallException;
+use Magister\Services\Support\Collection;
 use Magister\Services\Database\ConnectionInterface;
 use Magister\Services\Database\Query\Processors\Processor;
-use Magister\Services\Database\Elegant\Collection;
 
 /**
  * Class Builder
@@ -54,12 +55,12 @@ class Builder
     /**
      * Set the url which the query is targeting.
      *
-     * @param string $url
+     * @param string $query
      * @return $this
      */
-    public function from($url)
+    public function from($query)
     {
-        $this->from = $url;
+        $this->from = $query;
 
         return $this;
     }
@@ -106,7 +107,7 @@ class Builder
      */
     public function get()
     {
-        return $this->processor->processSelect($this, $this->runSelect());
+        return $this->processor->process($this, $this->runSelect());
     }
 
     /**
@@ -206,6 +207,6 @@ class Builder
 
         $className = get_class($this);
 
-        throw new \BadMethodCallException("Call to undefined method {$className}::{$method}()");
+        throw new BadMethodCallException("Call to undefined method {$className}::{$method}()");
     }
 }

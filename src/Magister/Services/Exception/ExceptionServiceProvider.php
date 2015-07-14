@@ -1,9 +1,9 @@
 <?php
 namespace Magister\Services\Exception;
 
-use Magister\Services\Support\ServiceProvider;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
+use Magister\Services\Support\ServiceProvider;
 
 /**
  * Class ExceptionServiceProvider

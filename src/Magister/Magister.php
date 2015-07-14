@@ -1,16 +1,19 @@
 <?php
 namespace Magister;
 
+use Magister\Services\Config\FileLoader;
 use Magister\Services\Container\Container;
-use Magister\Foundation\Kernel;
+use Magister\Services\Filesystem\Filesystem;
+use Magister\Services\Foundation\Http\Kernel;
 use Magister\Services\Support\ServiceProvider;
-use Magister\Foundation\ProviderRepository;
+use Magister\Services\Foundation\ProviderRepository;
+use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
 
 /**
  * Class Magister
  * @package Magister
  */
-class Magister extends Container
+class Magister extends Container implements ApplicationContract
 {
     /**
      * The Magister version.
@@ -49,40 +52,13 @@ class Magister extends Container
      */
     public function __construct($school, $username = null, $password = null)
     {
-        $this->bind('app', $this);
+        $kernel = new Kernel($this);
 
-        $this->setSchool($school);
-        $this->setCredentials($username, $password);
+        $this->registerBaseBindings($school, $username, $password);
 
-        (new Kernel($this))->bootstrap();
-    }
+        $this->bindPathsInContainer();
 
-    /**
-     * Set the school.
-     *
-     * @param string $school
-     * @return void
-     */
-    public function setSchool($school)
-    {
-        $this->bind('url', "https://$school.magister.net/api/");
-    }
-
-    /**
-     * Set the credentials.
-     *
-     * @param string $username
-     * @param string $password
-     * @return void
-     */
-    public function setCredentials($username, $password)
-    {
-        $this->bind('credentials', [
-            'form_params' => [
-                'Gebruikersnaam' => $username,
-                'Wachtwoord' => $password
-            ]
-        ]);
+        $kernel->bootstrap();
     }
 
     /**
@@ -96,13 +72,23 @@ class Magister extends Container
     }
 
     /**
-     * Get the base path of the Magister installation.
+     * Register the basic bindings into the container.
      *
-     * @return string
+     * @param string $school
+     * @param string $username
+     * @param string $password
+     * @return void
      */
-    public function basePath()
+    protected function registerBaseBindings($school, $username, $password)
     {
-        return realpath(__DIR__);
+        $this->bind('app', $this);
+
+        $this->setSchool($school);
+
+        if ($username && $password)
+        {
+            $this->setCredentials($username, $password);
+        }
     }
 
     /**
@@ -129,6 +115,39 @@ class Magister extends Container
     public function hasBeenBootstrapped()
     {
         return $this->hasBeenBootstrapped;
+    }
+
+    /**
+     * Bind all of the application paths in the container.
+     *
+     * @return void
+     */
+    protected function bindPathsInContainer()
+    {
+        foreach (['base', 'config'] as $path)
+        {
+            $this->bind('path.' . $path, $this->{$path . 'Path'}());
+        }
+    }
+
+    /**
+     * Get the base path of the Magister installation.
+     *
+     * @return string
+     */
+    public function basePath()
+    {
+        return realpath(__DIR__);
+    }
+
+    /**
+     * Get the path to the application configuration files.
+     *
+     * @return string
+     */
+    public function configPath()
+    {
+        return $this->basePath() . DIRECTORY_SEPARATOR . 'Config';
     }
 
     /**
@@ -173,13 +192,23 @@ class Magister extends Container
     }
 
     /**
+     * Get the configuration loader instance.
+     *
+     * @return \Magister\Services\Config\LoaderInterface
+     */
+    public function getConfigLoader()
+    {
+        return new FileLoader(new Filesystem, $this['path.config']);
+    }
+
+    /**
      * Register all of the configured providers.
      *
      * @return void
      */
     public function registerProviders()
     {
-        (new ProviderRepository($this))->load($this->config['application.providers']);
+        (new ProviderRepository($this))->load($this->config['app.providers']);
     }
 
     /**
@@ -187,7 +216,7 @@ class Magister extends Container
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
      * @param array $options
-     * @return $this
+     * @return \Magister\Services\Support\ServiceProvider
      */
     public function register(ServiceProvider $provider, $options = [])
     {
@@ -233,6 +262,29 @@ class Magister extends Container
     public function resolveProviderClass($provider)
     {
         return new $provider($this);
+    }
+
+    /**
+     * Set the school for every request.
+     *
+     * @param string $school
+     * @return void
+     */
+    protected function setSchool($school)
+    {
+        $this->bind('school', $school);
+    }
+
+    /**
+     * Set the credentials used by the authentication service.
+     *
+     * @param string $username
+     * @param string $password
+     * @return void
+     */
+    protected function setCredentials($username, $password)
+    {
+        $this->bind('credentials', ['Gebruikersnaam' => $username, 'Wachtwoord' => $password]);
     }
 
     /**

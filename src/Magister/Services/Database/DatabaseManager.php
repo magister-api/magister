@@ -22,14 +22,7 @@ class DatabaseManager implements ConnectionResolverInterface
     protected $connections = [];
 
     /**
-     * The default connection name.
-     *
-     * @var string
-     */
-    protected $default = 'Default';
-
-    /**
-     * Create a new DatabaseManager instance.
+     * Create a new database manager instance.
      *
      * @param \Magister\Magister $app
      */
@@ -88,7 +81,7 @@ class DatabaseManager implements ConnectionResolverInterface
      */
     public function setDefaultConnection($name)
     {
-        $this->default = $name;
+        $this->app['config']['database.default'] = $name;
     }
 
     /**
@@ -98,7 +91,7 @@ class DatabaseManager implements ConnectionResolverInterface
      */
     public function getDefaultConnection()
     {
-        return $this->default;
+        return $this->app['config']['database.default'];
     }
 
     /**
