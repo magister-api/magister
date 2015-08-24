@@ -1,4 +1,5 @@
 ## Magister API
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stanvk/Magister/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Stanvk/Magister/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/stanvk/magister/v/stable.svg)](https://packagist.org/packages/stanvk/magister)
 [![Latest Unstable Version](https://poser.pugx.org/stanvk/magister/v/unstable.svg)](https://packagist.org/packages/stanvk/magister)
 [![License](https://poser.pugx.org/stanvk/magister/license.svg)](https://packagist.org/packages/stanvk/magister)
