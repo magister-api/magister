@@ -12,8 +12,6 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "filp/whoops": "1.1.*",
-        "symfony/var-dumper": "2.7.1",
         "guzzlehttp/guzzle": "~5.0",
         "guzzlehttp/cache-subscriber": "0.1.*"
     },
