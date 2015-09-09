@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Auth;
 
 /**
- * Class Authenticable
- * @package Magister
+ * Class Authenticable.
  */
 trait Authenticable
 {

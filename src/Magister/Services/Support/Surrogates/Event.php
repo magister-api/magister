@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Event
- * @package Magister
+ * Class Event.
  */
 class Event extends Surrogate
 {

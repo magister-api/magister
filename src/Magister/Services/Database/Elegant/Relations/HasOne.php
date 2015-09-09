@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Database\Elegant\Relations;
 
 /**
- * Class HasOne
- * @package Magister
+ * Class HasOne.
  */
 class HasOne extends HasOneOrMany
 {

@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Auth;
 
 /**
- * Interface Authenticable
- * @package Magister
+ * Interface Authenticable.
  */
 interface Authenticable
 {

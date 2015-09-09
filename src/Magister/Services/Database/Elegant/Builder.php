@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Database\Elegant;
 
 use Magister\Services\Database\Query\Builder as QueryBuilder;
 
 /**
- * Class Builder
- * @package Magister
+ * Class Builder.
  */
 class Builder
 {
@@ -37,6 +37,7 @@ class Builder
      * Find a model by its primary key.
      *
      * @param mixed $id
+     *
      * @return \Magister\Services\Database\Elegant\Model|\Magister\Services\Support\Collection|null
      */
     public function find($id)
@@ -70,13 +71,16 @@ class Builder
      * Pluck a single column from the database.
      *
      * @param string $column
+     *
      * @return mixed
      */
     public function pluck($column)
     {
         $result = $this->first();
 
-        if ($result) return $result->$column;
+        if ($result) {
+            return $result->$column;
+        }
     }
 
     /**
@@ -84,6 +88,7 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     public function lists($column, $key = null)
@@ -119,6 +124,7 @@ class Builder
      * Set the underlying query builder instance.
      *
      * @param \Magister\Services\Database\Query\Builder $query
+     *
      * @return $this
      */
     public function setQuery($query)
@@ -132,6 +138,7 @@ class Builder
      * Set the model instance being queried.
      *
      * @param \Magister\Services\Database\Elegant\Model $model
+     *
      * @return $this
      */
     public function setModel(Model $model)
@@ -157,7 +164,8 @@ class Builder
      * Dynamically handle calls into the query instance.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

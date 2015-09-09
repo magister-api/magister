@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Auth;
 
 use GuzzleHttp\Client;
 use Magister\Services\Contracts\Auth\UserProvider;
 
 /**
- * Class ElegantUserProvider
- * @package Magister
+ * Class ElegantUserProvider.
  */
 class ElegantUserProvider implements UserProvider
 {
@@ -28,7 +28,7 @@ class ElegantUserProvider implements UserProvider
      * Create a new elegant user provider instance.
      *
      * @param \GuzzleHttp\Client $client
-     * @param string $model
+     * @param string             $model
      */
     public function __construct(Client $client, $model)
     {
@@ -60,6 +60,7 @@ class ElegantUserProvider implements UserProvider
      * Retrieve a user by the given credentials.
      *
      * @param array $credentials
+     *
      * @return \Magister\Services\Database\Elegant\Model|null
      */
     public function retrieveByCredentials(array $credentials)
@@ -78,8 +79,8 @@ class ElegantUserProvider implements UserProvider
      */
     public function createModel()
     {
-        $class = '\\' . ltrim($this->model, '\\');
+        $class = '\\'.ltrim($this->model, '\\');
 
-        return new $class;
+        return new $class();
     }
 }

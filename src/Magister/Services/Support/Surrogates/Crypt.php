@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Crypt
- * @package Magister
+ * Class Crypt.
  */
 class Crypt extends Surrogate
 {

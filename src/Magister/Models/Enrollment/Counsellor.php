@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Models\Enrollment;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Counsellor
- * @package Magister
+ * Class Counsellor.
  */
 class Counsellor extends Model
 {

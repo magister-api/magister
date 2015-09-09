@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Support;
 
 /**
- * Interface Jsonable
- * @package Magister
+ * Interface Jsonable.
  */
 interface Jsonable
 {
@@ -11,6 +11,7 @@ interface Jsonable
      * Convert the object to its JSON representation.
      *
      * @param int $options
+     *
      * @return string
      */
     public function toJson($options = 0);

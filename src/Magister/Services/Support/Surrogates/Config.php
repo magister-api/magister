@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Config
- * @package Magister
+ * Class Config.
  */
 class Config extends Surrogate
 {

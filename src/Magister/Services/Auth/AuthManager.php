@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Auth;
 
 use Magister\Services\Support\Manager;
 
 /**
- * Class AuthManager
- * @package Magister\Services\Auth
+ * Class AuthManager.
  */
 class AuthManager extends Manager
 {
@@ -13,6 +13,7 @@ class AuthManager extends Manager
      * Create a new driver instance.
      *
      * @param string $driver
+     *
      * @return mixed
      */
     protected function createDriver($driver)
@@ -54,6 +55,7 @@ class AuthManager extends Manager
      * Set the default authentication driver name.
      *
      * @param string $name
+     *
      * @return void
      */
     public function setDefaultDriver($name)

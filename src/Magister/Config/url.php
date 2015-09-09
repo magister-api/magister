@@ -70,6 +70,6 @@ return [
      | Info
      |--------------------------------------------------------------------------
      */
-    'info' => 'personen/:id/aanmeldingen/:enrollment/cijfers/extracijferkolominfo/:cijfer'
+    'info' => 'personen/:id/aanmeldingen/:enrollment/cijfers/extracijferkolominfo/:cijfer',
 
 ];

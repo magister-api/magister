@@ -1,17 +1,17 @@
 <?php
+
 namespace Magister;
 
 use Magister\Services\Config\FileLoader;
 use Magister\Services\Container\Container;
+use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
 use Magister\Services\Filesystem\Filesystem;
 use Magister\Services\Foundation\Http\Kernel;
-use Magister\Services\Support\ServiceProvider;
 use Magister\Services\Foundation\ProviderRepository;
-use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
+use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class Magister
- * @package Magister
+ * Class Magister.
  */
 class Magister extends Container implements ApplicationContract
 {
@@ -77,6 +77,7 @@ class Magister extends Container implements ApplicationContract
      * @param string $school
      * @param string $username
      * @param string $password
+     *
      * @return void
      */
     protected function registerBaseBindings($school, $username, $password)
@@ -85,8 +86,7 @@ class Magister extends Container implements ApplicationContract
 
         $this->setSchool($school);
 
-        if ($username && $password)
-        {
+        if ($username && $password) {
             $this->setCredentials($username, $password);
         }
     }
@@ -95,13 +95,13 @@ class Magister extends Container implements ApplicationContract
      * Run the given array of bootstrap classes.
      *
      * @param array $bootstrappers
+     *
      * @return void
      */
     public function bootstrapWith(array $bootstrappers)
     {
-        foreach ($bootstrappers as $bootstrapper)
-        {
-            (new $bootstrapper)->bootstrap($this);
+        foreach ($bootstrappers as $bootstrapper) {
+            (new $bootstrapper())->bootstrap($this);
         }
 
         $this->hasBeenBootstrapped = true;
@@ -124,9 +124,8 @@ class Magister extends Container implements ApplicationContract
      */
     protected function bindPathsInContainer()
     {
-        foreach (['base', 'config'] as $path)
-        {
-            $this->bind('path.' . $path, $this->{$path . 'Path'}());
+        foreach (['base', 'config'] as $path) {
+            $this->bind('path.'.$path, $this->{$path.'Path'}());
         }
     }
 
@@ -147,7 +146,7 @@ class Magister extends Container implements ApplicationContract
      */
     public function configPath()
     {
-        return $this->basePath() . DIRECTORY_SEPARATOR . 'Config';
+        return $this->basePath().DIRECTORY_SEPARATOR.'Config';
     }
 
     /**
@@ -157,10 +156,11 @@ class Magister extends Container implements ApplicationContract
      */
     public function boot()
     {
-        if ($this->booted) return;
+        if ($this->booted) {
+            return;
+        }
 
-        array_walk($this->serviceProviders, function($p)
-        {
+        array_walk($this->serviceProviders, function ($p) {
             $this->bootProvider($p);
         });
 
@@ -171,12 +171,12 @@ class Magister extends Container implements ApplicationContract
      * Boot the given service provider.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
+     *
      * @return void
      */
     protected function bootProvider(ServiceProvider $provider)
     {
-        if (method_exists($provider, 'boot'))
-        {
+        if (method_exists($provider, 'boot')) {
             $provider->boot();
         }
     }
@@ -198,7 +198,7 @@ class Magister extends Container implements ApplicationContract
      */
     public function getConfigLoader()
     {
-        return new FileLoader(new Filesystem, $this['path.config']);
+        return new FileLoader(new Filesystem(), $this['path.config']);
     }
 
     /**
@@ -215,20 +215,19 @@ class Magister extends Container implements ApplicationContract
      * Register a service provider with the application.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
-     * @param array $options
+     * @param array                                      $options
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function register(ServiceProvider $provider, $options = [])
     {
-        if (is_string($provider))
-        {
+        if (is_string($provider)) {
             $provider = $this->resolveProviderClass($provider);
         }
 
         $provider->register();
 
-        foreach ($options as $key => $value)
-        {
+        foreach ($options as $key => $value) {
             $this[$key] = $value;
         }
 
@@ -241,14 +240,14 @@ class Magister extends Container implements ApplicationContract
      * Get the registered service provider instance if it exists.
      *
      * @param \Magister\Services\Support\ServiceProvider|string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider|null
      */
     public function getProvider($provider)
     {
         $name = is_string($provider) ? $provider : get_class($provider);
 
-        return array_first($this->serviceProviders, function($key, $value) use ($name)
-        {
+        return array_first($this->serviceProviders, function ($key, $value) use ($name) {
             return $value instanceof $name;
         });
     }
@@ -257,6 +256,7 @@ class Magister extends Container implements ApplicationContract
      * Resolve a service provider instance from the class name.
      *
      * @param string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function resolveProviderClass($provider)
@@ -268,6 +268,7 @@ class Magister extends Container implements ApplicationContract
      * Set the school for every request.
      *
      * @param string $school
+     *
      * @return void
      */
     protected function setSchool($school)
@@ -280,6 +281,7 @@ class Magister extends Container implements ApplicationContract
      *
      * @param string $username
      * @param string $password
+     *
      * @return void
      */
     protected function setCredentials($username, $password)
@@ -291,6 +293,7 @@ class Magister extends Container implements ApplicationContract
      * Mark the given provider as registered.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
+     *
      * @return void
      */
     protected function markAsRegistered($provider)

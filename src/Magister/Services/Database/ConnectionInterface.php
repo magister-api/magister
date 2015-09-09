@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Database;
 
 /**
- * Interface ConnectionInterface
- * @package Magister
+ * Interface ConnectionInterface.
  */
 interface ConnectionInterface
 {
@@ -11,6 +11,7 @@ interface ConnectionInterface
      * Start a query against the server.
      *
      * @param string $query
+     *
      * @return \Magister\Services\Database\Query\Builder
      */
     public function query($query);
@@ -19,7 +20,8 @@ interface ConnectionInterface
      * Run a select statement against the server.
      *
      * @param string $query
-     * @param array $bindings
+     * @param array  $bindings
+     *
      * @return mixed
      */
     public function select($query, $bindings = []);

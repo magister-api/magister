@@ -14,6 +14,6 @@ return [
      | Authentication Model
      |--------------------------------------------------------------------------
     */
-    'model' => 'Magister\Models\User'
+    'model' => 'Magister\Models\User',
 
 ];

@@ -1,13 +1,13 @@
 <?php
+
 namespace Magister\Services\Http;
 
 use GuzzleHttp\Client;
-use Magister\Services\Support\ServiceProvider;
 use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
+use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class HttpServiceProvider
- * @package Magister
+ * Class HttpServiceProvider.
  */
 class HttpServiceProvider extends ServiceProvider
 {
@@ -28,8 +28,7 @@ class HttpServiceProvider extends ServiceProvider
      */
     protected function registerGuzzle()
     {
-        $this->app->singleton('http', function($app)
-        {
+        $this->app->singleton('http', function ($app) {
             $client = new Client(['base_url' => "https://{$app['school']}.magister.net/api/"]);
 
             $client->setDefaultOption('exceptions', false);

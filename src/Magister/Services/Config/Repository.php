@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Config;
 
-use Magister\Services\Support\NamespacedItemResolver;
 use Magister\Services\Contracts\Config\Repository as ConfigContract;
+use Magister\Services\Support\NamespacedItemResolver;
 
 /**
- * Class Repository
- * @package Magister
+ * Class Repository.
  */
 class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigContract
 {
@@ -38,6 +38,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Determine if the given configuration value exists.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function has($key)
@@ -49,7 +50,8 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Set a given configuration value.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return void
      */
     public function set($key, $value)
@@ -60,12 +62,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
         $this->load($group, $namespace, $collection);
 
-        if (is_null($item))
-        {
+        if (is_null($item)) {
             $this->items[$collection] = $value;
-        }
-        else
-        {
+        } else {
             array_set($this->items[$collection], $item, $value);
         }
     }
@@ -74,8 +73,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Get the specified configuration value.
      *
      * @param string $key
-     * @param array $replace
-     * @param mixed $default
+     * @param array  $replace
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, array $replace = [], $default = null)
@@ -90,7 +90,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
             $collection, $item, $replace, $default
         );
 
-        if (is_null($line)) return $key;
+        if (is_null($line)) {
+            return $key;
+        }
 
         return $line;
     }
@@ -100,7 +102,8 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $key
      * @param string $search
-     * @param mixed $replace
+     * @param mixed  $replace
+     *
      * @return void
      */
     public function replace($key, $search, $replace)
@@ -113,9 +116,8 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
         $items = [];
 
-        foreach ($this->items[$collection] as $key => $value)
-        {
-            $items[$key] = str_replace(':' . $search, $replace, $value);
+        foreach ($this->items[$collection] as $key => $value) {
+            $items[$key] = str_replace(':'.$search, $replace, $value);
         }
 
         $this->items[$collection] = $items;
@@ -127,11 +129,14 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * @param string $group
      * @param string $namespace
      * @param string $collection
+     *
      * @return void
      */
     protected function load($group, $namespace, $collection)
     {
-        if (isset($this->items[$collection])) return;
+        if (isset($this->items[$collection])) {
+            return;
+        }
 
         $items = $this->loader->load($group, $namespace);
 
@@ -143,20 +148,18 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $collection
      * @param string $item
-     * @param array $replace
-     * @param mixed $default
+     * @param array  $replace
+     * @param mixed  $default
+     *
      * @return string|null
      */
     protected function getLine($collection, $item, array $replace, $default = null)
     {
         $line = array_get($this->items[$collection], $item, $default);
 
-        if (is_string($line) || is_bool($line))
-        {
+        if (is_string($line) || is_bool($line)) {
             return $this->makeReplacements($line, $replace);
-        }
-        elseif (is_array($line) && count($line) > 0)
-        {
+        } elseif (is_array($line) && count($line) > 0) {
             return $line;
         }
     }
@@ -165,13 +168,13 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Make the place-holder replacements on a line.
      *
      * @param string $line
-     * @param array $replace
+     * @param array  $replace
+     *
      * @return string
      */
     protected function makeReplacements($line, array $replace)
     {
-        foreach ($replace as $key => $value)
-        {
+        foreach ($replace as $key => $value) {
             $line = str_replace(':'.$key, $value, $line);
         }
 
@@ -183,13 +186,14 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return string
      */
     protected function getCollection($group, $namespace = null)
     {
         $namespace = $namespace ?: '*';
 
-        return $namespace . '::' . $group;
+        return $namespace.'::'.$group;
     }
 
     /**
@@ -206,6 +210,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Set the loader implementation.
      *
      * @param \Magister\Services\Config\LoaderInterface $loader
+     *
      * @return void
      */
     public function setLoader(LoaderInterface $loader)
@@ -227,7 +232,8 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Set a configuration option.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return void
      */
     public function offsetSet($key, $value)
@@ -239,6 +245,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Get a configuration option.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -250,6 +257,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Determine if the given configuration option exists.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -261,6 +269,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Unset a configuration option.
      *
      * @param string $key
+     *
      * @return void
      */
     public function offsetUnset($key)

@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Foundation;
 
 use Magister\Magister;
 
 /**
- * Class ProviderRepository
- * @package Magister
+ * Class ProviderRepository.
  */
 class ProviderRepository
 {
@@ -30,12 +30,12 @@ class ProviderRepository
      * Register the application service providers.
      *
      * @param array $providers
+     *
      * @return void
      */
     public function load(array $providers)
     {
-        foreach ($providers as $provider)
-        {
+        foreach ($providers as $provider) {
             $this->app->register($this->createProvider($provider));
         }
     }
@@ -44,6 +44,7 @@ class ProviderRepository
      * Create a new provider instance.
      *
      * @param string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function createProvider($provider)

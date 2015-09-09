@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Container;
 
 /**
- * Interface Container
- * @package Magister
+ * Interface Container.
  */
 interface Container
 {
@@ -11,7 +11,8 @@ interface Container
      * Register a binding with the container.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function bind($abstract, $concrete);
@@ -20,7 +21,8 @@ interface Container
      * Register a service as a singleton.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function singleton($abstract, $concrete);
@@ -29,8 +31,10 @@ interface Container
      * Resolve the given type from the container.
      *
      * @param string $abstract
-     * @return mixed
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     public function make($abstract);
 
@@ -38,6 +42,7 @@ interface Container
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
+     *
      * @return bool
      */
     public function bound($abstract);

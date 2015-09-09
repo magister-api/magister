@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Foundation\Http;
 
 use Magister\Magister;
 
 /**
- * Class Kernel
- * @package Magister
+ * Class Kernel.
  */
 class Kernel
 {
@@ -26,7 +26,7 @@ class Kernel
         'Magister\Services\Foundation\Bootstrap\RegisterSurrogates',
         'Magister\Services\Foundation\Bootstrap\RegisterProviders',
         'Magister\Services\Foundation\Bootstrap\BootProviders',
-        'Magister\Services\Foundation\Bootstrap\MakeReplacements'
+        'Magister\Services\Foundation\Bootstrap\MakeReplacements',
     ];
 
     /**
@@ -46,8 +46,7 @@ class Kernel
      */
     public function bootstrap()
     {
-        if ( ! $this->app->hasBeenBootstrapped())
-        {
+        if (!$this->app->hasBeenBootstrapped()) {
             $this->app->bootstrapWith($this->bootstrappers());
         }
     }

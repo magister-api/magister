@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Database\Elegant\Relations;
 
-use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Database\Elegant\Builder;
+use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Relation
- * @package Magister
+ * Class Relation.
  */
 abstract class Relation
 {
@@ -42,7 +42,7 @@ abstract class Relation
      * Create a new relation instance.
      *
      * @param \Magister\Services\Database\Elegant\Builder $query
-     * @param \Magister\Services\Database\Elegant\Model $parent
+     * @param \Magister\Services\Database\Elegant\Model   $parent
      */
     public function __construct(Builder $query, Model $parent)
     {
@@ -104,15 +104,15 @@ abstract class Relation
      * Handle dynamic method calls to the relationship.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
     {
         $result = call_user_func_array([$this->query, $method], $parameters);
 
-        if ($result === $this->query)
-        {
+        if ($result === $this->query) {
             return $this;
         }
 

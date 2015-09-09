@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Auth;
 
 /**
- * Interface Guard
- * @package Magister
+ * Interface Guard.
  */
 interface Guard
 {
@@ -32,7 +32,8 @@ interface Guard
      * Attempt to authenticate a user using the given credentials.
      *
      * @param array $credentials
-     * @param bool $login
+     * @param bool  $login
+     *
      * @return bool
      */
     public function attempt(array $credentials = [], $login = true);
@@ -41,6 +42,7 @@ interface Guard
      * Log a user into the application.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     public function login(Authenticable $user);

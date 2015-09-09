@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Support;
 
 /**
- * Interface Arrayable
- * @package Magister
+ * Interface Arrayable.
  */
 interface Arrayable
 {

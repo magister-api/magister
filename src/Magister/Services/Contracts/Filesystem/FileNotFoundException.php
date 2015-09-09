@@ -1,8 +1,10 @@
 <?php
+
 namespace Magister\Services\Contracts\Filesystem;
 
 /**
- * Class FileNotFoundException
- * @package Magister
+ * Class FileNotFoundException.
  */
-class FileNotFoundException extends \Exception {}
+class FileNotFoundException extends \Exception
+{
+}

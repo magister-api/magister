@@ -1,4 +1,5 @@
 <?php
+
 namespace Magister\Models\Enrollment;
 
 use Config;
@@ -6,8 +7,7 @@ use DateTime;
 use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Enrollment
- * @package Magister
+ * Class Enrollment.
  */
 class Enrollment extends Model
 {
@@ -35,7 +35,7 @@ class Enrollment extends Model
      */
     public static function current()
     {
-        $today = (new DateTime)->format('Y-m-d');
+        $today = (new DateTime())->format('Y-m-d');
 
         return static::where('geenToekomstige', false)->where('peildatum', $today)->first();
     }

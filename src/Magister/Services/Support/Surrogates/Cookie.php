@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Cookie
- * @package Magister
+ * Class Cookie.
  */
 class Cookie extends Surrogate
 {

@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Support;
 
 use InvalidArgumentException;
 
 /**
- * Class Manager
- * @package Magister
+ * Class Manager.
  */
 abstract class Manager
 {
@@ -44,14 +44,14 @@ abstract class Manager
      * Get the driver instance.
      *
      * @param string $driver
+     *
      * @return mixed
      */
     public function driver($driver = null)
     {
         $driver = $driver ?: $this->getDefaultDriver();
 
-        if ( ! isset($this->drivers[$driver]))
-        {
+        if (!isset($this->drivers[$driver])) {
             $this->drivers[$driver] = $this->createDriver($driver);
         }
 
@@ -62,15 +62,16 @@ abstract class Manager
      * Create a new driver instance.
      *
      * @param string $driver
-     * @return mixed
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     protected function createDriver($driver)
     {
-        $method = 'create' . ucfirst($driver) . 'Driver';
+        $method = 'create'.ucfirst($driver).'Driver';
 
-        if (method_exists($this, $method))
-        {
+        if (method_exists($this, $method)) {
             return $this->{$method}();
         }
 
@@ -91,7 +92,8 @@ abstract class Manager
      * Dynamically call the driver instance.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

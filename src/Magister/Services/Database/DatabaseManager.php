@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Database;
 
 /**
- * Class DatabaseManager
- * @package Magister
+ * Class DatabaseManager.
  */
 class DatabaseManager implements ConnectionResolverInterface
 {
@@ -35,14 +35,14 @@ class DatabaseManager implements ConnectionResolverInterface
      * Get a database connection instance.
      *
      * @param string $name
+     *
      * @return \Magister\Services\Database\Connection
      */
     public function connection($name = null)
     {
         $name = $name ?: $this->getDefaultConnection();
 
-        if ( ! isset($this->connections[$name]))
-        {
+        if (!isset($this->connections[$name])) {
             $connection = $this->makeConnection();
 
             $this->connections[$name] = $connection;
@@ -64,8 +64,9 @@ class DatabaseManager implements ConnectionResolverInterface
     /**
      * Add a connection to the resolver.
      *
-     * @param string $name
+     * @param string                                          $name
      * @param \Magister\Services\Database\ConnectionInterface $connection
+     *
      * @return void
      */
     public function addConnection($name, ConnectionInterface $connection)
@@ -77,6 +78,7 @@ class DatabaseManager implements ConnectionResolverInterface
      * Set the default connection name.
      *
      * @param string $name
+     *
      * @return void
      */
     public function setDefaultConnection($name)
@@ -108,7 +110,8 @@ class DatabaseManager implements ConnectionResolverInterface
      * Dynamically pass methods to the default connection.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
