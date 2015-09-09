@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Encryption;
 
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class EncryptionServiceProvider
- * @package Magister
+ * Class EncryptionServiceProvider.
  */
 class EncryptionServiceProvider extends ServiceProvider
 {
@@ -16,8 +16,7 @@ class EncryptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('encrypter', function($app)
-        {
+        $this->app->singleton('encrypter', function ($app) {
             return new Encrypter($app['config']['app.key']);
         });
     }

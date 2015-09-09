@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Filesystem;
 
 use Magister\Services\Contracts\Filesystem\FileNotFoundException;
 
 /**
- * Class Filesystem
- * @package Magister
+ * Class Filesystem.
  */
 class Filesystem
 {
@@ -13,6 +13,7 @@ class Filesystem
      * Determine if a file exists.
      *
      * @param string $path
+     *
      * @return bool
      */
     public function exists($path)
@@ -24,13 +25,14 @@ class Filesystem
      * Get the contents of a file.
      *
      * @param string $path
-     * @return string
+     *
      * @throws \Magister\Services\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return string
      */
     public function get($path)
     {
-        if ($this->isFile($path))
-        {
+        if ($this->isFile($path)) {
             return file_get_contents($path);
         }
 
@@ -41,12 +43,16 @@ class Filesystem
      * Get the returned value of a file.
      *
      * @param string $path
-     * @return mixed
+     *
      * @throws \Magister\Services\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return mixed
      */
     public function getRequire($path)
     {
-        if ($this->isFile($path)) return require $path;
+        if ($this->isFile($path)) {
+            return require $path;
+        }
 
         throw new FileNotFoundException(sprintf('File does not exist at path "%s".', $path));
     }
@@ -55,6 +61,7 @@ class Filesystem
      * Require the given file once.
      *
      * @param string $file
+     *
      * @return mixed
      */
     public function requireOnce($file)
@@ -67,7 +74,8 @@ class Filesystem
      *
      * @param string $path
      * @param string $contents
-     * @param bool $lock
+     * @param bool   $lock
+     *
      * @return int
      */
     public function put($path, $contents, $lock = false)
@@ -80,13 +88,13 @@ class Filesystem
      *
      * @param string $path
      * @param string $data
+     *
      * @return int
      */
     public function prepend($path, $data)
     {
-        if ($this->exists($path))
-        {
-            return $this->put($path, $data . $this->get($path));
+        if ($this->exists($path)) {
+            return $this->put($path, $data.$this->get($path));
         }
 
         return $this->put($path, $data);
@@ -97,6 +105,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $data
+     *
      * @return int
      */
     public function append($path, $data)
@@ -108,6 +117,7 @@ class Filesystem
      * Delete the file at a given path.
      *
      * @param string|array $paths
+     *
      * @return bool
      */
     public function delete($paths)
@@ -116,9 +126,10 @@ class Filesystem
 
         $success = true;
 
-        foreach ($paths as $path)
-        {
-            if ( ! @unlink($path)) $success = false;
+        foreach ($paths as $path) {
+            if (!@unlink($path)) {
+                $success = false;
+            }
         }
 
         return $success;
@@ -129,6 +140,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $target
+     *
      * @return bool
      */
     public function move($path, $target)
@@ -141,6 +153,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $target
+     *
      * @return bool
      */
     public function copy($path, $target)
@@ -152,6 +165,7 @@ class Filesystem
      * Determine if the given path is a directory.
      *
      * @param string $directory
+     *
      * @return bool
      */
     public function isDirectory($directory)
@@ -163,6 +177,7 @@ class Filesystem
      * Determine if the given path is writable.
      *
      * @param string $path
+     *
      * @return bool
      */
     public function isWritable($path)
@@ -174,6 +189,7 @@ class Filesystem
      * Determine if the given path is a file.
      *
      * @param string $file
+     *
      * @return bool
      */
     public function isFile($file)

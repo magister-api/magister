@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Foundation\Bootstrap;
 
 use Magister\Magister;
 use Magister\Services\Config\Repository;
 
 /**
- * Class LoadConfiguration
- * @package Magister
+ * Class LoadConfiguration.
  */
 class LoadConfiguration
 {
@@ -14,6 +14,7 @@ class LoadConfiguration
      * Bootstrap the given application.
      *
      * @param \Magister\Magister $app
+     *
      * @return void
      */
     public function bootstrap(Magister $app)

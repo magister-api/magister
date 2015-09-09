@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Database;
 
 use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class DatabaseServiceProvider
- * @package Magister
+ * Class DatabaseServiceProvider.
  */
 class DatabaseServiceProvider extends ServiceProvider
 {
@@ -17,8 +17,7 @@ class DatabaseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('db', function ($app)
-        {
+        $this->app->singleton('db', function ($app) {
             return new DatabaseManager($app);
         });
     }

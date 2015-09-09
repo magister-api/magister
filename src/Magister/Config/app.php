@@ -22,7 +22,7 @@ return [
         'Magister\Services\Http\HttpServiceProvider',
         'Magister\Services\Database\DatabaseServiceProvider',
         'Magister\Services\Events\EventServiceProvider',
-        'Magister\Services\Auth\AuthServiceProvider'
+        'Magister\Services\Auth\AuthServiceProvider',
 
     ],
 
@@ -40,8 +40,8 @@ return [
         'Crypt'     => 'Magister\Services\Support\Surrogates\Crypt',
         'Event'     => 'Magister\Services\Support\Surrogates\Event',
         'File'      => 'Magister\Services\Support\Surrogates\File',
-        'Http'      => 'Magister\Services\Support\Surrogates\Http'
+        'Http'      => 'Magister\Services\Support\Surrogates\Http',
 
-    ]
+    ],
 
 ];

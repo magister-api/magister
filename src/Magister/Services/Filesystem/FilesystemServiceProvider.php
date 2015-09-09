@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Filesystem;
 
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class FilesystemServiceProvider
- * @package Magister
+ * Class FilesystemServiceProvider.
  */
 class FilesystemServiceProvider extends ServiceProvider
 {
@@ -26,9 +26,8 @@ class FilesystemServiceProvider extends ServiceProvider
      */
     protected function registerNativeFilesystem()
     {
-        $this->app->singleton('files', function ()
-        {
-            return new Filesystem;
+        $this->app->singleton('files', function () {
+            return new Filesystem();
         });
     }
 }

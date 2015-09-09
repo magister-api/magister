@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Models\Profile;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Address
- * @package Magister
+ * Class Address.
  */
 class Address extends Model
 {

@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class App
- * @package Magister
+ * Class App.
  */
 class App extends Surrogate
 {

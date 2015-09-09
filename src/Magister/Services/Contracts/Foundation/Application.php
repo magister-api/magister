@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Contracts\Foundation;
 
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Interface Application
- * @package Magister
+ * Interface Application.
  */
 interface Application
 {
@@ -41,7 +41,8 @@ interface Application
      * Register a service provider with the application.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
-     * @param array $options
+     * @param array                                      $options
+     *
      * @return $this
      */
     public function register(ServiceProvider $provider, $options = []);

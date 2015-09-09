@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Surrogate
- * @package Magister
+ * Class Surrogate.
  */
 abstract class Surrogate
 {
@@ -25,14 +25,16 @@ abstract class Surrogate
      * Resolve the surrogate instance from the container.
      *
      * @param string $name
+     *
      * @return mixed
      */
     protected static function resolveSurrogateInstance($name)
     {
-        if (is_object($name)) return $name;
+        if (is_object($name)) {
+            return $name;
+        }
 
-        if (isset(static::$resolvedInstance[$name]))
-        {
+        if (isset(static::$resolvedInstance[$name])) {
             return static::$resolvedInstance[$name];
         }
 
@@ -62,18 +64,20 @@ abstract class Surrogate
     /**
      * Return the name of the service.
      *
-     * @return void
      * @throws \RuntimeException
+     *
+     * @return void
      */
     protected static function getSurrogateAccessor()
     {
-        throw new \RuntimeException("The Surrogate class does not implement a getSurrogateAccessor method.");
+        throw new \RuntimeException('The Surrogate class does not implement a getSurrogateAccessor method.');
     }
 
     /**
      * Set the application instance.
      *
      * @param \Magister\Magister $app
+     *
      * @return void
      */
     public static function setSurrogateApplication($app)
@@ -95,15 +99,15 @@ abstract class Surrogate
      * Dynamically handle incoming requests.
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return mixed
      */
     public static function __callStatic($method, $args)
     {
         $instance = static::getSurrogateRoot();
 
-        switch (count($args))
-        {
+        switch (count($args)) {
             case 0:
                 return $instance->$method();
             case 1:

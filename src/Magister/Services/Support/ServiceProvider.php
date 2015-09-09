@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Support;
 
-use Magister\Magister;
 use BadMethodCallException;
+use Magister\Magister;
 
 /**
- * Class ServiceProvider
- * @package Magister
+ * Class ServiceProvider.
  */
 abstract class ServiceProvider
 {
@@ -38,12 +38,15 @@ abstract class ServiceProvider
      * Dynamically handle missing method calls.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)
     {
-        if ($method == 'boot') return;
+        if ($method == 'boot') {
+            return;
+        }
 
         throw new BadMethodCallException(sprintf('Call to undefined method "%s"', $method));
     }

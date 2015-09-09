@@ -1,14 +1,14 @@
 <?php
+
 namespace Magister\Services\Cookie;
 
 use Closure;
 use Exception;
-use Magister\Services\Encryption\Encrypter;
 use Magister\Services\Contracts\Cookie\Factory as JarContract;
+use Magister\Services\Encryption\Encrypter;
 
 /**
- * Class CookieJar
- * @package Magister
+ * Class CookieJar.
  */
 class CookieJar implements JarContract
 {
@@ -47,26 +47,27 @@ class CookieJar implements JarContract
      * Determine if a cookie exists and is not null.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function has($key)
     {
-        return ! is_null($this->get($key));
+        return !is_null($this->get($key));
     }
 
     /**
      * Get the value of the given cookie.
      *
      * @param string $key
-     * @param mixed $default
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
     {
         $value = isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 
-        if ( ! is_null($value))
-        {
+        if (!is_null($value)) {
             return $this->decrypt($value);
         }
 
@@ -77,17 +78,15 @@ class CookieJar implements JarContract
      * Decrypt the given cookie value.
      *
      * @param string $value
+     *
      * @return mixed|null
      */
     protected function decrypt($value)
     {
-        try
-        {
+        try {
             return $this->encrypter->decrypt($value);
-        }
-        catch (Exception $e)
-        {
-            return null;
+        } catch (Exception $e) {
+            return;
         }
     }
 
@@ -96,11 +95,12 @@ class CookieJar implements JarContract
      *
      * @param string $name
      * @param string $value
-     * @param int $expire
+     * @param int    $expire
      * @param string $path
      * @param string $domain
-     * @param bool $secure
-     * @param bool $httpOnly
+     * @param bool   $secure
+     * @param bool   $httpOnly
+     *
      * @return bool
      */
     public function make($name, $value, $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
@@ -121,8 +121,9 @@ class CookieJar implements JarContract
      * @param string $value
      * @param string $path
      * @param string $domain
-     * @param bool $secure
-     * @param bool $httpOnly
+     * @param bool   $secure
+     * @param bool   $httpOnly
+     *
      * @return bool
      */
     public function forever($name, $value, $path = null, $domain = null, $secure = false, $httpOnly = true)
@@ -136,6 +137,7 @@ class CookieJar implements JarContract
      * @param string $name
      * @param string $path
      * @param string $domain
+     *
      * @return bool
      */
     public function forget($name, $path = null, $domain = null)
@@ -148,6 +150,7 @@ class CookieJar implements JarContract
      *
      * @param string $path
      * @param string $domain
+     *
      * @return array
      */
     public function getPathAndDomain($path, $domain)
@@ -160,6 +163,7 @@ class CookieJar implements JarContract
      *
      * @param string $path
      * @param string $domain
+     *
      * @return $this
      */
     public function setDefaultPathAndDomain($path, $domain)

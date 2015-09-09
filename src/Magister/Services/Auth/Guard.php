@@ -1,15 +1,15 @@
 <?php
+
 namespace Magister\Services\Auth;
 
-use Magister\Services\Cookie\CookieJar;
-use Magister\Services\Contracts\Events\Dispatcher;
-use Magister\Services\Contracts\Auth\UserProvider;
-use Magister\Services\Contracts\Auth\Guard as GuardContract;
 use Magister\Services\Contracts\Auth\Authenticable as UserContract;
+use Magister\Services\Contracts\Auth\Guard as GuardContract;
+use Magister\Services\Contracts\Auth\UserProvider;
+use Magister\Services\Contracts\Events\Dispatcher;
+use Magister\Services\Cookie\CookieJar;
 
 /**
- * Class Guard
- * @package Magister
+ * Class Guard.
  */
 class Guard implements GuardContract
 {
@@ -65,7 +65,7 @@ class Guard implements GuardContract
      */
     public function check()
     {
-        return ! is_null($this->user());
+        return !is_null($this->user());
     }
 
     /**
@@ -75,7 +75,7 @@ class Guard implements GuardContract
      */
     public function guest()
     {
-        return ! $this->check();
+        return !$this->check();
     }
 
     /**
@@ -85,13 +85,14 @@ class Guard implements GuardContract
      */
     public function user()
     {
-        if ($this->loggedOut) return;
+        if ($this->loggedOut) {
+            return;
+        }
 
         // If we have already retrieved the user for the current request we can just
         // return it back immediately. We do not want to pull the user data every
         // request into the method because that would tremendously slow an app.
-        if ( ! is_null($this->user))
-        {
+        if (!is_null($this->user)) {
             return $this->user;
         }
 
@@ -99,8 +100,7 @@ class Guard implements GuardContract
 
         $user = null;
 
-        if ( ! is_null($id))
-        {
+        if (!is_null($id)) {
             $user = $this->provider->retrieveByToken();
         }
 
@@ -114,12 +114,13 @@ class Guard implements GuardContract
      */
     public function id()
     {
-        if ($this->loggedOut) return;
+        if ($this->loggedOut) {
+            return;
+        }
 
         $id = $this->cookie->get($this->getName());
 
-        if (is_null($id) && $this->user())
-        {
+        if (is_null($id) && $this->user()) {
             $id = $this->user()->getAuthIdentifier();
         }
 
@@ -130,16 +131,18 @@ class Guard implements GuardContract
      * Attempt to authenticate a user using the given credentials.
      *
      * @param array $credentials
-     * @param bool $login
+     * @param bool  $login
+     *
      * @return bool
      */
     public function attempt(array $credentials = [], $login = true)
     {
         $user = $this->provider->retrieveByCredentials($credentials);
 
-        if ($this->hasValidCredentials($user))
-        {
-            if ($login) $this->login($user);
+        if ($this->hasValidCredentials($user)) {
+            if ($login) {
+                $this->login($user);
+            }
 
             return true;
         }
@@ -151,17 +154,19 @@ class Guard implements GuardContract
      * Determine if the user matches the credentials.
      *
      * @param mixed $user
+     *
      * @return bool
      */
     protected function hasValidCredentials($user)
     {
-        return ! is_null($user);
+        return !is_null($user);
     }
 
     /**
      * Log a user into the application.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     public function login(UserContract $user)
@@ -180,12 +185,12 @@ class Guard implements GuardContract
      * Fire the login event if the dispatcher is set.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     protected function fireLoginEvent($user)
     {
-        if (isset($this->events))
-        {
+        if (isset($this->events)) {
             $this->events->fire('auth.login', $user);
         }
     }
@@ -194,6 +199,7 @@ class Guard implements GuardContract
      * Update the session with the given cookie.
      *
      * @param string $id
+     *
      * @return void
      */
     protected function updateSession($id)
@@ -215,8 +221,7 @@ class Guard implements GuardContract
         // listening for anytime a user signs out of this application manually.
         $this->clearUserDataFromStorage();
 
-        if (isset($this->events))
-        {
+        if (isset($this->events)) {
             $this->events->fire('auth.logout', $user);
         }
 
@@ -261,13 +266,14 @@ class Guard implements GuardContract
      */
     public function getName()
     {
-        return 'login_' . md5(get_class($this));
+        return 'login_'.md5(get_class($this));
     }
 
     /**
      * Set the current user.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     public function setUser(UserContract $user)
@@ -291,6 +297,7 @@ class Guard implements GuardContract
      * Set the cookie creator instance used by the guard.
      *
      * @param \Magister\Services\Cookie\CookieJar $cookie
+     *
      * @return void
      */
     public function setCookieJar(CookieJar $cookie)
@@ -301,13 +308,13 @@ class Guard implements GuardContract
     /**
      * Get the cookie creator instance used by the guard.
      *
-     * @return \Magister\Services\Cookie\CookieJar
      * @throws \RuntimeException
+     *
+     * @return \Magister\Services\Cookie\CookieJar
      */
     public function getCookieJar()
     {
-        if ( ! isset($this->cookie))
-        {
+        if (!isset($this->cookie)) {
             throw new \RuntimeException('Cookie jar has not been set.');
         }
 
@@ -318,6 +325,7 @@ class Guard implements GuardContract
      * Set the event dispatcher instance.
      *
      * @param \Magister\Services\Contracts\Events\Dispatcher $events
+     *
      * @return void
      */
     public function setDispatcher(Dispatcher $events)
@@ -339,6 +347,7 @@ class Guard implements GuardContract
      * Set the user provider used by the guard.
      *
      * @param \Magister\Services\Contracts\Auth\UserProvider $provider
+     *
      * @return void
      */
     public function setProvider(UserProvider $provider)

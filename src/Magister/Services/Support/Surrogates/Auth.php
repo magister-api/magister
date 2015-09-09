@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support\Surrogates;
 
 /**
- * Class Auth
- * @package Magister
+ * Class Auth.
  */
 class Auth extends Surrogate
 {

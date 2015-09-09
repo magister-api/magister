@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Encryption;
 
 use Magister\Services\Contracts\Encryption\DecryptException;
 use Magister\Services\Contracts\Encryption\Encrypter as EncrypterContract;
 
 /**
- * Class Encrypter
- * @package Magister
+ * Class Encrypter.
  */
 class Encrypter implements EncrypterContract
 {
@@ -52,6 +52,7 @@ class Encrypter implements EncrypterContract
      * Encrypt the given value.
      *
      * @param string $value
+     *
      * @return string
      */
     public function encrypt($value)
@@ -70,6 +71,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $value
      * @param string $iv
+     *
      * @return string
      */
     protected function padAndMcrypt($value, $iv)
@@ -83,6 +85,7 @@ class Encrypter implements EncrypterContract
      * Decrypt the given value.
      *
      * @param string $payload
+     *
      * @return string
      */
     public function decrypt($payload)
@@ -101,6 +104,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $value
      * @param string $iv
+     *
      * @return string
      */
     protected function mcryptDecrypt($value, $iv)
@@ -112,21 +116,21 @@ class Encrypter implements EncrypterContract
      * Get the JSON array from the given payload.
      *
      * @param string $payload
-     * @return array
+     *
      * @throws \Magister\Services\Contracts\Encryption\DecryptException
+     *
+     * @return array
      */
     protected function getJsonPayload($payload)
     {
         $payload = json_decode(base64_decode($payload), true);
 
-        if ( ! $payload or $this->invalidPayload($payload))
-        {
-            throw new DecryptException("Invalid data.");
+        if (!$payload or $this->invalidPayload($payload)) {
+            throw new DecryptException('Invalid data.');
         }
 
-        if ( ! $this->validMac($payload))
-        {
-            throw new DecryptException("MAC is invalid.");
+        if (!$this->validMac($payload)) {
+            throw new DecryptException('MAC is invalid.');
         }
 
         return $payload;
@@ -136,6 +140,7 @@ class Encrypter implements EncrypterContract
      * Determine if the MAC for the given payload is valid.
      *
      * @param array $payload
+     *
      * @return bool
      */
     protected function validMac(array $payload)
@@ -148,6 +153,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $iv
      * @param string $value
+     *
      * @return string
      */
     protected function hash($iv, $value)
@@ -159,19 +165,21 @@ class Encrypter implements EncrypterContract
      * Add PKCS7 padding to a given value.
      *
      * @param string $value
+     *
      * @return string
      */
     protected function addPadding($value)
     {
         $pad = $this->block - (strlen($value) % $this->block);
 
-        return $value . str_repeat(chr($pad), $pad);
+        return $value.str_repeat(chr($pad), $pad);
     }
 
     /**
      * Remove the padding from the given value.
      *
      * @param string $value
+     *
      * @return string
      */
     protected function stripPadding($value)
@@ -186,6 +194,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $pad
      * @param string $value
+     *
      * @return bool
      */
     protected function paddingIsValid($pad, $value)
@@ -199,11 +208,12 @@ class Encrypter implements EncrypterContract
      * Verify that the encryption payload is valid.
      *
      * @param array|mixed $data
+     *
      * @return bool
      */
     protected function invalidPayload($data)
     {
-        return ! is_array($data) || ! isset($data['iv']) || ! isset($data['value']) || ! isset($data['mac']);
+        return !is_array($data) || !isset($data['iv']) || !isset($data['value']) || !isset($data['mac']);
     }
 
     /**
@@ -223,9 +233,13 @@ class Encrypter implements EncrypterContract
      */
     protected function getRandomizer()
     {
-        if (defined('MCRYPT_DEV_URANDOM')) return MCRYPT_DEV_URANDOM;
+        if (defined('MCRYPT_DEV_URANDOM')) {
+            return MCRYPT_DEV_URANDOM;
+        }
 
-        if (defined('MCRYPT_DEV_RANDOM')) return MCRYPT_DEV_RANDOM;
+        if (defined('MCRYPT_DEV_RANDOM')) {
+            return MCRYPT_DEV_RANDOM;
+        }
 
         mt_srand();
 
@@ -236,6 +250,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption key.
      *
      * @param string $key
+     *
      * @return void
      */
     public function setKey($key)
@@ -247,6 +262,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption cipher.
      *
      * @param string $cipher
+     *
      * @return void
      */
     public function setCipher($cipher)
@@ -258,6 +274,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption mode.
      *
      * @param string $mode
+     *
      * @return void
      */
     public function setMode($mode)

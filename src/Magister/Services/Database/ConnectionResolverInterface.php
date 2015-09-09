@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Database;
 
 /**
- * Interface ConnectionResolverInterface
- * @package Magister
+ * Interface ConnectionResolverInterface.
  */
 interface ConnectionResolverInterface
 {
@@ -11,6 +11,7 @@ interface ConnectionResolverInterface
      * Get a database connection instance.
      *
      * @param string $name
+     *
      * @return \Magister\Services\Database\Connection
      */
     public function connection($name = null);
@@ -19,6 +20,7 @@ interface ConnectionResolverInterface
      * Set the default connection name.
      *
      * @param string $name
+     *
      * @return void
      */
     public function setDefaultConnection($name);

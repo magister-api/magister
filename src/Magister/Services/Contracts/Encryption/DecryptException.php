@@ -1,8 +1,10 @@
 <?php
+
 namespace Magister\Services\Contracts\Encryption;
 
 /**
- * Class DecryptException
- * @package Magister
+ * Class DecryptException.
  */
-class DecryptException extends \Exception {}
+class DecryptException extends \Exception
+{
+}

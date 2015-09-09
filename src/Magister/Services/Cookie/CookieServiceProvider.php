@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Cookie;
 
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class CookieServiceProvider
- * @package Magister
+ * Class CookieServiceProvider.
  */
 class CookieServiceProvider extends ServiceProvider
 {
@@ -16,8 +16,7 @@ class CookieServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('cookie', function($app)
-        {
+        $this->app->singleton('cookie', function ($app) {
             $cookie = new CookieJar($app['encrypter']);
 
             $config = $app['config']['session'];

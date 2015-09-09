@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Database;
 
 /**
- * Class QueryException
- * @package Magister
+ * Class QueryException.
  */
 class QueryException extends \Exception
 {
@@ -24,8 +24,8 @@ class QueryException extends \Exception
     /**
      * Create a new query exception instance.
      *
-     * @param string $query
-     * @param array $bindings
+     * @param string     $query
+     * @param array      $bindings
      * @param \Exception $previous
      */
     public function __construct($query, array $bindings, $previous)
@@ -42,14 +42,15 @@ class QueryException extends \Exception
     /**
      * Format the error message.
      *
-     * @param string $query
-     * @param array $bindings
+     * @param string     $query
+     * @param array      $bindings
      * @param \Exception $previous
+     *
      * @return string
      */
     protected function formatMessage($query, $bindings, $previous)
     {
-        return $previous->getMessage() . ' (Query: ' . $query . ', ' . print_r($bindings, true) . ')';
+        return $previous->getMessage().' (Query: '.$query.', '.print_r($bindings, true).')';
     }
 
     /**

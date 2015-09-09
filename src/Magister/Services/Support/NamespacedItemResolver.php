@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Support;
 
 /**
- * Class NamespacedItemResolver
- * @package Magister
+ * Class NamespacedItemResolver.
  */
 class NamespacedItemResolver
 {
@@ -18,23 +18,20 @@ class NamespacedItemResolver
      * Parse a key into namespace, group, and item.
      *
      * @param string $key
+     *
      * @return array
      */
     public function parseKey($key)
     {
-        if (isset($this->parsed[$key]))
-        {
+        if (isset($this->parsed[$key])) {
             return $this->parsed[$key];
         }
 
-        if (strpos($key, '::') === false)
-        {
+        if (strpos($key, '::') === false) {
             $segments = explode('.', $key);
 
             $parsed = $this->parseBasicSegments($segments);
-        }
-        else
-        {
+        } else {
             $parsed = $this->parseNamespacedSegments($key);
         }
 
@@ -45,18 +42,16 @@ class NamespacedItemResolver
      * Parse an array of basic segments.
      *
      * @param array $segments
+     *
      * @return array
      */
     protected function parseBasicSegments(array $segments)
     {
         $group = $segments[0];
 
-        if (count($segments) == 1)
-        {
+        if (count($segments) == 1) {
             return [null, $group, null];
-        }
-        else
-        {
+        } else {
             $item = implode('.', array_slice($segments, 1));
 
             return [null, $group, $item];
@@ -67,6 +62,7 @@ class NamespacedItemResolver
      * Parse an array of namespaced segments.
      *
      * @param string $key
+     *
      * @return array
      */
     protected function parseNamespacedSegments($key)
@@ -84,7 +80,8 @@ class NamespacedItemResolver
      * Set the parsed value of a key.
      *
      * @param string $key
-     * @param array $parsed
+     * @param array  $parsed
+     *
      * @return void
      */
     public function setParsedKey($key, $parsed)

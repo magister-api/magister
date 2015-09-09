@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Events;
 
 use Magister\Services\Support\ServiceProvider;
 
 /**
- * Class EventServiceProvider
- * @package Magister
+ * Class EventServiceProvider.
  */
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,8 +16,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('events', function($app)
-        {
+        $this->app->singleton('events', function ($app) {
             return new Dispatcher($app);
         });
     }

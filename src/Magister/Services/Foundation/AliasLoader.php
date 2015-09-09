@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Foundation;
 
 /**
- * Class AliasLoader
- * @package Magister
+ * Class AliasLoader.
  */
 class AliasLoader
 {
@@ -42,12 +42,12 @@ class AliasLoader
      * Create a singleton alias loader instance.
      *
      * @param array $aliases
+     *
      * @return static
      */
     public static function getInstance(array $aliases = [])
     {
-        if (is_null(static::$instance))
-        {
+        if (is_null(static::$instance)) {
             return static::$instance = new static($aliases);
         }
 
@@ -65,8 +65,7 @@ class AliasLoader
      */
     public function register()
     {
-        if ( ! $this->isRegistered())
-        {
+        if (!$this->isRegistered()) {
             $this->registerAutoloader();
 
             $this->registered = true;
@@ -87,12 +86,12 @@ class AliasLoader
      * Load a class alias if it is registered.
      *
      * @param string $alias
+     *
      * @return void
      */
     public function load($alias)
     {
-        if (isset($this->aliases[$alias]))
-        {
+        if (isset($this->aliases[$alias])) {
             class_alias($this->aliases[$alias], $alias);
         }
     }
@@ -101,6 +100,7 @@ class AliasLoader
      * Set the registered aliases.
      *
      * @param array $aliases
+     *
      * @return void
      */
     public function setAliases(array $aliases)
@@ -132,6 +132,7 @@ class AliasLoader
      * Set the "registered" state of the loader.
      *
      * @param bool $value
+     *
      * @return void
      */
     public function setRegistered($value)
@@ -143,6 +144,7 @@ class AliasLoader
      * Set the value of the singleton alias loader.
      *
      * @param \Magister\Services\Foundation\AliasLoader $loader
+     *
      * @return void
      */
     public static function setInstance($loader)
@@ -155,5 +157,7 @@ class AliasLoader
      *
      * @return void
      */
-    private function __clone() {}
+    private function __clone()
+    {
+    }
 }

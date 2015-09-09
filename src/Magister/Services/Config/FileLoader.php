@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Config;
 
 use Magister\Services\Filesystem\Filesystem;
 
 /**
- * Class FileLoader
- * @package Magister
+ * Class FileLoader.
  */
 class FileLoader implements LoaderInterface
 {
@@ -41,7 +41,7 @@ class FileLoader implements LoaderInterface
      * Create a new file configuration loader.
      *
      * @param \Magister\Services\Filesystem\Filesystem $files
-     * @param string $defaultPath
+     * @param string                                   $defaultPath
      */
     public function __construct(Filesystem $files, $defaultPath)
     {
@@ -54,6 +54,7 @@ class FileLoader implements LoaderInterface
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return array
      */
     public function load($group, $namespace = null)
@@ -62,15 +63,13 @@ class FileLoader implements LoaderInterface
 
         $path = $this->getPath($namespace);
 
-        if (is_null($path))
-        {
+        if (is_null($path)) {
             return $items;
         }
 
         $file = "{$path}/{$group}.php";
 
-        if ($this->files->exists($file))
-        {
+        if ($this->files->exists($file)) {
             $items = $this->files->getRequire($file);
         }
 
@@ -82,21 +81,20 @@ class FileLoader implements LoaderInterface
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return bool
      */
     public function exists($group, $namespace = null)
     {
-        $key = $group . $namespace;
+        $key = $group.$namespace;
 
-        if (isset($this->exists[$key]))
-        {
+        if (isset($this->exists[$key])) {
             return $this->exists[$key];
         }
 
         $path = $this->getPath($namespace);
 
-        if (is_null($path))
-        {
+        if (is_null($path)) {
             return $this->exists[$key] = false;
         }
 
@@ -111,16 +109,14 @@ class FileLoader implements LoaderInterface
      * Get the configuration path for a namespace.
      *
      * @param string $namespace
+     *
      * @return string
      */
     protected function getPath($namespace)
     {
-        if (is_null($namespace))
-        {
+        if (is_null($namespace)) {
             return $this->defaultPath;
-        }
-        elseif (isset($this->hints[$namespace]))
-        {
+        } elseif (isset($this->hints[$namespace])) {
             return $this->hints[$namespace];
         }
     }
@@ -130,6 +126,7 @@ class FileLoader implements LoaderInterface
      *
      * @param string $namespace
      * @param string $hint
+     *
      * @return void
      */
     public function addNamespace($namespace, $hint)
@@ -151,6 +148,7 @@ class FileLoader implements LoaderInterface
      * Get a file's contents by requiring it.
      *
      * @param string $path
+     *
      * @return mixed
      */
     protected function getRequire($path)

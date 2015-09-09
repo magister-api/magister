@@ -1,11 +1,11 @@
 <?php
+
 namespace Magister\Services\Database\Query\Processors;
 
 use Magister\Services\Database\Query\Builder;
 
 /**
- * Class Processor
- * @package Magister
+ * Class Processor.
  */
 class Processor
 {
@@ -13,7 +13,8 @@ class Processor
      * Process the selected results.
      *
      * @param \Magister\Services\Database\Query\Builder $builder
-     * @param array $results
+     * @param array                                     $results
+     *
      * @return array
      */
     public function process(Builder $builder, $results)

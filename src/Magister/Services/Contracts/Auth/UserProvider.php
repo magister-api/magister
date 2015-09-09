@@ -1,9 +1,9 @@
 <?php
+
 namespace Magister\Services\Contracts\Auth;
 
 /**
- * Interface UserProvider
- * @package Magister
+ * Interface UserProvider.
  */
 interface UserProvider
 {
@@ -25,6 +25,7 @@ interface UserProvider
      * Retrieve a user by the given credentials.
      *
      * @param array $credentials
+     *
      * @return \Magister\Services\Database\Elegant\Model|null
      */
     public function retrieveByCredentials(array $credentials);

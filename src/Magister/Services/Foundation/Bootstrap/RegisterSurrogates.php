@@ -1,13 +1,13 @@
 <?php
+
 namespace Magister\Services\Foundation\Bootstrap;
 
 use Magister\Magister;
-use Magister\Services\Support\Surrogates\Surrogate;
 use Magister\Services\Foundation\AliasLoader;
+use Magister\Services\Support\Surrogates\Surrogate;
 
 /**
- * Class RegisterSurrogates
- * @package Magister
+ * Class RegisterSurrogates.
  */
 class RegisterSurrogates
 {
@@ -15,6 +15,7 @@ class RegisterSurrogates
      * Bootstrap the given application.
      *
      * @param \Magister\Magister $app
+     *
      * @return void
      */
     public function bootstrap(Magister $app)

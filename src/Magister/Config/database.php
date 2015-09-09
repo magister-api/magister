@@ -7,6 +7,6 @@ return [
      | Default Database Connection Name
      |--------------------------------------------------------------------------
      */
-    'default' => 'curl'
+    'default' => 'curl',
 
 ];

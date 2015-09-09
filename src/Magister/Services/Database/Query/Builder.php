@@ -1,14 +1,14 @@
 <?php
+
 namespace Magister\Services\Database\Query;
 
 use BadMethodCallException;
-use Magister\Services\Support\Collection;
 use Magister\Services\Database\ConnectionInterface;
 use Magister\Services\Database\Query\Processors\Processor;
+use Magister\Services\Support\Collection;
 
 /**
- * Class Builder
- * @package Magister
+ * Class Builder.
  */
 class Builder
 {
@@ -43,7 +43,7 @@ class Builder
     /**
      * Create a new query builder instance.
      *
-     * @param \Magister\Services\Database\ConnectionInterface $connection
+     * @param \Magister\Services\Database\ConnectionInterface        $connection
      * @param \Magister\Services\Database\Query\Processors\Processor $processor
      */
     public function __construct(ConnectionInterface $connection, Processor $processor)
@@ -56,6 +56,7 @@ class Builder
      * Set the url which the query is targeting.
      *
      * @param string $query
+     *
      * @return $this
      */
     public function from($query)
@@ -70,6 +71,7 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     public function lists($column, $key = null)
@@ -86,14 +88,14 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     protected function getListSelect($column, $key)
     {
         $select = is_null($key) ? [$column] : [$column, $key];
 
-        return array_map(function($column)
-        {
+        return array_map(function ($column) {
             $dot = strpos($column, '.');
 
             return $dot === false ? $column : substr($column, $dot + 1);
@@ -124,7 +126,8 @@ class Builder
      * Add a basic where clause to the query.
      *
      * @param string $column
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return $this
      */
     public function where($column, $value)
@@ -139,6 +142,7 @@ class Builder
      *
      * @param string $method
      * @param string $parameters
+     *
      * @return $this
      */
     public function dynamicWhere($method, $parameters)
@@ -149,10 +153,8 @@ class Builder
 
         $parameter = array_shift($parameters);
 
-        foreach ($segments as $segment)
-        {
-            if ($segment != 'And')
-            {
+        foreach ($segments as $segment) {
+            if ($segment != 'And') {
                 $this->where($segment, $parameter);
             }
         }
@@ -194,14 +196,15 @@ class Builder
      * Handle dynamic method calls into the method.
      *
      * @param string $method
-     * @param array $parameters
-     * @return mixed
+     * @param array  $parameters
+     *
      * @throws \BadMethodCallException
+     *
+     * @return mixed
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'where'))
-        {
+        if (starts_with($method, 'where')) {
             return $this->dynamicWhere($method, $parameters);
         }
 

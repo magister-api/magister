@@ -1,4 +1,5 @@
 <?php
+
 namespace Magister\Services\Database;
 
 use Closure;
@@ -8,8 +9,7 @@ use Magister\Services\Database\Query\Builder;
 use Magister\Services\Database\Query\Processors\Processor;
 
 /**
- * Class Connection
- * @package Magister
+ * Class Connection.
  */
 class Connection implements ConnectionInterface
 {
@@ -50,6 +50,7 @@ class Connection implements ConnectionInterface
      * Start a query against the server.
      *
      * @param string $query
+     *
      * @return \Magister\Services\Database\Query\Builder
      */
     public function query($query)
@@ -65,13 +66,13 @@ class Connection implements ConnectionInterface
      * Run a select statement against the server.
      *
      * @param string $query
-     * @param array $bindings
+     * @param array  $bindings
+     *
      * @return mixed
      */
     public function select($query, $bindings = [])
     {
-        return $this->run($query, $bindings, function ($me, $query, $bindings)
-        {
+        return $this->run($query, $bindings, function ($me, $query, $bindings) {
             list($query, $bindings) = $me->prepareBindings($query, $bindings);
 
             // For select statements, we'll simply execute the query and return an array
@@ -87,17 +88,16 @@ class Connection implements ConnectionInterface
      * Prepare the query bindings for execution.
      *
      * @param string $query
-     * @param array $bindings
+     * @param array  $bindings
+     *
      * @return array
      */
     public function prepareBindings($query, array $bindings)
     {
-        foreach ($bindings as $key => $value)
-        {
-            $search = ':' . $key;
+        foreach ($bindings as $key => $value) {
+            $search = ':'.$key;
 
-            if (strpos($query, $search) !== false)
-            {
+            if (strpos($query, $search) !== false) {
                 $query = str_replace($search, $value, $query);
 
                 unset($bindings[$key]);
@@ -110,9 +110,10 @@ class Connection implements ConnectionInterface
     /**
      * Run a statement and log its execution context.
      *
-     * @param string $query
-     * @param array $bindings
+     * @param string   $query
+     * @param array    $bindings
      * @param \Closure $callback
+     *
      * @return mixed
      */
     public function run($query, $bindings, Closure $callback)
@@ -132,20 +133,19 @@ class Connection implements ConnectionInterface
     /**
      * Run a SQL statement.
      *
-     * @param string $query
-     * @param array $bindings
+     * @param string   $query
+     * @param array    $bindings
      * @param \Closure $callback
-     * @return mixed
+     *
      * @throws \Magister\Services\Database\QueryException
+     *
+     * @return mixed
      */
     protected function runQueryCallback($query, $bindings, Closure $callback)
     {
-        try
-        {
+        try {
             $result = $callback($this, $query, $bindings);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             // If an exception occurs when attempting to run a request, we'll format the error
             // message to include the bindings, which will make this exception a
             // lot more helpful to the developer instead of just the client's errors.
@@ -181,6 +181,7 @@ class Connection implements ConnectionInterface
      * Set the processor used by the connection.
      *
      * @param \Magister\Services\Database\Query\Processors\Processor $processor
+     *
      * @return void
      */
     public function setProcessor(Processor $processor)
@@ -212,6 +213,7 @@ class Connection implements ConnectionInterface
      * Get the elapsed time since a given starting point.
      *
      * @param int $start
+     *
      * @return float
      */
     protected function getElapsedTime($start)

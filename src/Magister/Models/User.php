@@ -1,14 +1,14 @@
 <?php
+
 namespace Magister\Models;
 
 use Config;
 use Magister\Services\Auth\Authenticable;
-use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
+use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class User
- * @package Magister
+ * Class User.
  */
 class User extends Model implements AuthenticableContract
 {

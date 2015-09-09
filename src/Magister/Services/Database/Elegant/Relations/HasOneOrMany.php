@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Services\Database\Elegant\Relations;
 
-use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Database\Elegant\Builder;
+use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class HasOneOrMany
- * @package Magister
+ * Class HasOneOrMany.
  */
 abstract class HasOneOrMany extends Relation
 {
@@ -28,9 +28,9 @@ abstract class HasOneOrMany extends Relation
      * Create a new has one or many relationship instance.
      *
      * @param \Magister\Services\Database\Elegant\Builder $query
-     * @param \Magister\Services\Database\Elegant\Model $parent
-     * @param string $foreignKey
-     * @param string $localKey
+     * @param \Magister\Services\Database\Elegant\Model   $parent
+     * @param string                                      $foreignKey
+     * @param string                                      $localKey
      */
     public function __construct(Builder $query, Model $parent, $foreignKey, $localKey)
     {
@@ -47,8 +47,7 @@ abstract class HasOneOrMany extends Relation
      */
     public function addConstraints()
     {
-        if (static::$constraints)
-        {
+        if (static::$constraints) {
             $this->query->where($this->foreignKey, $this->getParentKey());
         }
     }

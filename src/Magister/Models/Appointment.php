@@ -1,12 +1,12 @@
 <?php
+
 namespace Magister\Models;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Appointment
- * @package Magister
+ * Class Appointment.
  */
 class Appointment extends Model
 {

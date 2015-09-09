@@ -1,14 +1,14 @@
 <?php
+
 namespace Magister\Services\Container;
 
-use Closure;
 use ArrayAccess;
+use Closure;
 use InvalidArgumentException;
 use Magister\Services\Contracts\Container\Container as ContainerContract;
 
 /**
- * Class Container
- * @package Magister
+ * Class Container.
  */
 class Container implements ArrayAccess, ContainerContract
 {
@@ -23,7 +23,8 @@ class Container implements ArrayAccess, ContainerContract
      * Register a binding with the container.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function bind($abstract, $concrete)
@@ -35,7 +36,8 @@ class Container implements ArrayAccess, ContainerContract
      * Register a service as a singleton.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function singleton($abstract, $concrete)
@@ -47,13 +49,14 @@ class Container implements ArrayAccess, ContainerContract
      * Resolve the given type from the container.
      *
      * @param string $abstract
-     * @return mixed
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     public function make($abstract)
     {
-        if ( ! $this->bound($abstract))
-        {
+        if (!$this->bound($abstract)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -66,6 +69,7 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
+     *
      * @return bool
      */
     public function bound($abstract)
@@ -77,6 +81,7 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
+     *
      * @return void
      */
     public function remove($abstract)
@@ -89,16 +94,15 @@ class Container implements ArrayAccess, ContainerContract
      * uniqueness in the scope of this instance of the container.
      *
      * @param \Closure $callable
+     *
      * @return \Closure
      */
     public static function share(Closure $callable)
     {
-        return function ($c) use ($callable)
-        {
+        return function ($c) use ($callable) {
             static $object;
 
-            if (null === $object)
-            {
+            if (null === $object) {
                 $object = $callable($c);
             }
 
@@ -110,12 +114,12 @@ class Container implements ArrayAccess, ContainerContract
      * Protects a callable from being interpreted as a service.
      *
      * @param \Closure $callable
+     *
      * @return \Closure
      */
     public static function protect(Closure $callable)
     {
-        return function ($c) use ($callable)
-        {
+        return function ($c) use ($callable) {
             return $callable;
         };
     }
@@ -124,13 +128,14 @@ class Container implements ArrayAccess, ContainerContract
      * Gets a parameter or the closure defining an object.
      *
      * @param string $abstract
-     * @return mixed
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     public function raw($abstract)
     {
-        if ( ! array_key_exists($abstract, $this->bindings))
-        {
+        if (!array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -140,27 +145,26 @@ class Container implements ArrayAccess, ContainerContract
     /**
      * Extends an object definition.
      *
-     * @param string $abstract
+     * @param string   $abstract
      * @param \Closure $callable
-     * @return \Closure
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return \Closure
      */
     public function extend($abstract, Closure $callable)
     {
-        if ( ! array_key_exists($abstract, $this->bindings))
-        {
+        if (!array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
         $factory = $this->bindings[$abstract];
 
-        if ( ! ($factory instanceof Closure))
-        {
+        if (!($factory instanceof Closure)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" does not contain an object definition.', $abstract));
         }
 
-        return $this->bindings[$abstract] = function ($c) use ($callable, $factory)
-        {
+        return $this->bindings[$abstract] = function ($c) use ($callable, $factory) {
             return $callable($factory($c), $c);
         };
     }
@@ -179,7 +183,8 @@ class Container implements ArrayAccess, ContainerContract
      * Register a binding with the container.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function __set($abstract, $concrete)
@@ -191,6 +196,7 @@ class Container implements ArrayAccess, ContainerContract
      * Resolve the given type from the container.
      *
      * @param string $abstract
+     *
      * @return mixed
      */
     public function __get($abstract)
@@ -202,6 +208,7 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
+     *
      * @return bool
      */
     public function __isset($abstract)
@@ -213,6 +220,7 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
+     *
      * @return void
      */
     public function __unset($abstract)
@@ -224,7 +232,8 @@ class Container implements ArrayAccess, ContainerContract
      * Register a binding with the container.
      *
      * @param string $abstract
-     * @param mixed $concrete
+     * @param mixed  $concrete
+     *
      * @return void
      */
     public function offsetSet($abstract, $concrete)
@@ -236,6 +245,7 @@ class Container implements ArrayAccess, ContainerContract
      * Resolve the given type from the container.
      *
      * @param string $abstract
+     *
      * @return mixed
      */
     public function offsetGet($abstract)
@@ -247,6 +257,7 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
+     *
      * @return bool
      */
     public function offsetExists($abstract)
@@ -258,6 +269,7 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
+     *
      * @return void
      */
     public function offsetUnset($abstract)
