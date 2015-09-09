@@ -92,8 +92,7 @@ class Builder
     {
         $select = is_null($key) ? [$column] : [$column, $key];
 
-        return array_map(function($column)
-        {
+        return array_map(function ($column) {
             $dot = strpos($column, '.');
 
             return $dot === false ? $column : substr($column, $dot + 1);
@@ -149,10 +148,8 @@ class Builder
 
         $parameter = array_shift($parameters);
 
-        foreach ($segments as $segment)
-        {
-            if ($segment != 'And')
-            {
+        foreach ($segments as $segment) {
+            if ($segment != 'And') {
                 $this->where($segment, $parameter);
             }
         }
@@ -200,8 +197,7 @@ class Builder
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'where'))
-        {
+        if (starts_with($method, 'where')) {
             return $this->dynamicWhere($method, $parameters);
         }
 

@@ -34,8 +34,7 @@ class ProviderRepository
      */
     public function load(array $providers)
     {
-        foreach ($providers as $provider)
-        {
+        foreach ($providers as $provider) {
             $this->app->register($this->createProvider($provider));
         }
     }

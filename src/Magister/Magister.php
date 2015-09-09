@@ -85,8 +85,7 @@ class Magister extends Container implements ApplicationContract
 
         $this->setSchool($school);
 
-        if ($username && $password)
-        {
+        if ($username && $password) {
             $this->setCredentials($username, $password);
         }
     }
@@ -99,8 +98,7 @@ class Magister extends Container implements ApplicationContract
      */
     public function bootstrapWith(array $bootstrappers)
     {
-        foreach ($bootstrappers as $bootstrapper)
-        {
+        foreach ($bootstrappers as $bootstrapper) {
             (new $bootstrapper)->bootstrap($this);
         }
 
@@ -124,8 +122,7 @@ class Magister extends Container implements ApplicationContract
      */
     protected function bindPathsInContainer()
     {
-        foreach (['base', 'config'] as $path)
-        {
+        foreach (['base', 'config'] as $path) {
             $this->bind('path.' . $path, $this->{$path . 'Path'}());
         }
     }
@@ -157,10 +154,11 @@ class Magister extends Container implements ApplicationContract
      */
     public function boot()
     {
-        if ($this->booted) return;
+        if ($this->booted) {
+            return;
+        }
 
-        array_walk($this->serviceProviders, function($p)
-        {
+        array_walk($this->serviceProviders, function ($p) {
             $this->bootProvider($p);
         });
 
@@ -175,8 +173,7 @@ class Magister extends Container implements ApplicationContract
      */
     protected function bootProvider(ServiceProvider $provider)
     {
-        if (method_exists($provider, 'boot'))
-        {
+        if (method_exists($provider, 'boot')) {
             $provider->boot();
         }
     }
@@ -220,15 +217,13 @@ class Magister extends Container implements ApplicationContract
      */
     public function register(ServiceProvider $provider, $options = [])
     {
-        if (is_string($provider))
-        {
+        if (is_string($provider)) {
             $provider = $this->resolveProviderClass($provider);
         }
 
         $provider->register();
 
-        foreach ($options as $key => $value)
-        {
+        foreach ($options as $key => $value) {
             $this[$key] = $value;
         }
 
@@ -247,8 +242,7 @@ class Magister extends Container implements ApplicationContract
     {
         $name = is_string($provider) ? $provider : get_class($provider);
 
-        return array_first($this->serviceProviders, function($key, $value) use ($name)
-        {
+        return array_first($this->serviceProviders, function ($key, $value) use ($name) {
             return $value instanceof $name;
         });
     }

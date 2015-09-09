@@ -52,8 +52,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function make($abstract)
     {
-        if ( ! $this->bound($abstract))
-        {
+        if (! $this->bound($abstract)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -93,12 +92,10 @@ class Container implements ArrayAccess, ContainerContract
      */
     public static function share(Closure $callable)
     {
-        return function ($c) use ($callable)
-        {
+        return function ($c) use ($callable) {
             static $object;
 
-            if (null === $object)
-            {
+            if (null === $object) {
                 $object = $callable($c);
             }
 
@@ -114,8 +111,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public static function protect(Closure $callable)
     {
-        return function ($c) use ($callable)
-        {
+        return function ($c) use ($callable) {
             return $callable;
         };
     }
@@ -129,8 +125,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function raw($abstract)
     {
-        if ( ! array_key_exists($abstract, $this->bindings))
-        {
+        if (! array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -147,20 +142,17 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function extend($abstract, Closure $callable)
     {
-        if ( ! array_key_exists($abstract, $this->bindings))
-        {
+        if (! array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
         $factory = $this->bindings[$abstract];
 
-        if ( ! ($factory instanceof Closure))
-        {
+        if (! ($factory instanceof Closure)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" does not contain an object definition.', $abstract));
         }
 
-        return $this->bindings[$abstract] = function ($c) use ($callable, $factory)
-        {
+        return $this->bindings[$abstract] = function ($c) use ($callable, $factory) {
             return $callable($factory($c), $c);
         };
     }
