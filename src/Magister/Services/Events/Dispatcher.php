@@ -75,20 +75,22 @@ class Dispatcher implements DispatcherContract
     {
         $responses = [];
 
-        if ( ! is_array($payload)) $payload = [$payload];
+        if (! is_array($payload)) {
+            $payload = [$payload];
+        }
 
         $payload[] = $event;
 
-        foreach ($this->getListeners($event) as $listener)
-        {
+        foreach ($this->getListeners($event) as $listener) {
             $response = call_user_func_array($listener, $payload);
 
-            if ( ! is_null($response) && $halt)
-            {
+            if (! is_null($response) && $halt) {
                 return $response;
             }
 
-            if ($response === false) break;
+            if ($response === false) {
+                break;
+            }
 
             $responses[] = $response;
         }
@@ -104,8 +106,7 @@ class Dispatcher implements DispatcherContract
      */
     public function getListeners($eventName)
     {
-        if ( ! isset($this->sorted[$eventName]))
-        {
+        if (! isset($this->sorted[$eventName])) {
             $this->sortListeners($eventName);
         }
 
@@ -122,8 +123,7 @@ class Dispatcher implements DispatcherContract
     {
         $this->sorted[$eventName] = [];
 
-        if (isset($this->listeners[$eventName]))
-        {
+        if (isset($this->listeners[$eventName])) {
             krsort($this->listeners[$eventName]);
 
             $this->sorted[$eventName] = call_user_func_array('array_merge', $this->listeners[$eventName]);
@@ -138,8 +138,7 @@ class Dispatcher implements DispatcherContract
      */
     public function makeListener($listener)
     {
-        if (is_string($listener))
-        {
+        if (is_string($listener)) {
             $listener = $this->createClassListener($listener);
         }
 
@@ -156,8 +155,7 @@ class Dispatcher implements DispatcherContract
     {
         $container = $this->container;
 
-        return function() use ($listener, $container)
-        {
+        return function () use ($listener, $container) {
             $segments = explode('@', $listener);
 
             $method = count($segments) == 2 ? $segments[1] : 'handle';

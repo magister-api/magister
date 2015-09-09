@@ -43,7 +43,9 @@ abstract class ServiceProvider
      */
     public function __call($method, $parameters)
     {
-        if ($method == 'boot') return;
+        if ($method == 'boot') {
+            return;
+        }
 
         throw new BadMethodCallException(sprintf('Call to undefined method "%s"', $method));
     }

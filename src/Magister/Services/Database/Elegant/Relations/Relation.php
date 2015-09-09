@@ -111,8 +111,7 @@ abstract class Relation
     {
         $result = call_user_func_array([$this->query, $method], $parameters);
 
-        if ($result === $this->query)
-        {
+        if ($result === $this->query) {
             return $this;
         }
 

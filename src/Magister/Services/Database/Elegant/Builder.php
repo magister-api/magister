@@ -76,7 +76,9 @@ class Builder
     {
         $result = $this->first();
 
-        if ($result) return $result->$column;
+        if ($result) {
+            return $result->$column;
+        }
     }
 
     /**
