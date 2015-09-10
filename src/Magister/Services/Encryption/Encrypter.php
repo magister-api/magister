@@ -125,7 +125,7 @@ class Encrypter implements EncrypterContract
     {
         $payload = json_decode(base64_decode($payload), true);
 
-        if (!$payload or $this->invalidPayload($payload)) {
+        if (!$payload || $this->invalidPayload($payload)) {
             throw new DecryptException('Invalid data.');
         }
 
