@@ -15,6 +15,10 @@
         "guzzlehttp/guzzle": "~5.0",
         "guzzlehttp/cache-subscriber": "0.1.*"
     },
+    "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "phpunit/phpunit": "~4.0"
+    },
     "autoload": {
         "files": [
             "src/Magister/Services/Support/helpers.php"
