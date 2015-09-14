@@ -13,7 +13,7 @@ class Translator
      * Constructor.
      */
     public function __construct() {}
-
+    
     /**
      * Set the dictionary for the translator.
      *
