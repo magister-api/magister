@@ -1,6 +1,6 @@
 <?php
 
-use Mockery;
+use \Mockery;
 
 class TranslationTest extends PHPUnit_Framework_TestCase
 {

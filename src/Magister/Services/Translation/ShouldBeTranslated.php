@@ -2,7 +2,7 @@
 
 namespace Magister\Services\Translation;
 
-interface ShouldBeTranslated()
+interface ShouldBeTranslated
 {
     //
 }
