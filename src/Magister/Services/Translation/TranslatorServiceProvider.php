@@ -3,6 +3,7 @@
 namespace Magister\Services\Translation;
 
 use Magister\Services\Support\ServiceProvider;
+use Magister\Services\Translation\Translator;
 
 class TranslatorServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class TranslatorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Magister\Services\Translation\Translator', function() {
-            return new Magister\Services\Translation\Translator();
+            return new Translator();
         });
     }
 }

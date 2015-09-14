@@ -12,7 +12,10 @@ class Translator
     /**
      * Constructor.
      */
-    public function __construct() {}
+    public function __construct(Array $dictionary = [])
+    {
+        $this->setDictionary($dictionary);
+    }
     
     /**
      * Set the dictionary for the translator.
