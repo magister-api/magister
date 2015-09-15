@@ -12,7 +12,7 @@ class Translator
     protected $dictionary;
 
     /**
-     * Translated words.
+     * Words that has been translated.
      * 
      * @var array
      */
