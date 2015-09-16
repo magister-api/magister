@@ -10,6 +10,10 @@ if (!function_exists('trans')) {
     {
         $translator = \App::make('Magister\Services\Translation\Translator');
         
+        if (!$translator->translationExistsFor($foreign)) {
+            return $foreign;
+        }
+
         return $translator->translateForeign($foreign);
     }
 }

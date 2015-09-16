@@ -4,11 +4,12 @@ namespace Magister\Models\Grade;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Grade.
  */
-class Grade extends Model
+class Grade extends Model implements ShouldBeTranslatable
 {
     /**
      * The attributes that should be mutated to dates.

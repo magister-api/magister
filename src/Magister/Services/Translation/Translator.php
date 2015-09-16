@@ -14,15 +14,6 @@ class Translator
     protected $dictionary;
 
     /**
-     * Words that has been translated.
-     * 
-     * @var array
-     */
-    protected $natives = [];
-
-    protected static $app;
-
-    /**
      * Constructor.
      */
     public function __construct(Array $dictionary = [])
@@ -84,25 +75,5 @@ class Translator
     public function getDictionary()
     {
         return $this->dictionary;
-    }
-
-    /**
-     * Get the native that has been translated.
-     * 
-     * @return array
-     */
-    public function getNatives()
-    {
-        return $this->natives;
-    }
-
-    /**
-     * Set the native words.
-     * 
-     * @param Array $natives
-     */
-    public function setNatives(Array $natives)
-    {
-        $this->natives = $natives;
     }
 }
