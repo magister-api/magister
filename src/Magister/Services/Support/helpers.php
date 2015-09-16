@@ -1,4 +1,22 @@
 <?php
+if (!function_exists('trans')) {
+    /**
+     * Return the translation for the foreign.
+     * 
+     * @param  string $key
+     * @return string
+     */
+    function trans($foreign)
+    {
+        $translator = \App::make('Magister\Services\Translation\Translator');
+        
+        if ($translator->translationExistsFor($foreign)) {
+            return $translator->translateForeign($foreign);
+        }
+
+        return $foreign;
+    }
+}
 
 if (!function_exists('with')) {
     /**

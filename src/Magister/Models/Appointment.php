@@ -4,11 +4,12 @@ namespace Magister\Models;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Translation\ShouldBeTranslatable;
 
 /**
  * Class Appointment.
  */
-class Appointment extends Model
+class Appointment extends Model implements ShouldBeTranslatable
 {
     /**
      * The attributes that should be mutated to dates.

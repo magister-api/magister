@@ -18,6 +18,8 @@ class Translator
      */
     protected $natives = [];
 
+    protected static $app;
+
     /**
      * Constructor.
      */
@@ -25,7 +27,7 @@ class Translator
     {
         $this->setDictionary($dictionary);
     }
-    
+   
     /**
      * Return the translation for the given foreign.
      * 
