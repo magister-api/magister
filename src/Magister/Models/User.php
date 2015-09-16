@@ -6,11 +6,12 @@ use Config;
 use Magister\Services\Auth\Authenticable;
 use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class User.
  */
-class User extends Model implements AuthenticableContract
+class User extends Model implements AuthenticableContract, ShouldBeTranslatable
 {
     use Authenticable;
 
