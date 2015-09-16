@@ -2,6 +2,8 @@
 
 namespace Magister\Services\Translation;
 
+use Magister\Services\Translation\TranslationNotFoundException;
+
 class Translator
 {
     /**
@@ -36,6 +38,9 @@ class Translator
      */
     public function translateForeign($foreign)
     {
+        if (!$this->translationExistsFor($foreign)) {
+            throw new TranslationNotFoundException('The foreign word that had to be translated could not be found in the dictionary!');
+        }
         return $this->getTranslationFor($foreign);
     }
 

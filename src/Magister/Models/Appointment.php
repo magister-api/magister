@@ -4,7 +4,7 @@ namespace Magister\Models;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Translation\ShouldBeTranslatable;
+use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Appointment.

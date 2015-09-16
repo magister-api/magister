@@ -4,7 +4,7 @@ namespace Magister\Services\Database\Elegant;
 
 use DateTime;
 use LogicException;
-use Magister\Services\Translation\ShouldBeTranslatable;
+use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 use Magister\Services\Contracts\Support\Arrayable;
 use Magister\Services\Contracts\Support\Jsonable;
 use Magister\Services\Database\ConnectionResolverInterface as Resolver;
