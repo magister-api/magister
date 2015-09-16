@@ -16,7 +16,7 @@ class Translator
     /**
      * Constructor.
      */
-    public function __construct(Array $dictionary = [])
+    public function __construct(array $dictionary = [])
     {
         $this->setDictionary($dictionary);
     }
@@ -62,7 +62,7 @@ class Translator
      *
      * @param Array $dictionary
      */
-    public function setDictionary(Array $dictionary)
+    public function setDictionary(array $dictionary)
     {
         $this->dictionary = $dictionary;
     }
