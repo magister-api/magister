@@ -67,7 +67,8 @@ class ElegantUserProvider implements UserProvider
     {
         $body = ['body' => $credentials];
 
-        $this->client->post('sessie', $body);
+        $this->client->get('sessies/huidige');
+        $this->client->post('sessies', $body);
 
         return $this->retrieveByToken();
     }
