@@ -7,14 +7,14 @@ return [
      | General
      |--------------------------------------------------------------------------
      */
-    'href' => 'Href',
+    'href'=> 'Href',
     
     /*
      |--------------------------------------------------------------------------
      | Grade
      |--------------------------------------------------------------------------
      */
-    'mark' => 'CijferStr',
+    'mark'=> 'CijferStr',
 
     /*
      |--------------------------------------------------------------------------
@@ -22,5 +22,23 @@ return [
      |--------------------------------------------------------------------------
      */
     'description' => 'Omschrijving',
-    
+    'id'          => 'Id',
+    'links'       => 'Links'
+    'starts'      => 'Start'
+    'ends'        => 'Einde'
+    'classFrom'   => 'LesuurVan' 
+    'classUntill' => 'LesuurTotMet' 
+    'lastsADay'   => 'DuurtHeleDag' 
+    'location'    => 'Lokatie'
+    'status'      => 'Status' 
+    'type'        => 'Type' 
+    'displayType' => 'WeergaveType' 
+    'content'     => 'Inhoud' 
+    'infoType'    => 'InfoType' 
+    'remark'      => 'Aantekening' 
+    'hasBeenDone' => 'Afgerond' 
+    'subjects'    => 'Vakken'
+    'teachers'    => 'Docenten'
+    'rooms'       => 'Lokalen'
+    'groups'      => 'Groepen' 
 ];
