@@ -16,7 +16,7 @@ use Magister\Services\Support\ServiceProvider;
 class Magister extends Container implements ApplicationContract
 {
     /**
-     * The Magister version.
+     * The API version.
      *
      * @var string
      */

@@ -3,6 +3,7 @@
 namespace Magister\Services\Translation;
 
 use Magister\Services\Translation\TranslationNotFoundException;
+use \InvalidArgumentException;
 
 class Translator
 {
@@ -14,25 +15,36 @@ class Translator
     protected $dictionary;
 
     /**
-     * Constructor.
+     * The given model.
+     * 
+     * @var string
+     */
+    protected $model;
+
+    /**
+     * Create new translator instance.
      */
     public function __construct(array $dictionary = [])
     {
         $this->setDictionary($dictionary);
     }
    
-    /**
-     * Return the translation for the given foreign.
-     * 
-     * @param  string $foreign
-     * @return string $native
-     */
-    public function translateForeign($foreign)
+   /**
+    * Determine which words should be Translatable by defining the model
+    * 
+    * @param  string $model
+    * @return \Magister\Services\Translation\Translator
+    * @throws InvalidArgumentException
+    */
+    public function from($model)
     {
-        if (!$this->translationExistsFor($foreign)) {
-            throw new TranslationNotFoundException('The foreign word that had to be translated could not be found in the dictionary!');
+        if (isset($this->getDictionary()[$model])) {
+            $this->model = $model;
+        
+            return $this;
         }
-        return $this->getTranslationFor($foreign);
+        
+        throw new InvalidArgumentException(sprintf('Could not find translations for the model: "%s" in the dictionary', $model));
     }
 
     /**
@@ -41,9 +53,29 @@ class Translator
      * @param  string $foreign
      * @return boolean
      */
-    public function translationExistsFor($foreign)
+    public function hasTranslation($foreign, $model = null)
     {
-        return array_key_exists($foreign, $this->getDictionary());
+        $model = $this->getModel($model);
+
+        return array_key_exists($foreign, $this->getDictionary()[$model]);
+    }
+
+    /**
+     * Return the translation for the given foreign.
+     * 
+     * @param  string $foreign
+     * @return string
+     * @throws \Magister\Services\Translation\TranslationNotFoundException
+     */
+    public function translateForeign($foreign, $model = null)
+    {
+        $model = $this->getModel($model);
+
+        if (!$this->hasTranslation($foreign, $model)) {
+            throw new TranslationNotFoundException('The foreign word that had to be translated could not be found in the dictionary!');
+        }
+
+        return $this->getTranslationFor($foreign, $model);
     }
 
     /**
@@ -52,9 +84,26 @@ class Translator
      * @param  string $foreign
      * @return string $native
      */
-    protected function getTranslationFor($foreign)
+    protected function getTranslationFor($foreign, $model = null)
     {
-        return $this->getDictionary()[$foreign];
+        $model = $this->getModel($model);
+
+        return $this->getDictionary()[$model][$foreign];
+    }
+
+    /**
+     * Get the corresponding model.
+     * 
+     * @param  string $model
+     * @return string
+     */
+    public function getModel($model = null)
+    {
+        if (!is_null($this->model)) {
+            return $this->model;
+        }
+
+        return $model;
     }
 
     /**

@@ -4,41 +4,140 @@ return [
 
     /*
      |--------------------------------------------------------------------------
-     | General
+     | Appointment
      |--------------------------------------------------------------------------
      */
-    'href'=> 'Href',
-    
+    'Magister\Models\Appointment' => [
+
+        'description' => 'Omschrijving',
+        'id'          => 'Id',
+        'links'       => 'Links',
+        'starts'      => 'Start',
+        'ends'        => 'Einde',
+        'classFrom'   => 'LesuurVan',
+        'classUntill' => 'LesuurTotMet',
+        'lastsADay'   => 'DuurtHeleDag',
+        'location'    => 'Lokatie',
+        'status'      => 'Status',
+        'type'        => 'Type',
+        'displayType' => 'WeergaveType',
+        'content'     => 'Inhoud',
+        'infoType'    => 'InfoType',
+        'remark'      => 'Aantekening',
+        'hasBeenDone' => 'Afgerond',
+        'subjects'    => 'Vakken',
+        'teachers'    => 'Docenten',
+        'rooms'       => 'Lokalen',
+        'groups'      => 'Groepen',
+
+    ],
+
+
+    /*
+     |--------------------------------------------------------------------------
+     | Course
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\Course' => [
+
+        'description' => 'omschrijving',
+
+     ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Counsellor
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\Enrollment\Counsellor' => [
+
+        //
+
+     ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Enrollment
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\Enrollment\Enrollment' => [
+
+        //
+
+     ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | User
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\User' => [
+
+        //
+
+     ],
+
     /*
      |--------------------------------------------------------------------------
      | Grade
      |--------------------------------------------------------------------------
      */
-    'mark'=> 'CijferStr',
+    'Magister\Models\Grade\Grade' => [
+        
+        'mark'=> 'CijferStr',
+    
+    ],
 
     /*
      |--------------------------------------------------------------------------
-     | Appointment
+     | Info
      |--------------------------------------------------------------------------
      */
-    'description' => 'Omschrijving',
-    'id'          => 'Id',
-    'links'       => 'Links',
-    'starts'      => 'Start',
-    'ends'        => 'Einde',
-    'classFrom'   => 'LesuurVan',
-    'classUntill' => 'LesuurTotMet',
-    'lastsADay'   => 'DuurtHeleDag',
-    'location'    => 'Lokatie',
-    'status'      => 'Status',
-    'type'        => 'Type',
-    'displayType' => 'WeergaveType',
-    'content'     => 'Inhoud',
-    'infoType'    => 'InfoType',
-    'remark'      => 'Aantekening',
-    'hasBeenDone' => 'Afgerond',
-    'subjects'    => 'Vakken',
-    'teachers'    => 'Docenten',
-    'rooms'       => 'Lokalen',
-    'groups'      => 'Groepen',
+     'Magister\Models\Grade\Info' => [
+
+        //
+
+     ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Profile
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\Profile' => [
+
+        //
+
+     ],
+
+     'Magister\Models\Profile\Address' => [
+
+        //
+
+     ],
+
+     'Magister\Models\Profile\Education' => [
+
+        //
+
+     ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Message
+     |--------------------------------------------------------------------------
+     */
+     'Magister\Models\Message\Inbox' => [
+
+        //
+     
+     ],
+
+     'Magister\Models\Message\Message' => [
+     
+        //
+     
+     ],
+    
+
 ];
