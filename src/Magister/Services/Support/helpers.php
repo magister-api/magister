@@ -406,6 +406,6 @@ if (!function_exists('trans')) {
             return $foreign;
         }
 
-        return $translator->translateForeign($foreign);
+        return $translator->from($model)->translateForeign($foreign);
     }
 }
