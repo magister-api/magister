@@ -12,6 +12,13 @@ use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 class Course extends Model implements ShouldBeTranslatable
 {
     /**
+     * The primary key for the model.
+     *
+     * @var string|null
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
