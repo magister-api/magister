@@ -7,11 +7,11 @@
 
 Een elegante API voor Schoolmaster BV's Magister 6.
 
-> [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Stanvk/Magister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 ## Officiële Documentatie
 
 De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://www.magister-api.nl).
+> [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Stanvk/Magister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 
 ## Licentie
 
