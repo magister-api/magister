@@ -400,7 +400,7 @@ if (!function_exists('trans')) {
      */
     function trans($foreign, $model)
     {
-        $translator = \App::make('Magister\Services\Translation\Translator');
+        $translator = \App::make('translator');
         
         if (!$translator->from($model)->hasTranslation($foreign)) {
             return $foreign;
