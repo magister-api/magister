@@ -14,7 +14,7 @@ class Course extends Model implements ShouldBeTranslatable
     /**
      * The primary key for the model.
      *
-     * @var string|null
+     * @var string
      */
     protected $primaryKey = 'id';
 

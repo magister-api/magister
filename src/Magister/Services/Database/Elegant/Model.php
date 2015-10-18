@@ -651,15 +651,12 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Dynamically retrieve attributes on the model.
      *
      * @param string $key
-     *
      * @return mixed
      */
     public function __get($key)
     {
         if ($this instanceof ShouldBeTranslatable) {
-            $model = get_class($this);
-
-            return $this->getAttribute(trans($key, $model));
+            $key = trans($key, get_class($this));
         }
 
         return $this->getAttribute($key);

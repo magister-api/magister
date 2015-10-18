@@ -14,7 +14,7 @@ class TranslatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Magister\Services\Translation\Translator', function ($app) {
+        $this->app->bind('translator', function ($app) {
             $dictionary = $app['config']['dictionary'];
 
             return new Translator($dictionary);

@@ -34,14 +34,14 @@ return [
      */
     'aliases' => [
 
-        'App'       => 'Magister\Services\Support\Surrogates\App',
-        'Auth'      => 'Magister\Services\Support\Surrogates\Auth',
-        'Config'    => 'Magister\Services\Support\Surrogates\Config',
-        'Cookie'    => 'Magister\Services\Support\Surrogates\Cookie',
-        'Crypt'     => 'Magister\Services\Support\Surrogates\Crypt',
-        'Event'     => 'Magister\Services\Support\Surrogates\Event',
-        'File'      => 'Magister\Services\Support\Surrogates\File',
-        'Http'      => 'Magister\Services\Support\Surrogates\Http',
+        'App'           => 'Magister\Services\Support\Surrogates\App',
+        'Auth'          => 'Magister\Services\Support\Surrogates\Auth',
+        'Config'        => 'Magister\Services\Support\Surrogates\Config',
+        'Cookie'        => 'Magister\Services\Support\Surrogates\Cookie',
+        'Crypt'         => 'Magister\Services\Support\Surrogates\Crypt',
+        'Event'         => 'Magister\Services\Support\Surrogates\Event',
+        'File'          => 'Magister\Services\Support\Surrogates\File',
+        'Http'          => 'Magister\Services\Support\Surrogates\Http'
 
     ],
 

@@ -1,29 +1,22 @@
 <?php
 
-namespace Magister\Models\Grade;
+namespace Magister\Models\Message;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
- * Class Grade.
+ * Class Folder.
  */
-class Grade extends Model implements ShouldBeTranslatable
+class Folder extends Model implements ShouldBeTranslatable
 {
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'CijferId';
-
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['DatumIngevoerd'];
+    protected $dates = ['VerstuurdOp', 'Begin', 'Einde'];
 
     /**
      * Get the url associated with the model.
@@ -32,7 +25,7 @@ class Grade extends Model implements ShouldBeTranslatable
      */
     public function getUrl()
     {
-        return Config::get('url.grade');
+        return Config::get('url.inbox');
     }
 
     /**
@@ -40,8 +33,8 @@ class Grade extends Model implements ShouldBeTranslatable
      *
      * @return mixed
      */
-    public function info()
+    public function message()
     {
-        return $this->hasOne('Magister\Models\Grade\Info', 'cijfer', 'CijferKolom.Id');
+        return $this->hasOne('Magister\Models\Message\Message', 'message', 'Id');
     }
 }
