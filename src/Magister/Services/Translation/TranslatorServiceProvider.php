@@ -10,7 +10,7 @@ class TranslatorServiceProvider extends ServiceProvider
     /**
      * Register bindings in the container.
      * 
-     * @return Translator
+     * @return void
      */
     public function register()
     {

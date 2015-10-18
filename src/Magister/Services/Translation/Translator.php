@@ -8,14 +8,14 @@ use \InvalidArgumentException;
 class Translator
 {
     /**
-     * The dictionary.
+     * The dictionary that should be used for translations.
      *
      * @var array
      */
     protected $dictionary;
 
     /**
-     * The given model.
+     * The model that is being translated.
      * 
      * @var string
      */
@@ -30,7 +30,7 @@ class Translator
     }
    
    /**
-    * Determine which words should be Translatable by defining the model
+    * Determine which words should be translatable by defining the model.
     * 
     * @param  string $model
     * @return \Magister\Services\Translation\Translator
@@ -109,7 +109,9 @@ class Translator
     /**
      * Set the dictionary for the translator.
      *
-     * @param Array $dictionary
+     * @param array $dictionary
+     *
+     * @return void
      */
     public function setDictionary(array $dictionary)
     {
@@ -117,9 +119,9 @@ class Translator
     }
 
     /**
-     * Get the Translator's dictionary.
+     * Get the translator's dictionary.
      *
-     * @return Array $dictionary
+     * @return array
      */
     public function getDictionary()
     {
