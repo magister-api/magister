@@ -7,7 +7,7 @@ use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
- * Class Grade.
+ * Class Message.
  */
 class Message extends Model implements ShouldBeTranslatable
 {
