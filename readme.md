@@ -2,7 +2,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stanvk/Magister/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Stanvk/Magister/?branch=master)
 [![StyleCI](https://styleci.io/repos/29094110/shield)](https://styleci.io/repos/29094110)
 [![Latest Stable Version](https://poser.pugx.org/stanvk/magister/v/stable.svg)](https://packagist.org/packages/stanvk/magister)
-[![Latest Unstable Version](https://poser.pugx.org/stanvk/magister/v/unstable.svg)](https://packagist.org/packages/stanvk/magister)
 [![Total Downloads](https://poser.pugx.org/stanvk/magister/downloads)](https://packagist.org/packages/stanvk/magister)
 [![License](https://poser.pugx.org/stanvk/magister/license.svg)](https://packagist.org/packages/stanvk/magister)
 
