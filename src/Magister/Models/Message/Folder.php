@@ -25,7 +25,7 @@ class Folder extends Model implements ShouldBeTranslatable
      */
     public function getUrl()
     {
-        return Config::get('url.inbox');
+        return Config::get('url.folder');
     }
 
     /**
