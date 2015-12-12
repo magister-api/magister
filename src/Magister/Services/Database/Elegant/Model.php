@@ -656,7 +656,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     public function __get($key)
     {
         if ($this instanceof ShouldBeTranslatable) {
-            $key = trans($key, get_class($this));
+            $key = transMagisterModel($key, get_class($this));
         }
 
         return $this->getAttribute($key);
