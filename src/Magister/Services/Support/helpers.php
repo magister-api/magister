@@ -390,7 +390,7 @@ if (!function_exists('process')) {
     }
 }
 
-if (!function_exists('transMagisterModel')) {
+if (!function_exists('translate')) {
     /**
      * Return the translation for the foreign.
      * 
@@ -398,7 +398,7 @@ if (!function_exists('transMagisterModel')) {
      * 
      * @return string
      */
-    function transMagisterModel($foreign, $model)
+    function translate($foreign, $model)
     {
         $translator = \App::make('translator');
         
