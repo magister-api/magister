@@ -19,9 +19,9 @@
         "mockery/mockery": "~0.9.1",
         "phpunit/phpunit": "~4.0"
     },
-    "suggestions": {
-        "symfony/var-dumper": "^2.7",
-        "filp/whoops": "1.1.*"
+    "suggest": {
+        "symfony/var-dumper": "Required to use the pretty dump functionality (^2.7).",
+        "filp/whoops": "Required to use the pretty error interface for easy debugging (1.1.*)."
     },
     "autoload": {
         "files": [
