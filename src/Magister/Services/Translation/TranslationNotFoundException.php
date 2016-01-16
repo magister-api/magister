@@ -2,9 +2,10 @@
 
 namespace Magister\Services\Translation;
 
-use Exception;
-
-class TranslationNotFoundException extends Exception
+/**
+ * Class TranslationNotFoundException.
+ */
+class TranslationNotFoundException extends \Exception
 {
     //
 }

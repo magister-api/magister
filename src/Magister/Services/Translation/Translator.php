@@ -2,9 +2,9 @@
 
 namespace Magister\Services\Translation;
 
-use Magister\Services\Translation\TranslationNotFoundException;
-use \InvalidArgumentException;
-
+/**
+ * Class Translator.
+ */
 class Translator
 {
     /**
@@ -22,7 +22,7 @@ class Translator
     protected $model;
 
     /**
-     * Create new translator instance.
+     * Create a new translator instance.
      */
     public function __construct(array $dictionary = [])
     {
@@ -30,27 +30,28 @@ class Translator
     }
    
    /**
-    * Determine which words should be translatable by defining the model.
+    * Set the model which the translator is targeting.
     * 
     * @param  string $model
+    * 
     * @return \Magister\Services\Translation\Translator
-    * @throws InvalidArgumentException
     */
     public function from($model)
-    {
-        if (isset($this->getDictionary()[$model])) {
-            $this->model = $model;
-        
-            return $this;
+    {   
+        if (!isset($this->getDictionary()[$model])) {
+            throw new \InvalidArgumentException(sprintf('Could not find translations for the model: "%s" in the dictionary.', $model));
         }
-        
-        throw new InvalidArgumentException(sprintf('Could not find translations for the model: "%s" in the dictionary', $model));
+
+        $this->model = $model;
+    
+        return $this;
     }
 
     /**
      * Determine if a translation for a given foreign exists.
      * 
      * @param  string $foreign
+     * 
      * @return boolean
      */
     public function hasTranslation($foreign, $model = null)

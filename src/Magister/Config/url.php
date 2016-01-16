@@ -84,6 +84,20 @@ return [
      | Message
      |--------------------------------------------------------------------------
      */
-    'message' => 'personen/:id/berichten/:message?berichtSoort=Bericht'
+    'message' => 'personen/:id/berichten/:message?berichtSoort=Bericht',
+
+    /*
+     |--------------------------------------------------------------------------
+     | Period
+     |--------------------------------------------------------------------------
+     */
+    'period' => 'personen/:id/absentieperioden',
+
+    /*
+     |--------------------------------------------------------------------------
+     | Attendance
+     |--------------------------------------------------------------------------
+     */
+    'attendance' => 'personen/:id/absenties?van=:from&tot=:until',
 
 ];

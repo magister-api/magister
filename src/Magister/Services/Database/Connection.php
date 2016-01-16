@@ -95,7 +95,7 @@ class Connection implements ConnectionInterface
     public function prepareBindings($query, array $bindings)
     {
         foreach ($bindings as $key => $value) {
-            $search = ':'.$key;
+            $search = ':'.lcfirst($key);
 
             if (strpos($query, $search) !== false) {
                 $query = str_replace($search, $value, $query);

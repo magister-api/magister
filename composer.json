@@ -17,8 +17,11 @@
     },
     "require-dev": {
         "mockery/mockery": "~0.9.1",
-        "phpunit/phpunit": "~4.0",
-        "symfony/var-dumper": "^2.7"
+        "phpunit/phpunit": "~4.0"
+    },
+    "suggestions": {
+        "symfony/var-dumper": "^2.7",
+        "filp/whoops": "1.1.*"
     },
     "autoload": {
         "files": [
