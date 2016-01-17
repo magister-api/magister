@@ -37,7 +37,7 @@ class Translator
     * @return \Magister\Services\Translation\Translator
     */
     public function from($model)
-    {   
+    {
         if (!isset($this->getDictionary()[$model])) {
             throw new \InvalidArgumentException(sprintf('Could not find translations for the model: "%s" in the dictionary.', $model));
         }
