@@ -49,8 +49,7 @@ class ExceptionServiceProvider extends ServiceProvider
      */
     protected function registerPrettyWhoopsHandler()
     {
-        $this->app['whoops.handler'] = $this->app->share(function()
-        {
+        $this->app['whoops.handler'] = $this->app->share(function () {
             with($handler = new PrettyPageHandler)->setEditor('sublime');
 
             return $handler;
