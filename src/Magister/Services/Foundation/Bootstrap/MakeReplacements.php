@@ -20,8 +20,7 @@ class MakeReplacements
      */
     public function bootstrap(Magister $app)
     {
-        if ($app->auth->check())
-        {
+        if ($app->auth->check()) {
             $app->config->replace('url', 'id', Auth::id());
             $app->config->replace('url', 'enrollment', Enrollment::current()->Id);
         }

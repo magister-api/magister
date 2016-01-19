@@ -120,13 +120,11 @@ class Encrypter implements EncrypterContract
     {
         $payload = json_decode(base64_decode($payload), true);
 
-        if ( ! $payload || $this->invalidPayload($payload))
-        {
+        if (! $payload || $this->invalidPayload($payload)) {
             throw new DecryptException("Invalid data.");
         }
 
-        if ( ! $this->validMac($payload))
-        {
+        if (! $this->validMac($payload)) {
             throw new DecryptException("MAC is invalid.");
         }
 
@@ -224,9 +222,13 @@ class Encrypter implements EncrypterContract
      */
     protected function getRandomizer()
     {
-        if (defined('MCRYPT_DEV_URANDOM')) return MCRYPT_DEV_URANDOM;
+        if (defined('MCRYPT_DEV_URANDOM')) {
+            return MCRYPT_DEV_URANDOM;
+        }
 
-        if (defined('MCRYPT_DEV_RANDOM')) return MCRYPT_DEV_RANDOM;
+        if (defined('MCRYPT_DEV_RANDOM')) {
+            return MCRYPT_DEV_RANDOM;
+        }
 
         mt_srand();
 

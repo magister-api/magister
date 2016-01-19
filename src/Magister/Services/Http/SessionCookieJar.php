@@ -45,8 +45,7 @@ class SessionCookieJar extends GuzzleCookieJar
     {
         $successful = parent::setCookie($cookie);
 
-        if ($successful)
-        {
+        if ($successful) {
             $this->cookie->make($cookie->getName(), $cookie);
 
             return true;
@@ -63,12 +62,10 @@ class SessionCookieJar extends GuzzleCookieJar
      */
     protected function load($cookies)
     {
-        foreach ($_COOKIE as $name => $value)
-        {
+        foreach ($_COOKIE as $name => $value) {
             $cookie = $this->cookie->get($name);
 
-            if ($cookie instanceof SetCookie)
-            {
+            if ($cookie instanceof SetCookie) {
                 $cookies[] = $cookie;
             }
         }

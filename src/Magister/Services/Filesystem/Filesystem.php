@@ -30,8 +30,7 @@ class Filesystem
      */
     public function get($path)
     {
-        if ($this->isFile($path))
-        {
+        if ($this->isFile($path)) {
             return file_get_contents($path);
         }
 
@@ -47,7 +46,9 @@ class Filesystem
      */
     public function getRequire($path)
     {
-        if ($this->isFile($path)) return require $path;
+        if ($this->isFile($path)) {
+            return require $path;
+        }
 
         throw new FileNotFoundException(sprintf('File does not exist at path "%s".', $path));
     }
@@ -85,8 +86,7 @@ class Filesystem
      */
     public function prepend($path, $data)
     {
-        if ($this->exists($path))
-        {
+        if ($this->exists($path)) {
             return $this->put($path, $data . $this->get($path));
         }
 
@@ -117,9 +117,10 @@ class Filesystem
 
         $success = true;
 
-        foreach ($paths as $path)
-        {
-            if ( ! @unlink($path)) $success = false;
+        foreach ($paths as $path) {
+            if (! @unlink($path)) {
+                $success = false;
+            }
         }
 
         return $success;

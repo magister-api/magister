@@ -27,8 +27,7 @@ class FilesystemServiceProvider extends ServiceProvider
      */
     protected function registerNativeFilesystem()
     {
-        $this->app->singleton('files', function ()
-        {
+        $this->app->singleton('files', function () {
             return new Filesystem;
         });
     }

@@ -23,19 +23,15 @@ class NamespacedItemResolver
      */
     public function parseKey($key)
     {
-        if (isset($this->parsed[$key]))
-        {
+        if (isset($this->parsed[$key])) {
             return $this->parsed[$key];
         }
 
-        if (strpos($key, '::') === false)
-        {
+        if (strpos($key, '::') === false) {
             $segments = explode('.', $key);
 
             $parsed = $this->parseBasicSegments($segments);
-        }
-        else
-        {
+        } else {
             $parsed = $this->parseNamespacedSegments($key);
         }
 
@@ -52,12 +48,9 @@ class NamespacedItemResolver
     {
         $group = $segments[0];
 
-        if (count($segments) == 1)
-        {
+        if (count($segments) == 1) {
             return [null, $group, null];
-        }
-        else
-        {
+        } else {
             $item = implode('.', array_slice($segments, 1));
 
             return [null, $group, $item];

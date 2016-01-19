@@ -30,10 +30,11 @@ abstract class Surrogate
      */
     protected static function resolveSurrogateInstance($name)
     {
-        if (is_object($name)) return $name;
+        if (is_object($name)) {
+            return $name;
+        }
 
-        if (isset(static::$resolvedInstance[$name]))
-        {
+        if (isset(static::$resolvedInstance[$name])) {
             return static::$resolvedInstance[$name];
         }
 
@@ -103,8 +104,7 @@ abstract class Surrogate
     {
         $instance = static::getSurrogateRoot();
 
-        switch (count($args))
-        {
+        switch (count($args)) {
             case 0:
                 return $instance->$method();
             case 1:

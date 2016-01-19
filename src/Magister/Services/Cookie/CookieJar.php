@@ -66,8 +66,7 @@ class CookieJar implements JarContract
     {
         $value = isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 
-        if ( ! is_null($value))
-        {
+        if (! is_null($value)) {
             return $this->decrypt($value);
         }
 
@@ -82,12 +81,9 @@ class CookieJar implements JarContract
      */
     protected function decrypt($value)
     {
-        try
-        {
+        try {
             return $this->encrypter->decrypt($value);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return null;
         }
     }

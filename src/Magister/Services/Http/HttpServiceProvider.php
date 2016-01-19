@@ -29,8 +29,7 @@ class HttpServiceProvider extends ServiceProvider
      */
     protected function registerGuzzle()
     {
-        $this->app->singleton('http', function($app)
-        {
+        $this->app->singleton('http', function ($app) {
             $client = new Client(['base_url' => "https://{$app['school']}.magister.net/api/"]);
 
             $client->setDefaultOption('exceptions', false);

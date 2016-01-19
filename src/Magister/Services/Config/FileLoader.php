@@ -63,15 +63,13 @@ class FileLoader implements LoaderInterface
 
         $path = $this->getPath($namespace);
 
-        if (is_null($path))
-        {
+        if (is_null($path)) {
             return $items;
         }
 
         $file = "{$path}/{$group}.php";
 
-        if ($this->files->exists($file))
-        {
+        if ($this->files->exists($file)) {
             $items = $this->files->getRequire($file);
         }
 
@@ -89,15 +87,13 @@ class FileLoader implements LoaderInterface
     {
         $key = $group . $namespace;
 
-        if (isset($this->exists[$key]))
-        {
+        if (isset($this->exists[$key])) {
             return $this->exists[$key];
         }
 
         $path = $this->getPath($namespace);
 
-        if (is_null($path))
-        {
+        if (is_null($path)) {
             return $this->exists[$key] = false;
         }
 
@@ -116,12 +112,9 @@ class FileLoader implements LoaderInterface
      */
     protected function getPath($namespace)
     {
-        if (is_null($namespace))
-        {
+        if (is_null($namespace)) {
             return $this->defaultPath;
-        }
-        elseif (isset($this->hints[$namespace]))
-        {
+        } elseif (isset($this->hints[$namespace])) {
             return $this->hints[$namespace];
         }
     }

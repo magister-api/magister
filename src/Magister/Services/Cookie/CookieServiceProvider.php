@@ -17,8 +17,7 @@ class CookieServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('cookie', function($app)
-        {
+        $this->app->singleton('cookie', function ($app) {
             $cookie = new CookieJar($app['encrypter']);
 
             $config = $app['config']['session'];

@@ -19,8 +19,7 @@ class ExceptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (class_exists('Whoops\Run'))
-        {
+        if (class_exists('Whoops\Run')) {
             $this->registerPrettyWhoopsHandler();
             $this->registerWhoops();
         }
@@ -47,8 +46,7 @@ class ExceptionServiceProvider extends ServiceProvider
      */
     protected function registerPrettyWhoopsHandler()
     {
-        $this->app->singleton('whoops.handler', function($app)
-        {
+        $this->app->singleton('whoops.handler', function ($app) {
             with($handler = new PrettyPageHandler)->setEditor('sublime');
 
             return $handler;

@@ -61,12 +61,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
         $this->load($group, $namespace, $collection);
 
-        if (is_null($item))
-        {
+        if (is_null($item)) {
             $this->items[$collection] = $value;
-        }
-        else
-        {
+        } else {
             array_set($this->items[$collection], $item, $value);
         }
     }
@@ -91,7 +88,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
             $collection, $item, $replace, $default
         );
 
-        if (is_null($line)) return $key;
+        if (is_null($line)) {
+            return $key;
+        }
 
         return $line;
     }
@@ -114,8 +113,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
         $items = [];
 
-        foreach ($this->items[$collection] as $key => $value)
-        {
+        foreach ($this->items[$collection] as $key => $value) {
             $items[$key] = str_replace(':' . $search, $replace, $value);
         }
 
@@ -132,7 +130,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      */
     protected function load($group, $namespace, $collection)
     {
-        if (isset($this->items[$collection])) return;
+        if (isset($this->items[$collection])) {
+            return;
+        }
 
         $items = $this->loader->load($group, $namespace);
 
@@ -152,12 +152,9 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
     {
         $line = array_get($this->items[$collection], $item, $default);
 
-        if (is_string($line) || is_bool($line))
-        {
+        if (is_string($line) || is_bool($line)) {
             return $this->makeReplacements($line, $replace);
-        }
-        elseif (is_array($line) && count($line) > 0)
-        {
+        } elseif (is_array($line) && count($line) > 0) {
             return $line;
         }
     }
@@ -171,8 +168,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      */
     protected function makeReplacements($line, array $replace)
     {
-        foreach ($replace as $key => $value)
-        {
+        foreach ($replace as $key => $value) {
             $line = str_replace(':'.$key, $value, $line);
         }
 

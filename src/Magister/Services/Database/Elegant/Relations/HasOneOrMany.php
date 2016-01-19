@@ -48,8 +48,7 @@ abstract class HasOneOrMany extends Relation
      */
     public function addConstraints()
     {
-        if (static::$constraints)
-        {
+        if (static::$constraints) {
             $this->query->where($this->foreignKey, $this->getParentKey());
         }
     }

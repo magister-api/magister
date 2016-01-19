@@ -71,8 +71,7 @@ class Connection implements ConnectionInterface
      */
     public function select($query, $bindings = [])
     {
-        return $this->run($query, $bindings, function ($me, $query, $bindings)
-        {
+        return $this->run($query, $bindings, function ($me, $query, $bindings) {
             list($query, $bindings) = $me->prepareBindings($query, $bindings);
 
             // For select statements, we'll simply execute the query and return an array
@@ -93,12 +92,10 @@ class Connection implements ConnectionInterface
      */
     public function prepareBindings($query, array $bindings)
     {
-        foreach ($bindings as $key => $value)
-        {
+        foreach ($bindings as $key => $value) {
             $search = ':' . $key;
 
-            if (stripos($query, $search) !== false)
-            {
+            if (stripos($query, $search) !== false) {
                 $query = str_ireplace($search, $value, $query);
 
                 unset($bindings[$key]);
@@ -141,12 +138,9 @@ class Connection implements ConnectionInterface
      */
     protected function runQueryCallback($query, $bindings, Closure $callback)
     {
-        try
-        {
+        try {
             $result = $callback($this, $query, $bindings);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             // If an exception occurs when attempting to run a request, we'll format the error
             // message to include the bindings, which will make this exception a
             // lot more helpful to the developer instead of just the client's errors.

@@ -27,8 +27,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected function registerAuthenticator()
     {
-        $this->app->singleton('auth', function($app)
-        {
+        $this->app->singleton('auth', function ($app) {
             return new AuthManager($app);
         });
     }
@@ -40,12 +39,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->bound('credentials'))
-        {
+        if ($this->app->bound('credentials')) {
             $auth = $this->app->auth;
 
-            if ( ! $auth->check())
-            {
+            if (! $auth->check()) {
                 $auth->attempt($this->app['credentials']);
             }
         }

@@ -51,8 +51,7 @@ abstract class Manager
     {
         $driver = $driver ?: $this->getDefaultDriver();
 
-        if ( ! isset($this->drivers[$driver]))
-        {
+        if (! isset($this->drivers[$driver])) {
             $this->drivers[$driver] = $this->createDriver($driver);
         }
 
@@ -70,8 +69,7 @@ abstract class Manager
     {
         $method = 'create' . ucfirst($driver) . 'Driver';
 
-        if (method_exists($this, $method))
-        {
+        if (method_exists($this, $method)) {
             return $this->{$method}();
         }
 
