@@ -1,0 +1,6 @@
+vendor/
+.idea/
+dev.env.php
+example.php
+composer.lock
+index.php

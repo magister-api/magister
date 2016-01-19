@@ -1,0 +1,33 @@
+{
+    "name": "stanvk/magister",
+    "description": "An eloquent API for Schoolmaster BV's Magister 6",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stan van Kraaij"
+        },
+        {
+            "name": "Christopher"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "filp/whoops": "1.1.*",
+        "symfony/var-dumper": "2.7.1",
+        "guzzlehttp/guzzle": "~5.0",
+        "guzzlehttp/cache-subscriber": "0.1.*"
+    },
+    "suggest": {
+        "symfony/var-dumper": "^2.7",
+        "filp/whoops": "1.1.*"
+    },
+    "autoload": {
+        "files": [
+            "src/Magister/Services/Support/helpers.php"
+        ],
+        "psr-4": {
+            "Magister\\": "src/Magister"
+        }
+    },
+    "minimum-stability": "stable"
+}
