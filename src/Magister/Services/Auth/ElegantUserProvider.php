@@ -65,7 +65,7 @@ class ElegantUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        $body = ['body' => $credentials];
+        $body = ['json' => $credentials];
 
         $this->client->delete('sessies/huidige');
         $this->client->post('sessies', $body);
