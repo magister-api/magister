@@ -7,6 +7,8 @@
 
 Een elegante API voor Schoolmaster BV's Magister 6.
 
+> **Belangrijk:** Vergeet niet de encryptie sleutel aan te passen in `Config/app.php`! Dit is van groot belang om session hijacking tegen te gaan. Genereer een veilige sleutel met de functie `str_random(32);`.
+
 ## Officiële Documentatie
 
 De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://www.magister-api.nl). (Tijdelijk offline)
