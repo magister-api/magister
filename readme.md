@@ -7,7 +7,7 @@
 
 An eloquent API for Schoolmaster BV's Magister 6.
 
-> **Important:** Don't forget to change the encryption key in `Config/app.php` to prevent session hijacking! Create a safe key with our built-in method `str_random(32);`. This is dealt with in the upcoming version.
+> **Important:** Don't forget to change the encryption key in `config/app.php`. This is to prevent potential session hijacking. Create a safe key with our built-in method `str_random(32);`. This is dealt with in the upcoming version.
 
 ## Official Documentation
 
@@ -18,4 +18,4 @@ Documentation for our API can be found on the [Magister API website](http://www.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT licentie](http://opensource.org/licenses/MIT).
+The Magister API is open-sourced software licensed under the [MIT licentie](http://opensource.org/licenses/MIT).
