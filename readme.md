@@ -5,17 +5,17 @@
 [![Latest Stable Version](https://poser.pugx.org/stanvk/magister/v/stable.svg)](https://packagist.org/packages/stanvk/magister)
 [![Total Downloads](https://poser.pugx.org/stanvk/magister/downloads)](https://packagist.org/packages/stanvk/magister)
 
-Een elegante API voor Schoolmaster BV's Magister 6.
+An eloquent API for Schoolmaster BV's Magister 6.
 
-> **Belangrijk:** Vergeet niet de encryptie sleutel aan te passen in `Config/app.php`! Dit is van groot belang om session hijacking tegen te gaan. Genereer een veilige sleutel met de functie `str_random(32);`.
+> **Important:** Don't forget to change the encryption key in `Config/app.php` to prevent session hijacking! Create a safe key with our built-in method `str_random(32);`. This is dealt with in the upcoming version.
 
-## Officiële Documentatie
+## Official Documentation
 
-De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://www.magister-api.nl).
+Documentation for our API can be found on the [Magister API website](http://www.magister-api.nl).
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Stanvk/Magister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
-## Licentie
+## License
 
-De Magister API is open-source software gelicentieerd onder de [MIT licentie](http://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT licentie](http://opensource.org/licenses/MIT).
