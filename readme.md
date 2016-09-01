@@ -18,4 +18,4 @@ Documentation for our API can be found on the [Magister API website](http://www.
 
 ## License
 
-The Magister API is open-sourced software licensed under the [MIT licentie](http://opensource.org/licenses/MIT).
+The Magister API is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
