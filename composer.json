@@ -31,5 +31,9 @@
             "Magister\\": "src/Magister"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "post-install-cmd": "Magister\\Services\\Foundation\\ComposerScripts::postInstall",
+        "post-update-cmd": "Magister\\Services\\Foundation\\ComposerScripts::postUpdate"
+    }
 }
