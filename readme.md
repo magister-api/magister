@@ -7,8 +7,6 @@
 
 An eloquent API for Schoolmaster BV's Magister 6.
 
-> **Important:** Don't forget to change the encryption key in `config/app.php`. This is to prevent potential session hijacking. Create a safe key with our built-in method `str_random(32);`. This is dealt with in the upcoming version.
-
 ## Official Documentation
 
 Documentation for our API can be found on the [Magister API website](http://www.magister-api.nl).
