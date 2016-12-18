@@ -7,6 +7,8 @@
 
 An eloquent API for Schoolmaster BV's Magister 6.
 
+> composer require stanvk/magister
+
 ## Official Documentation
 
 Documentation for our API can be found on the [Magister API website](http://www.magister-api.nl).
