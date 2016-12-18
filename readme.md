@@ -7,7 +7,9 @@
 
 An eloquent API for Schoolmaster BV's Magister 6.
 
-> composer require stanvk/magister
+```shell
+composer require stanvk/magister
+```
 
 ## Official Documentation
 
