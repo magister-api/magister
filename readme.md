@@ -5,19 +5,19 @@
 [![Latest Stable Version](https://poser.pugx.org/stanvk/magister/v/stable.svg)](https://packagist.org/packages/stanvk/magister)
 [![Total Downloads](https://poser.pugx.org/stanvk/magister/downloads)](https://packagist.org/packages/stanvk/magister)
 
-An eloquent API for Schoolmaster BV's Magister 6.
+Een elegante API voor Schoolmaster BV's Magister 6.
 
 ```shell
 composer require stanvk/magister
 ```
 
-## Official Documentation
+## Officiële Documentatie
 
-Documentation for our API can be found on the [Magister API website](http://www.magister-api.nl).
+De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://www.magister-api.nl). (tijdelijk offline)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Stanvk/Magister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
-## License
+## Licentie
 
-The Magister API is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+De Magister API is open-source software gelicentieerd onder de [MIT licentie](http://opensource.org/licenses/MIT).
