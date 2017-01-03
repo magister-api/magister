@@ -41,6 +41,7 @@ abstract class ServiceProvider
      * @param array  $parameters
      *
      * @throws \BadMethodCallException
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
