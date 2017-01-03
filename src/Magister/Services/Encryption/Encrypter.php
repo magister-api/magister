@@ -52,6 +52,7 @@ class Encrypter implements EncrypterContract
      * Encrypt the given value.
      *
      * @param string $value
+     *
      * @return string
      */
     public function encrypt($value)
@@ -70,6 +71,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $value
      * @param string $iv
+     *
      * @return string
      */
     protected function padAndMcrypt($value, $iv)
@@ -83,6 +85,7 @@ class Encrypter implements EncrypterContract
      * Decrypt the given value.
      *
      * @param string $payload
+     *
      * @return string
      */
     public function decrypt($payload)
@@ -101,6 +104,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $value
      * @param string $iv
+     *
      * @return string
      */
     protected function mcryptDecrypt($value, $iv)
@@ -114,17 +118,18 @@ class Encrypter implements EncrypterContract
      * @param string $payload
      *
      * @throws \Magister\Services\Contracts\Encryption\DecryptException
+     *
      * @return array
      */
     protected function getJsonPayload($payload)
     {
         $payload = json_decode(base64_decode($payload), true);
 
-        if (! $payload || $this->invalidPayload($payload)) {
+        if (!$payload || $this->invalidPayload($payload)) {
             throw new DecryptException('Invalid data.');
         }
 
-        if (! $this->validMac($payload)) {
+        if (!$this->validMac($payload)) {
             throw new DecryptException('MAC is invalid.');
         }
 
@@ -135,6 +140,7 @@ class Encrypter implements EncrypterContract
      * Determine if the MAC for the given payload is valid.
      *
      * @param array $payload
+     *
      * @return bool
      */
     protected function validMac(array $payload)
@@ -147,6 +153,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $iv
      * @param string $value
+     *
      * @return string
      */
     protected function hash($iv, $value)
@@ -158,6 +165,7 @@ class Encrypter implements EncrypterContract
      * Add PKCS7 padding to a given value.
      *
      * @param string $value
+     *
      * @return string
      */
     protected function addPadding($value)
@@ -171,6 +179,7 @@ class Encrypter implements EncrypterContract
      * Remove the padding from the given value.
      *
      * @param string $value
+     *
      * @return string
      */
     protected function stripPadding($value)
@@ -185,6 +194,7 @@ class Encrypter implements EncrypterContract
      *
      * @param string $pad
      * @param string $value
+     *
      * @return bool
      */
     protected function paddingIsValid($pad, $value)
@@ -198,15 +208,17 @@ class Encrypter implements EncrypterContract
      * Verify that the encryption payload is valid.
      *
      * @param array|mixed $data
+     *
      * @return bool
      */
     protected function invalidPayload($data)
     {
-        return ! is_array($data) || ! isset($data['iv']) || ! isset($data['value']) || ! isset($data['mac']);
+        return !is_array($data) || !isset($data['iv']) || !isset($data['value']) || !isset($data['mac']);
     }
 
     /**
      * Get the IV size for the cipher.
+     *
      * @return int
      */
     protected function getIvSize()
@@ -216,6 +228,7 @@ class Encrypter implements EncrypterContract
 
     /**
      * Get the random data source available for the OS.
+     *
      * @return int
      */
     protected function getRandomizer()
@@ -237,6 +250,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption key.
      *
      * @param string $key
+     *
      * @return void
      */
     public function setKey($key)
@@ -248,6 +262,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption cipher.
      *
      * @param string $cipher
+     *
      * @return void
      */
     public function setCipher($cipher)
@@ -259,6 +274,7 @@ class Encrypter implements EncrypterContract
      * Set the encryption mode.
      *
      * @param string $mode
+     *
      * @return void
      */
     public function setMode($mode)

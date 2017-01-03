@@ -3,8 +3,8 @@
 namespace Magister\Services\Http;
 
 use GuzzleHttp\Client;
-use Magister\Services\Support\ServiceProvider;
 use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
+use Magister\Services\Support\ServiceProvider;
 
 /**
  * Class HttpServiceProvider.
@@ -13,6 +13,7 @@ class HttpServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
+     *
      * @return void
      */
     public function register()
@@ -22,6 +23,7 @@ class HttpServiceProvider extends ServiceProvider
 
     /**
      * Register the Guzzle driver.
+     *
      * @return void
      */
     protected function registerGuzzle()

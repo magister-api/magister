@@ -38,6 +38,7 @@ class ElegantUserProvider implements UserProvider
 
     /**
      * Retrieve a user by their unique token.
+     *
      * @return \Magister\Services\Database\Elegant\Model|null
      */
     public function retrieveByToken()
@@ -47,6 +48,7 @@ class ElegantUserProvider implements UserProvider
 
     /**
      * Remove the token for the given user in storage.
+     *
      * @return void
      */
     public function removeToken()
@@ -58,6 +60,7 @@ class ElegantUserProvider implements UserProvider
      * Retrieve a user by the given credentials.
      *
      * @param array $credentials
+     *
      * @return \Magister\Services\Database\Elegant\Model|null
      */
     public function retrieveByCredentials(array $credentials)
@@ -72,6 +75,7 @@ class ElegantUserProvider implements UserProvider
 
     /**
      * Create a new instance of the model.
+     *
      * @return \Magister\Services\Database\Elegant\Model
      */
     public function createModel()

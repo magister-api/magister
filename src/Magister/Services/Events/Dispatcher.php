@@ -44,6 +44,7 @@ class Dispatcher implements DispatcherContract
      * @param string $event
      * @param mixed  $listener
      * @param int    $priority
+     *
      * @return void
      */
     public function listen($event, $listener, $priority = 0)
@@ -57,6 +58,7 @@ class Dispatcher implements DispatcherContract
      * Determine if a given event has listeners.
      *
      * @param string $eventName
+     *
      * @return bool
      */
     public function hasListeners($eventName)
@@ -70,13 +72,14 @@ class Dispatcher implements DispatcherContract
      * @param string $event
      * @param mixed  $payload
      * @param bool   $halt
+     *
      * @return array|null
      */
     public function fire($event, $payload = [], $halt = false)
     {
         $responses = [];
 
-        if (! is_array($payload)) {
+        if (!is_array($payload)) {
             $payload = [$payload];
         }
 
@@ -85,7 +88,7 @@ class Dispatcher implements DispatcherContract
         foreach ($this->getListeners($event) as $listener) {
             $response = call_user_func_array($listener, $payload);
 
-            if (! is_null($response) && $halt) {
+            if (!is_null($response) && $halt) {
                 return $response;
             }
 
@@ -103,11 +106,12 @@ class Dispatcher implements DispatcherContract
      * Get all of the listeners for a given event name.
      *
      * @param string $eventName
+     *
      * @return array
      */
     public function getListeners($eventName)
     {
-        if (! isset($this->sorted[$eventName])) {
+        if (!isset($this->sorted[$eventName])) {
             $this->sortListeners($eventName);
         }
 
@@ -118,6 +122,7 @@ class Dispatcher implements DispatcherContract
      * Sort the listeners for a given event by priority.
      *
      * @param string $eventName
+     *
      * @return array
      */
     protected function sortListeners($eventName)
@@ -135,6 +140,7 @@ class Dispatcher implements DispatcherContract
      * Register an event listener with the dispatcher.
      *
      * @param mixed $listener
+     *
      * @return mixed
      */
     public function makeListener($listener)
@@ -150,6 +156,7 @@ class Dispatcher implements DispatcherContract
      * Create a class based listener using the IoC container.
      *
      * @param mixed $listener
+     *
      * @return \Closure
      */
     public function createClassListener($listener)
@@ -173,6 +180,7 @@ class Dispatcher implements DispatcherContract
      * Remove a set of listeners from the dispatcher.
      *
      * @param string $event
+     *
      * @return void
      */
     public function forget($event)

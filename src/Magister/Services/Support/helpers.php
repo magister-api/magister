@@ -1,10 +1,11 @@
 <?php
 
-if (! function_exists('with')) {
+if (!function_exists('with')) {
     /**
      * Return the given object. Useful for chaining.
      *
      * @param mixed $object
+     *
      * @return mixed
      */
     function with($object)
@@ -13,13 +14,14 @@ if (! function_exists('with')) {
     }
 }
 
-if (! function_exists('array_set')) {
+if (!function_exists('array_set')) {
     /**
      * Set an array item to a given value using dot notation.
      *
      * @param array  $array
      * @param string $key
      * @param mixed  $value
+     *
      * @return array
      */
     function array_set(&$array, $key, $value)
@@ -33,7 +35,7 @@ if (! function_exists('array_set')) {
         while (count($keys) > 1) {
             $key = array_shift($keys);
 
-            if (! isset($array[$key]) || ! is_array($array[$key])) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = [];
             }
             $array = &$array[$key];
@@ -44,13 +46,14 @@ if (! function_exists('array_set')) {
     }
 }
 
-if (! function_exists('array_get')) {
+if (!function_exists('array_get')) {
     /**
      * Get an item from an array using dot notation.
      *
      * @param array  $array
      * @param string $key
      * @param mixed  $default
+     *
      * @return mixed
      */
     function array_get($array, $key, $default = null)
@@ -64,7 +67,7 @@ if (! function_exists('array_get')) {
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (! is_array($array) || ! array_key_exists($segment, $array)) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
                 return $default;
             }
             $array = $array[$segment];
@@ -74,12 +77,13 @@ if (! function_exists('array_get')) {
     }
 }
 
-if (! function_exists('array_has')) {
+if (!function_exists('array_has')) {
     /**
      * Check if an item exists in an array using "dot" notation.
      *
      * @param array  $array
      * @param string $key
+     *
      * @return bool
      */
     function array_has($array, $key)
@@ -93,7 +97,7 @@ if (! function_exists('array_has')) {
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (! is_array($array) || ! array_key_exists($segment, $array)) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
                 return false;
             }
             $array = $array[$segment];
@@ -103,13 +107,14 @@ if (! function_exists('array_has')) {
     }
 }
 
-if (! function_exists('array_first')) {
+if (!function_exists('array_first')) {
     /**
      * Return the first element in an array passing a given truth test.
      *
      * @param array    $array
      * @param callable $callback
      * @param mixed    $default
+     *
      * @return mixed
      */
     function array_first($array, callable $callback, $default = null)
@@ -124,13 +129,14 @@ if (! function_exists('array_first')) {
     }
 }
 
-if (! function_exists('array_last')) {
+if (!function_exists('array_last')) {
     /**
      * Return the last element in an array passing a given truth test.
      *
      * @param array    $array
      * @param callable $callback
      * @param mixed    $default
+     *
      * @return mixed
      */
     function array_last($array, callable $callback, $default = null)
@@ -139,11 +145,12 @@ if (! function_exists('array_last')) {
     }
 }
 
-if (! function_exists('array_flatten')) {
+if (!function_exists('array_flatten')) {
     /**
      * Flatten a multi-dimensional array into a single level.
      *
      * @param array $array
+     *
      * @return array
      */
     function array_flatten($array)
@@ -158,13 +165,14 @@ if (! function_exists('array_flatten')) {
     }
 }
 
-if (! function_exists('array_pluck')) {
+if (!function_exists('array_pluck')) {
     /**
      * Pluck an array of values from an array.
      *
      * @param array  $array
      * @param string $value
      * @param string $key
+     *
      * @return array
      */
     function array_pluck($array, $value, $key = null)
@@ -187,13 +195,14 @@ if (! function_exists('array_pluck')) {
     }
 }
 
-if (! function_exists('data_get')) {
+if (!function_exists('data_get')) {
     /**
      * Get an item from an array or object using "dot" notation.
      *
      * @param mixed  $target
      * @param string $key
      * @param mixed  $default
+     *
      * @return mixed
      */
     function data_get($target, $key, $default = null)
@@ -204,17 +213,17 @@ if (! function_exists('data_get')) {
 
         foreach (explode('.', $key) as $segment) {
             if (is_array($target)) {
-                if (! array_key_exists($segment, $target)) {
+                if (!array_key_exists($segment, $target)) {
                     return $default;
                 }
                 $target = $target[$segment];
             } elseif ($target instanceof ArrayAccess) {
-                if (! isset($target[$segment])) {
+                if (!isset($target[$segment])) {
                     return $default;
                 }
                 $target = $target[$segment];
             } elseif (is_object($target)) {
-                if (! isset($target->{$segment})) {
+                if (!isset($target->{$segment})) {
                     return $default;
                 }
                 $target = $target->{$segment};
@@ -227,12 +236,13 @@ if (! function_exists('data_get')) {
     }
 }
 
-if (! function_exists('starts_with')) {
+if (!function_exists('starts_with')) {
     /**
      * Determine if a given string starts with a given substring.
      *
      * @param string       $haystack
      * @param string|array $needles
+     *
      * @return bool
      */
     function starts_with($haystack, $needles)
@@ -247,17 +257,18 @@ if (! function_exists('starts_with')) {
     }
 }
 
-if (! function_exists('snake_case')) {
+if (!function_exists('snake_case')) {
     /**
      * Convert a string to snake case.
      *
      * @param string $value
      * @param string $delimiter
+     *
      * @return string
      */
     function snake_case($value, $delimiter = '_')
     {
-        if (! ctype_lower($value)) {
+        if (!ctype_lower($value)) {
             $value = strtolower(preg_replace('/(.)(?=[A-Z])/', '$1'.$delimiter, $value));
         }
 
@@ -265,11 +276,12 @@ if (! function_exists('snake_case')) {
     }
 }
 
-if (! function_exists('camel_case')) {
+if (!function_exists('camel_case')) {
     /**
      * Convert a value to camel case.
      *
      * @param string $value
+     *
      * @return string
      */
     function camel_case($value)
@@ -280,11 +292,12 @@ if (! function_exists('camel_case')) {
     }
 }
 
-if (! function_exists('class_basename')) {
+if (!function_exists('class_basename')) {
     /**
      * Get the class "basename" of the given object / class.
      *
      * @param string|object $class
+     *
      * @return string
      */
     function class_basename($class)
@@ -295,13 +308,14 @@ if (! function_exists('class_basename')) {
     }
 }
 
-if (! function_exists('str_random')) {
+if (!function_exists('str_random')) {
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
      * @param int $length
      *
      * @throws \RuntimeException
+     *
      * @return string
      */
     function str_random($length = 16)
@@ -320,13 +334,14 @@ if (! function_exists('str_random')) {
     }
 }
 
-if (! function_exists('get_random_bytes')) {
+if (!function_exists('get_random_bytes')) {
     /**
      * Generate a more truly "random" bytes.
      *
      * @param int $length
      *
      * @throws \RuntimeException
+     *
      * @return string
      */
     function get_random_bytes($length = 16)

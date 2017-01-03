@@ -9,6 +9,7 @@ class HasMany extends HasOneOrMany
 {
     /**
      * Get the results of the relationship.
+     *
      * @return mixed
      */
     public function getResults()

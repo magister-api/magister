@@ -2,11 +2,11 @@
 
 namespace Magister\Services\Auth;
 
-use Magister\Services\Cookie\CookieJar;
+use Magister\Services\Contracts\Auth\Authenticable as UserContract;
+use Magister\Services\Contracts\Auth\Guard as GuardContract;
 use Magister\Services\Contracts\Auth\UserProvider;
 use Magister\Services\Contracts\Events\Dispatcher;
-use Magister\Services\Contracts\Auth\Guard as GuardContract;
-use Magister\Services\Contracts\Auth\Authenticable as UserContract;
+use Magister\Services\Cookie\CookieJar;
 
 /**
  * Class Guard.
@@ -60,24 +60,27 @@ class Guard implements GuardContract
 
     /**
      * Determine if the current user is authenticated.
+     *
      * @return bool
      */
     public function check()
     {
-        return ! is_null($this->user());
+        return !is_null($this->user());
     }
 
     /**
      * Determine if the current user is a guest.
+     *
      * @return bool
      */
     public function guest()
     {
-        return ! $this->check();
+        return !$this->check();
     }
 
     /**
      * Get the currently authenticated user.
+     *
      * @return \Magister\Services\Contracts\Auth\Authenticable|null
      */
     public function user()
@@ -89,7 +92,7 @@ class Guard implements GuardContract
         // If we have already retrieved the user for the current request we can just
         // return it back immediately. We do not want to pull the user data every
         // request into the method because that would tremendously slow an app.
-        if (! is_null($this->user)) {
+        if (!is_null($this->user)) {
             return $this->user;
         }
 
@@ -97,7 +100,7 @@ class Guard implements GuardContract
 
         $user = null;
 
-        if (! is_null($id)) {
+        if (!is_null($id)) {
             $user = $this->provider->retrieveByToken();
         }
 
@@ -106,6 +109,7 @@ class Guard implements GuardContract
 
     /**
      * Get the id for the currently authenticated user.
+     *
      * @return int|null
      */
     public function id()
@@ -128,6 +132,7 @@ class Guard implements GuardContract
      *
      * @param array $credentials
      * @param bool  $login
+     *
      * @return bool
      */
     public function attempt(array $credentials = [], $login = true)
@@ -149,17 +154,19 @@ class Guard implements GuardContract
      * Determine if the user matches the credentials.
      *
      * @param mixed $user
+     *
      * @return bool
      */
     protected function hasValidCredentials($user)
     {
-        return ! is_null($user);
+        return !is_null($user);
     }
 
     /**
      * Log a user into the application.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     public function login(UserContract $user)
@@ -178,6 +185,7 @@ class Guard implements GuardContract
      * Fire the login event if the dispatcher is set.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     protected function fireLoginEvent($user)
@@ -191,6 +199,7 @@ class Guard implements GuardContract
      * Update the session with the given cookie.
      *
      * @param string $id
+     *
      * @return void
      */
     protected function updateSession($id)
@@ -200,6 +209,7 @@ class Guard implements GuardContract
 
     /**
      * Log the user out of the application.
+     *
      * @return void
      */
     public function logout()
@@ -225,6 +235,7 @@ class Guard implements GuardContract
 
     /**
      * Remove the user data from the session and cookies.
+     *
      * @return void
      */
     protected function clearUserDataFromStorage()
@@ -240,6 +251,7 @@ class Guard implements GuardContract
 
     /**
      * Get the name of the cookie used to store the "recaller".
+     *
      * @return string
      */
     public function getRecallerName()
@@ -249,6 +261,7 @@ class Guard implements GuardContract
 
     /**
      * Get a unique identifier for the auth session value.
+     *
      * @return string
      */
     public function getName()
@@ -260,6 +273,7 @@ class Guard implements GuardContract
      * Set the current user.
      *
      * @param \Magister\Services\Contracts\Auth\Authenticable $user
+     *
      * @return void
      */
     public function setUser(UserContract $user)
@@ -271,6 +285,7 @@ class Guard implements GuardContract
 
     /**
      * Return the currently cached user.
+     *
      * @return mixed|null
      */
     public function getUser()
@@ -282,6 +297,7 @@ class Guard implements GuardContract
      * Set the cookie creator instance used by the guard.
      *
      * @param \Magister\Services\Cookie\CookieJar $cookie
+     *
      * @return void
      */
     public function setCookieJar(CookieJar $cookie)
@@ -293,11 +309,12 @@ class Guard implements GuardContract
      * Get the cookie creator instance used by the guard.
      *
      * @throws \RuntimeException
+     *
      * @return \Magister\Services\Cookie\CookieJar
      */
     public function getCookieJar()
     {
-        if (! isset($this->cookie)) {
+        if (!isset($this->cookie)) {
             throw new \RuntimeException('Cookie jar has not been set.');
         }
 
@@ -308,6 +325,7 @@ class Guard implements GuardContract
      * Set the event dispatcher instance.
      *
      * @param \Magister\Services\Contracts\Events\Dispatcher $events
+     *
      * @return void
      */
     public function setDispatcher(Dispatcher $events)
@@ -317,6 +335,7 @@ class Guard implements GuardContract
 
     /**
      * Get the event dispatcher instance.
+     *
      * @return \Magister\Services\Contracts\Events\Dispatcher
      */
     public function getDispatcher()
@@ -328,6 +347,7 @@ class Guard implements GuardContract
      * Set the user provider used by the guard.
      *
      * @param \Magister\Services\Contracts\Auth\UserProvider $provider
+     *
      * @return void
      */
     public function setProvider(UserProvider $provider)
@@ -337,6 +357,7 @@ class Guard implements GuardContract
 
     /**
      * Get the user provider used by the guard.
+     *
      * @return \Magister\Services\Contracts\Auth\UserProvider
      */
     public function getProvider()

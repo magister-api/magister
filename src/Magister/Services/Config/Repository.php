@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Config;
 
-use Magister\Services\Support\NamespacedItemResolver;
 use Magister\Services\Contracts\Config\Repository as ConfigContract;
+use Magister\Services\Support\NamespacedItemResolver;
 
 /**
  * Class Repository.
@@ -38,6 +38,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Determine if the given configuration value exists.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function has($key)
@@ -50,6 +51,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $key
      * @param mixed  $value
+     *
      * @return void
      */
     public function set($key, $value)
@@ -73,6 +75,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * @param string $key
      * @param array  $replace
      * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, array $replace = [], $default = null)
@@ -100,6 +103,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * @param string $key
      * @param string $search
      * @param mixed  $replace
+     *
      * @return void
      */
     public function replace($key, $search, $replace)
@@ -125,6 +129,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * @param string $group
      * @param string $namespace
      * @param string $collection
+     *
      * @return void
      */
     protected function load($group, $namespace, $collection)
@@ -145,6 +150,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * @param string $item
      * @param array  $replace
      * @param mixed  $default
+     *
      * @return string|null
      */
     protected function getLine($collection, $item, array $replace, $default = null)
@@ -163,6 +169,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $line
      * @param array  $replace
+     *
      * @return string
      */
     protected function makeReplacements($line, array $replace)
@@ -179,6 +186,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return string
      */
     protected function getCollection($group, $namespace = null)
@@ -190,6 +198,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
     /**
      * Get the loader implementation.
+     *
      * @return \Magister\Services\Config\LoaderInterface
      */
     public function getLoader()
@@ -201,6 +210,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Set the loader implementation.
      *
      * @param \Magister\Services\Config\LoaderInterface $loader
+     *
      * @return void
      */
     public function setLoader(LoaderInterface $loader)
@@ -210,6 +220,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
 
     /**
      * Get all of the configuration items for the application.
+     *
      * @return array
      */
     public function all()
@@ -222,6 +233,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      *
      * @param string $key
      * @param mixed  $value
+     *
      * @return void
      */
     public function offsetSet($key, $value)
@@ -233,6 +245,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Get a configuration option.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -244,6 +257,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Determine if the given configuration option exists.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -255,6 +269,7 @@ class Repository extends NamespacedItemResolver implements \ArrayAccess, ConfigC
      * Unset a configuration option.
      *
      * @param string $key
+     *
      * @return void
      */
     public function offsetUnset($key)

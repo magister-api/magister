@@ -4,11 +4,11 @@ namespace Magister;
 
 use Magister\Services\Config\FileLoader;
 use Magister\Services\Container\Container;
+use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
 use Magister\Services\Filesystem\Filesystem;
 use Magister\Services\Foundation\Http\Kernel;
-use Magister\Services\Support\ServiceProvider;
 use Magister\Services\Foundation\ProviderRepository;
-use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
+use Magister\Services\Support\ServiceProvider;
 
 /**
  * Class Magister.
@@ -63,6 +63,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Get the version number of the application.
+     *
      * @return string
      */
     public function version()
@@ -76,6 +77,7 @@ class Magister extends Container implements ApplicationContract
      * @param string $school
      * @param string $username
      * @param string $password
+     *
      * @return void
      */
     protected function registerBaseBindings($school, $username, $password)
@@ -93,6 +95,7 @@ class Magister extends Container implements ApplicationContract
      * Run the given array of bootstrap classes.
      *
      * @param array $bootstrappers
+     *
      * @return void
      */
     public function bootstrapWith(array $bootstrappers)
@@ -106,6 +109,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Determine if the application has been bootstrapped before.
+     *
      * @return bool
      */
     public function hasBeenBootstrapped()
@@ -115,6 +119,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Bind all of the application paths in the container.
+     *
      * @return void
      */
     protected function bindPathsInContainer()
@@ -126,6 +131,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Get the base path of the Magister installation.
+     *
      * @return string
      */
     public function basePath()
@@ -135,6 +141,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Get the path to the application configuration files.
+     *
      * @return string
      */
     public function configPath()
@@ -144,6 +151,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Boot the application's service providers.
+     *
      * @return void
      */
     public function boot()
@@ -163,6 +171,7 @@ class Magister extends Container implements ApplicationContract
      * Boot the given service provider.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
+     *
      * @return void
      */
     protected function bootProvider(ServiceProvider $provider)
@@ -174,6 +183,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Determine if the application has booted.
+     *
      * @return bool
      */
     public function isBooted()
@@ -183,6 +193,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Get the configuration loader instance.
+     *
      * @return \Magister\Services\Config\LoaderInterface
      */
     public function getConfigLoader()
@@ -192,6 +203,7 @@ class Magister extends Container implements ApplicationContract
 
     /**
      * Register all of the configured providers.
+     *
      * @return void
      */
     public function registerProviders()
@@ -204,6 +216,7 @@ class Magister extends Container implements ApplicationContract
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
      * @param array                                      $options
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function register(ServiceProvider $provider, $options = [])
@@ -227,6 +240,7 @@ class Magister extends Container implements ApplicationContract
      * Get the registered service provider instance if it exists.
      *
      * @param \Magister\Services\Support\ServiceProvider|string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider|null
      */
     public function getProvider($provider)
@@ -242,6 +256,7 @@ class Magister extends Container implements ApplicationContract
      * Resolve a service provider instance from the class name.
      *
      * @param string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function resolveProviderClass($provider)
@@ -253,6 +268,7 @@ class Magister extends Container implements ApplicationContract
      * Set the school for every request.
      *
      * @param string $school
+     *
      * @return void
      */
     protected function setSchool($school)
@@ -265,6 +281,7 @@ class Magister extends Container implements ApplicationContract
      *
      * @param string $username
      * @param string $password
+     *
      * @return void
      */
     protected function setCredentials($username, $password)
@@ -276,6 +293,7 @@ class Magister extends Container implements ApplicationContract
      * Mark the given provider as registered.
      *
      * @param \Magister\Services\Support\ServiceProvider $provider
+     *
      * @return void
      */
     protected function markAsRegistered($provider)

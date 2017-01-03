@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Support;
 
-use Magister\Magister;
 use BadMethodCallException;
+use Magister\Magister;
 
 /**
  * Class ServiceProvider.
@@ -29,6 +29,7 @@ abstract class ServiceProvider
 
     /**
      * Register bindings in the container.
+     *
      * @return void
      */
     abstract public function register();

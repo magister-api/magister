@@ -30,6 +30,7 @@ class ProviderRepository
      * Register the application service providers.
      *
      * @param array $providers
+     *
      * @return void
      */
     public function load(array $providers)
@@ -43,6 +44,7 @@ class ProviderRepository
      * Create a new provider instance.
      *
      * @param string $provider
+     *
      * @return \Magister\Services\Support\ServiceProvider
      */
     public function createProvider($provider)

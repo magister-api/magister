@@ -37,6 +37,7 @@ class Builder
      * Find a model by its primary key.
      *
      * @param mixed $id
+     *
      * @return \Magister\Services\Database\Elegant\Model|\Magister\Services\Support\Collection|null
      */
     public function find($id)
@@ -46,6 +47,7 @@ class Builder
 
     /**
      * Execute the query and get the first result.
+     *
      * @return \Magister\Services\Database\Elegant\Model|static|null
      */
     public function first()
@@ -55,6 +57,7 @@ class Builder
 
     /**
      * Execute the query as a select statement.
+     *
      * @return \Magister\Services\Support\Collection|static[]
      */
     public function get()
@@ -68,6 +71,7 @@ class Builder
      * Pluck a single column from the database.
      *
      * @param string $column
+     *
      * @return mixed
      */
     public function pluck($column)
@@ -84,6 +88,7 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     public function lists($column, $key = null)
@@ -93,6 +98,7 @@ class Builder
 
     /**
      * Get the hydrated models.
+     *
      * @return array
      */
     public function getModels()
@@ -106,6 +112,7 @@ class Builder
 
     /**
      * Get the underlying query builder instance.
+     *
      * @return \Magister\Services\Database\Query\Builder|static
      */
     public function getQuery()
@@ -117,6 +124,7 @@ class Builder
      * Set the underlying query builder instance.
      *
      * @param \Magister\Services\Database\Query\Builder $query
+     *
      * @return $this
      */
     public function setQuery($query)
@@ -130,6 +138,7 @@ class Builder
      * Set the model instance being queried.
      *
      * @param \Magister\Services\Database\Elegant\Model $model
+     *
      * @return $this
      */
     public function setModel(Model $model)
@@ -143,6 +152,7 @@ class Builder
 
     /**
      * Get the model instance being queried.
+     *
      * @return \Magister\Services\Database\Elegant\Model
      */
     public function getModel()
@@ -155,6 +165,7 @@ class Builder
      *
      * @param string $method
      * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

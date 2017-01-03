@@ -13,6 +13,7 @@ class Filesystem
      * Determine if a file exists.
      *
      * @param string $path
+     *
      * @return bool
      */
     public function exists($path)
@@ -26,6 +27,7 @@ class Filesystem
      * @param string $path
      *
      * @throws \Magister\Services\Contracts\Filesystem\FileNotFoundException
+     *
      * @return string
      */
     public function get($path)
@@ -43,6 +45,7 @@ class Filesystem
      * @param string $path
      *
      * @throws \Magister\Services\Contracts\Filesystem\FileNotFoundException
+     *
      * @return mixed
      */
     public function getRequire($path)
@@ -58,6 +61,7 @@ class Filesystem
      * Require the given file once.
      *
      * @param string $file
+     *
      * @return mixed
      */
     public function requireOnce($file)
@@ -71,6 +75,7 @@ class Filesystem
      * @param string $path
      * @param string $contents
      * @param bool   $lock
+     *
      * @return int
      */
     public function put($path, $contents, $lock = false)
@@ -83,6 +88,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $data
+     *
      * @return int
      */
     public function prepend($path, $data)
@@ -99,6 +105,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $data
+     *
      * @return int
      */
     public function append($path, $data)
@@ -110,6 +117,7 @@ class Filesystem
      * Delete the file at a given path.
      *
      * @param string|array $paths
+     *
      * @return bool
      */
     public function delete($paths)
@@ -119,7 +127,7 @@ class Filesystem
         $success = true;
 
         foreach ($paths as $path) {
-            if (! @unlink($path)) {
+            if (!@unlink($path)) {
                 $success = false;
             }
         }
@@ -132,6 +140,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $target
+     *
      * @return bool
      */
     public function move($path, $target)
@@ -144,6 +153,7 @@ class Filesystem
      *
      * @param string $path
      * @param string $target
+     *
      * @return bool
      */
     public function copy($path, $target)
@@ -155,6 +165,7 @@ class Filesystem
      * Determine if the given path is a directory.
      *
      * @param string $directory
+     *
      * @return bool
      */
     public function isDirectory($directory)
@@ -166,6 +177,7 @@ class Filesystem
      * Determine if the given path is writable.
      *
      * @param string $path
+     *
      * @return bool
      */
     public function isWritable($path)
@@ -177,6 +189,7 @@ class Filesystem
      * Determine if the given path is a file.
      *
      * @param string $file
+     *
      * @return bool
      */
     public function isFile($file)

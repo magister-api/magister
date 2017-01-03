@@ -4,8 +4,8 @@ namespace Magister\Models;
 
 use Config;
 use Magister\Services\Auth\Authenticable;
-use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
+use Magister\Services\Database\Elegant\Model;
 
 /**
  * Class User.
@@ -30,6 +30,7 @@ class User extends Model implements AuthenticableContract
 
     /**
      * Get the url associated with the model.
+     *
      * @return string
      */
     public function getUrl()
@@ -39,6 +40,7 @@ class User extends Model implements AuthenticableContract
 
     /**
      * Get the user profile details.
+     *
      * @return \Magister\Services\Database\Elegant\Model|static|null
      */
     public static function profile()

@@ -4,8 +4,8 @@ namespace Magister\Services\Cookie;
 
 use Closure;
 use Exception;
-use Magister\Services\Encryption\Encrypter;
 use Magister\Services\Contracts\Cookie\Factory as JarContract;
+use Magister\Services\Encryption\Encrypter;
 
 /**
  * Class CookieJar.
@@ -47,11 +47,12 @@ class CookieJar implements JarContract
      * Determine if a cookie exists and is not null.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function has($key)
     {
-        return ! is_null($this->get($key));
+        return !is_null($this->get($key));
     }
 
     /**
@@ -59,13 +60,14 @@ class CookieJar implements JarContract
      *
      * @param string $key
      * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
     {
         $value = isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 
-        if (! is_null($value)) {
+        if (!is_null($value)) {
             return $this->decrypt($value);
         }
 
@@ -76,6 +78,7 @@ class CookieJar implements JarContract
      * Decrypt the given cookie value.
      *
      * @param string $value
+     *
      * @return mixed|null
      */
     protected function decrypt($value)
@@ -97,6 +100,7 @@ class CookieJar implements JarContract
      * @param string $domain
      * @param bool   $secure
      * @param bool   $httpOnly
+     *
      * @return bool
      */
     public function make($name, $value, $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
@@ -119,6 +123,7 @@ class CookieJar implements JarContract
      * @param string $domain
      * @param bool   $secure
      * @param bool   $httpOnly
+     *
      * @return bool
      */
     public function forever($name, $value, $path = null, $domain = null, $secure = false, $httpOnly = true)
@@ -132,6 +137,7 @@ class CookieJar implements JarContract
      * @param string $name
      * @param string $path
      * @param string $domain
+     *
      * @return bool
      */
     public function forget($name, $path = null, $domain = null)
@@ -144,6 +150,7 @@ class CookieJar implements JarContract
      *
      * @param string $path
      * @param string $domain
+     *
      * @return array
      */
     public function getPathAndDomain($path, $domain)
@@ -156,6 +163,7 @@ class CookieJar implements JarContract
      *
      * @param string $path
      * @param string $domain
+     *
      * @return $this
      */
     public function setDefaultPathAndDomain($path, $domain)
@@ -167,6 +175,7 @@ class CookieJar implements JarContract
 
     /**
      * Get the encrypter instance.
+     *
      * @return \Magister\Services\Encryption\Encrypter
      */
     public function getEncrypter()

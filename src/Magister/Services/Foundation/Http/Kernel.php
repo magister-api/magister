@@ -41,17 +41,19 @@ class Kernel
 
     /**
      * Bootstrap the application for http requests.
+     *
      * @return void
      */
     public function bootstrap()
     {
-        if (! $this->app->hasBeenBootstrapped()) {
+        if (!$this->app->hasBeenBootstrapped()) {
             $this->app->bootstrapWith($this->bootstrappers());
         }
     }
 
     /**
      * Get the bootstrap classes for the application.
+     *
      * @return array
      */
     protected function bootstrappers()
@@ -61,6 +63,7 @@ class Kernel
 
     /**
      * Get the Magister application instance.
+     *
      * @return \Magister\Magister
      */
     public function getApplication()
