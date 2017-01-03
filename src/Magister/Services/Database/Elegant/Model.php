@@ -4,15 +4,15 @@ namespace Magister\Services\Database\Elegant;
 
 use DateTime;
 use LogicException;
-use RuntimeException;
-use Magister\Services\Support\Collection;
-use Magister\Services\Contracts\Support\Jsonable;
 use Magister\Services\Contracts\Support\Arrayable;
-use Magister\Services\Database\Elegant\Relations\HasOne;
+use Magister\Services\Contracts\Support\Jsonable;
+use Magister\Services\Database\ConnectionResolverInterface as Resolver;
 use Magister\Services\Database\Elegant\Relations\HasMany;
+use Magister\Services\Database\Elegant\Relations\HasOne;
 use Magister\Services\Database\Elegant\Relations\Relation;
 use Magister\Services\Database\Query\Builder as QueryBuilder;
-use Magister\Services\Database\ConnectionResolverInterface as Resolver;
+use Magister\Services\Support\Collection;
+use RuntimeException;
 
 /**
  * Class Model.
@@ -75,6 +75,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Fill the model with an array of attributes.
      *
      * @param array $attributes
+     *
      * @return $this
      */
     public function fill(array $attributes)
@@ -88,6 +89,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get all of the items from the model.
+     *
      * @return \Magister\Services\Support\Collection
      */
     public static function all()
@@ -101,6 +103,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Find a model by its primary key.
      *
      * @param mixed $id
+     *
      * @return \Magister\Services\Support\Collection|static|null
      */
     public static function find($id)
@@ -112,6 +115,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Begin querying the model on a given connection.
      *
      * @param string|null $connection
+     *
      * @return \Magister\Services\Database\Elegant\Builder
      */
     public static function on($connection = null)
@@ -129,6 +133,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * @param string $related
      * @param string $foreignKey
      * @param string $localKey
+     *
      * @return \Magister\Services\Database\Elegant\Relations\HasOne
      */
     public function hasOne($related, $foreignKey = null, $localKey = null)
@@ -148,6 +153,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * @param string $related
      * @param string $foreignKey
      * @param string $localKey
+     *
      * @return \Magister\Services\Database\Elegant\Relations\HasMany
      */
     public function hasMany($related, $foreignKey = null, $localKey = null)
@@ -165,6 +171,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Create a new instance of the given model.
      *
      * @param array $attributes
+     *
      * @return static
      */
     public function newInstance($attributes = [])
@@ -177,6 +184,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param array       $attributes
      * @param string|null $connection
+     *
      * @return static
      */
     public function newFromBuilder($attributes = [], $connection = null)
@@ -195,6 +203,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param array       $items
      * @param string|null $connection
+     *
      * @return \Magister\Services\Support\Collection
      */
     public static function hydrate(array $items, $connection = null)
@@ -210,6 +219,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Begin querying the model.
+     *
      * @return \Magister\Services\Database\Elegant\Builder
      */
     public static function query()
@@ -219,6 +229,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get a new query builder.
+     *
      * @return \Magister\Services\Database\Elegant\Builder
      */
     public function newQuery()
@@ -234,6 +245,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Create a new Elegant builder instance.
      *
      * @param \Magister\Services\Database\Query\Builder $query
+     *
      * @return \Magister\Services\Database\Elegant\Builder
      */
     public function newElegantBuilder($query)
@@ -243,6 +255,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Create a new query builder instance.
+     *
      * @return \Magister\Services\Database\Query\Builder
      */
     public function newQueryBuilder()
@@ -256,6 +269,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Create a new collection instance.
      *
      * @param array $models
+     *
      * @return \Magister\Services\Support\Collection
      */
     public function newCollection(array $models = [])
@@ -268,6 +282,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param string $key
      * @param mixed  $value
+     *
      * @return void
      */
     public function setAttribute($key, $value)
@@ -279,6 +294,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Set the array of model attributes without checking.
      *
      * @param array $attributes
+     *
      * @return void
      */
     public function setRawAttributes(array $attributes)
@@ -290,6 +306,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get an attribute from the model.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function getAttribute($key)
@@ -305,6 +322,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get a plain attribute (not a relationship).
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function getAttributeValue($key)
@@ -312,7 +330,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
         $value = $this->getAttributeFromArray($key);
 
         if (in_array($key, $this->getDates())) {
-            if (! is_null($value)) {
+            if (!is_null($value)) {
                 return $this->asDateTime($value);
             }
         }
@@ -324,6 +342,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get a relationship.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function getRelationValue($key)
@@ -347,6 +366,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get an attribute from the $attributes array.
      *
      * @param string $key
+     *
      * @return mixed
      */
     protected function getAttributeFromArray($key)
@@ -360,13 +380,14 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * @param string $method
      *
      * @throws \LogicException
+     *
      * @return mixed
      */
     protected function getRelationshipFromMethod($method)
     {
         $relations = $this->$method();
 
-        if (! $relations instanceof Relation) {
+        if (!$relations instanceof Relation) {
             throw new LogicException('Relationship method must return an object of type '.'Magister\Services\Database\Elegant\Relations\Relation');
         }
 
@@ -375,6 +396,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the attributes that should be converted to dates.
+     *
      * @return array
      */
     public function getDates()
@@ -386,6 +408,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Return a timestamp as a DateTime object.
      *
      * @param mixed $value
+     *
      * @return \DateTime
      */
     protected function asDateTime($value)
@@ -395,6 +418,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get all of the current attributes on the model.
+     *
      * @return array
      */
     public function getAttributes()
@@ -404,6 +428,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get all the loaded relations for the instance.
+     *
      * @return array
      */
     public function getRelations()
@@ -415,6 +440,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get a specified relationship.
      *
      * @param string $relation
+     *
      * @return mixed
      */
     public function getRelation($relation)
@@ -426,6 +452,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Determine if the given relation is loaded.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function relationLoaded($key)
@@ -438,6 +465,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param string $relation
      * @param mixed  $value
+     *
      * @return $this
      */
     public function setRelation($relation, $value)
@@ -451,6 +479,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Set the entire relations array on the model.
      *
      * @param array $relations
+     *
      * @return $this
      */
     public function setRelations(array $relations)
@@ -462,6 +491,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the connection for the model.
+     *
      * @return \Magister\Services\Database\Connection
      */
     public function getConnection()
@@ -471,6 +501,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the current connection name for the model.
+     *
      * @return string
      */
     public function getConnectionName()
@@ -482,6 +513,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Set the connection associated with the model.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function setConnection($name)
@@ -495,6 +527,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Resolve a connection instance.
      *
      * @param string $connection
+     *
      * @return \Magister\Services\Database\Connection
      */
     public static function resolveConnection($connection = null)
@@ -504,6 +537,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the connection resolver instance.
+     *
      * @return \Magister\Services\Database\ConnectionResolverInterface
      */
     public static function getConnectionResolver()
@@ -515,6 +549,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Set the connection resolver instance.
      *
      * @param \Magister\Services\Database\ConnectionResolverInterface $resolver
+     *
      * @return void
      */
     public static function setConnectionResolver(Resolver $resolver)
@@ -526,6 +561,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get the url associated with the model.
      *
      * @throws \RuntimeException
+     *
      * @return void
      */
     public function getUrl()
@@ -535,6 +571,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the value of the model's primary key.
+     *
      * @return mixed
      */
     public function getKey()
@@ -544,6 +581,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the primary key for the model.
+     *
      * @return string
      */
     public function getKeyName()
@@ -555,6 +593,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Set the primary key for the model.
      *
      * @param string $key
+     *
      * @return void
      */
     public function setKeyName($key)
@@ -564,6 +603,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Get the default foreign key name for the model.
+     *
      * @return string
      */
     public function getForeignKey()
@@ -575,6 +615,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Convert the model instance to JSON.
      *
      * @param int $options
+     *
      * @return string
      */
     public function toJson($options = 0)
@@ -584,6 +625,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Convert the model instance to an array.
+     *
      * @return array
      */
     public function toArray()
@@ -596,6 +638,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param string $key
      * @param mixed  $value
+     *
      * @return void
      */
     public function __set($key, $value)
@@ -607,6 +650,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Dynamically retrieve attributes on the model.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -618,6 +662,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Determine if an attribute exists on the model.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function __isset($key)
@@ -629,6 +674,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Unset an attribute on the model.
      *
      * @param string $key
+     *
      * @return void
      */
     public function __unset($key)
@@ -641,6 +687,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param mixed $offset
      * @param mixed $value
+     *
      * @return void
      */
     public function offsetSet($offset, $value)
@@ -652,6 +699,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Get the value for a given offset.
      *
      * @param mixed $offset
+     *
      * @return mixed
      */
     public function offsetGet($offset)
@@ -663,6 +711,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Determine if the given attribute exists.
      *
      * @param mixed $offset
+     *
      * @return bool
      */
     public function offsetExists($offset)
@@ -674,6 +723,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      * Unset the value for a given offset.
      *
      * @param mixed $offset
+     *
      * @return void
      */
     public function offsetUnset($offset)
@@ -686,6 +736,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param string $method
      * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
@@ -700,6 +751,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      *
      * @param string $method
      * @param array  $parameters
+     *
      * @return mixed
      */
     public static function __callStatic($method, $parameters)
@@ -711,6 +763,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
 
     /**
      * Convert the model to its string representation.
+     *
      * @return string
      */
     public function __toString()

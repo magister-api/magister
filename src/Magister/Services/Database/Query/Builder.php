@@ -3,9 +3,9 @@
 namespace Magister\Services\Database\Query;
 
 use BadMethodCallException;
-use Magister\Services\Support\Collection;
 use Magister\Services\Database\ConnectionInterface;
 use Magister\Services\Database\Query\Processors\Processor;
+use Magister\Services\Support\Collection;
 
 /**
  * Class Builder.
@@ -56,6 +56,7 @@ class Builder
      * Set the url which the query is targeting.
      *
      * @param string $query
+     *
      * @return $this
      */
     public function from($query)
@@ -70,6 +71,7 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     public function lists($column, $key = null)
@@ -86,6 +88,7 @@ class Builder
      *
      * @param string $column
      * @param string $key
+     *
      * @return array
      */
     protected function getListSelect($column, $key)
@@ -101,6 +104,7 @@ class Builder
 
     /**
      * Execute the query as a select statement.
+     *
      * @return array
      */
     public function get()
@@ -110,6 +114,7 @@ class Builder
 
     /**
      * Run the query as a select statement against the connection.
+     *
      * @return array
      */
     protected function runSelect()
@@ -122,6 +127,7 @@ class Builder
      *
      * @param string $column
      * @param mixed  $value
+     *
      * @return $this
      */
     public function where($column, $value)
@@ -136,6 +142,7 @@ class Builder
      *
      * @param string $method
      * @param string $parameters
+     *
      * @return $this
      */
     public function dynamicWhere($method, $parameters)
@@ -157,6 +164,7 @@ class Builder
 
     /**
      * Get the raw array of bindings.
+     *
      * @return array
      */
     public function getBindings()
@@ -166,6 +174,7 @@ class Builder
 
     /**
      * Get the connection instance.
+     *
      * @return \Magister\Services\Database\ConnectionInterface
      */
     public function getConnection()
@@ -175,6 +184,7 @@ class Builder
 
     /**
      * Get the query processor instance.
+     *
      * @return \Magister\Services\Database\Query\Processors\Processor
      */
     public function getProcessor()
@@ -189,6 +199,7 @@ class Builder
      * @param array  $parameters
      *
      * @throws \BadMethodCallException
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

@@ -13,6 +13,7 @@ class AuthManager extends Manager
      * Create a new driver instance.
      *
      * @param string $driver
+     *
      * @return mixed
      */
     protected function createDriver($driver)
@@ -28,6 +29,7 @@ class AuthManager extends Manager
 
     /**
      * Create an instance of the Elegant driver.
+     *
      * @return \Magister\Services\Auth\Guard
      */
     public function createElegantDriver()
@@ -39,6 +41,7 @@ class AuthManager extends Manager
 
     /**
      * Create an instance of the Elegant user provider.
+     *
      * @return \Magister\Services\Database\Elegant\Model
      */
     protected function createElegantProvider()
@@ -52,6 +55,7 @@ class AuthManager extends Manager
      * Set the default authentication driver name.
      *
      * @param string $name
+     *
      * @return void
      */
     public function setDefaultDriver($name)
@@ -61,6 +65,7 @@ class AuthManager extends Manager
 
     /**
      * Get the default authentication driver name.
+     *
      * @return string
      */
     public function getDefaultDriver()

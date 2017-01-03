@@ -12,6 +12,7 @@ interface LoaderInterface
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return array
      */
     public function load($group, $namespace = null);
@@ -21,6 +22,7 @@ interface LoaderInterface
      *
      * @param string $group
      * @param string $namespace
+     *
      * @return bool
      */
     public function exists($group, $namespace = null);
@@ -30,12 +32,14 @@ interface LoaderInterface
      *
      * @param string $namespace
      * @param string $hint
+     *
      * @return void
      */
     public function addNamespace($namespace, $hint);
 
     /**
      * Returns all registered namespaces with the config loader.
+     *
      * @return array
      */
     public function getNamespaces();

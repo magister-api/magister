@@ -12,6 +12,7 @@ class Counsellor extends Model
 {
     /**
      * Get the url associated with the model.
+     *
      * @return string
      */
     public function getUrl()

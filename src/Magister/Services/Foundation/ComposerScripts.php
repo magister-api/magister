@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Foundation;
 
-use Magister\Magister;
 use Composer\Script\Event;
+use Magister\Magister;
 
 class ComposerScripts
 {
@@ -18,6 +18,7 @@ class ComposerScripts
      * Handle the post-install Composer event.
      *
      * @param \Composer\Script\Event $event
+     *
      * @return void
      */
     public static function postInstall(Event $event)
@@ -31,6 +32,7 @@ class ComposerScripts
      * Handle the post-update Composer event.
      *
      * @param \Composer\Script\Event $event
+     *
      * @return void
      */
     public static function postUpdate(Event $event)
@@ -42,6 +44,7 @@ class ComposerScripts
 
     /**
      * Generate a safe key for session encryption.
+     *
      * @return void
      */
     protected static function generateKey()
@@ -57,6 +60,7 @@ class ComposerScripts
      * Set the application key in the config file.
      *
      * @param string $key
+     *
      * @return void
      */
     protected static function setKeyInEnvironmentFile($key)
@@ -70,6 +74,7 @@ class ComposerScripts
 
     /**
      * Generate a random key for the application.
+     *
      * @return string
      */
     protected static function generateRandomKey()

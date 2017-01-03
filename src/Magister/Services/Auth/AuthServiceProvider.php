@@ -11,6 +11,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
+     *
      * @return void
      */
     public function register()
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register the authenticator services.
+     *
      * @return void
      */
     protected function registerAuthenticator()
@@ -31,6 +33,7 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Perform booting of services.
+     *
      * @return void
      */
     public function boot()
@@ -38,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         if ($this->app->bound('credentials')) {
             $auth = $this->app->auth;
 
-            if (! $auth->check()) {
+            if (!$auth->check()) {
                 $auth->attempt($this->app['credentials']);
             }
         }

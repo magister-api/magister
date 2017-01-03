@@ -18,6 +18,7 @@ class NamespacedItemResolver
      * Parse a key into namespace, group, and item.
      *
      * @param string $key
+     *
      * @return array
      */
     public function parseKey($key)
@@ -41,6 +42,7 @@ class NamespacedItemResolver
      * Parse an array of basic segments.
      *
      * @param array $segments
+     *
      * @return array
      */
     protected function parseBasicSegments(array $segments)
@@ -60,6 +62,7 @@ class NamespacedItemResolver
      * Parse an array of namespaced segments.
      *
      * @param string $key
+     *
      * @return array
      */
     protected function parseNamespacedSegments($key)
@@ -78,6 +81,7 @@ class NamespacedItemResolver
      *
      * @param string $key
      * @param array  $parsed
+     *
      * @return void
      */
     public function setParsedKey($key, $parsed)
