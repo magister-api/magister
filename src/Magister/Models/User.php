@@ -4,8 +4,8 @@ namespace Magister\Models;
 
 use Config;
 use Magister\Services\Auth\Authenticable;
-use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
 use Magister\Services\Database\Elegant\Model;
+use Magister\Services\Contracts\Auth\Authenticable as AuthenticableContract;
 
 /**
  * Class User.
@@ -19,7 +19,7 @@ class User extends Model implements AuthenticableContract
      *
      * @var string
      */
-    protected $primaryKey = 'Persoon.Id';    
+    protected $primaryKey = 'Persoon.Id';
 
     /**
      * The attributes that should be mutated to dates.
