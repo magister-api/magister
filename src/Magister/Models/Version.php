@@ -6,8 +6,7 @@ use Config;
 use Magister\Services\Database\Elegant\Model;
 
 /**
- * Class Version
- * @package Magister
+ * Class Version.
  */
 class Version extends Model
 {

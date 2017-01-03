@@ -2,10 +2,9 @@
 
 namespace Magister\Services\Exception;
 
-use Magister\Services\Support\ServiceProvider;
-use Whoops\Handler\JsonResponseHandler;
-use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler;
+use Magister\Services\Support\ServiceProvider;
 
 /**
  * Class ExceptionServiceProvider.

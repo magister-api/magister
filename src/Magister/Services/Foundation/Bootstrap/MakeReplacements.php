@@ -4,7 +4,6 @@ namespace Magister\Services\Foundation\Bootstrap;
 
 use Magister\Magister;
 use Magister\Models\Enrollment\Enrollment;
-use Magister\Models\User;
 
 /**
  * Class MakeReplacements.

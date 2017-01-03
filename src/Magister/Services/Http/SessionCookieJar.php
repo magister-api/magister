@@ -2,9 +2,9 @@
 
 namespace Magister\Services\Http;
 
-use GuzzleHttp\Cookie\CookieJar as GuzzleCookieJar;
 use GuzzleHttp\Cookie\SetCookie;
 use Magister\Services\Cookie\CookieJar;
+use GuzzleHttp\Cookie\CookieJar as GuzzleCookieJar;
 
 /**
  * Class SessionCookieJar.

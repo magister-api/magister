@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Config;
 
-use Magister\Services\Contracts\Config\Repository as ConfigContract;
 use Magister\Services\Support\NamespacedItemResolver;
+use Magister\Services\Contracts\Config\Repository as ConfigContract;
 
 /**
  * Class Repository.

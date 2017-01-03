@@ -4,8 +4,8 @@ namespace Magister\Services\Cookie;
 
 use Closure;
 use Exception;
-use Magister\Services\Contracts\Cookie\Factory as JarContract;
 use Magister\Services\Encryption\Encrypter;
+use Magister\Services\Contracts\Cookie\Factory as JarContract;
 
 /**
  * Class CookieJar.
@@ -52,7 +52,7 @@ class CookieJar implements JarContract
      */
     public function has($key)
     {
-        return !is_null($this->get($key));
+        return ! is_null($this->get($key));
     }
 
     /**
@@ -67,7 +67,7 @@ class CookieJar implements JarContract
     {
         $value = isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 
-        if (!is_null($value)) {
+        if (! is_null($value)) {
             return $this->decrypt($value);
         }
 

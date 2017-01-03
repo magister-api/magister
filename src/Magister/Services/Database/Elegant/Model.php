@@ -4,15 +4,15 @@ namespace Magister\Services\Database\Elegant;
 
 use DateTime;
 use LogicException;
-use Magister\Services\Contracts\Support\Arrayable;
+use RuntimeException;
+use Magister\Services\Support\Collection;
 use Magister\Services\Contracts\Support\Jsonable;
-use Magister\Services\Database\ConnectionResolverInterface as Resolver;
-use Magister\Services\Database\Elegant\Relations\HasMany;
+use Magister\Services\Contracts\Support\Arrayable;
 use Magister\Services\Database\Elegant\Relations\HasOne;
+use Magister\Services\Database\Elegant\Relations\HasMany;
 use Magister\Services\Database\Elegant\Relations\Relation;
 use Magister\Services\Database\Query\Builder as QueryBuilder;
-use Magister\Services\Support\Collection;
-use RuntimeException;
+use Magister\Services\Database\ConnectionResolverInterface as Resolver;
 
 /**
  * Class Model.
@@ -330,7 +330,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
         $value = $this->getAttributeFromArray($key);
 
         if (in_array($key, $this->getDates())) {
-            if (!is_null($value)) {
+            if (! is_null($value)) {
                 return $this->asDateTime($value);
             }
         }
@@ -387,7 +387,7 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
     {
         $relations = $this->$method();
 
-        if (!$relations instanceof Relation) {
+        if (! $relations instanceof Relation) {
             throw new LogicException('Relationship method must return an object of type '.'Magister\Services\Database\Elegant\Relations\Relation');
         }
 
