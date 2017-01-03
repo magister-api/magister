@@ -54,7 +54,6 @@ class FileLoader implements LoaderInterface
      *
      * @param string $group
      * @param string $namespace
-     *
      * @return array
      */
     public function load($group, $namespace = null)
@@ -81,7 +80,6 @@ class FileLoader implements LoaderInterface
      *
      * @param string $group
      * @param string $namespace
-     *
      * @return bool
      */
     public function exists($group, $namespace = null)
@@ -109,7 +107,6 @@ class FileLoader implements LoaderInterface
      * Get the configuration path for a namespace.
      *
      * @param string $namespace
-     *
      * @return string
      */
     protected function getPath($namespace)
@@ -126,7 +123,6 @@ class FileLoader implements LoaderInterface
      *
      * @param string $namespace
      * @param string $hint
-     *
      * @return void
      */
     public function addNamespace($namespace, $hint)
@@ -136,7 +132,6 @@ class FileLoader implements LoaderInterface
 
     /**
      * Returns all registered namespaces with the config loader.
-     *
      * @return array
      */
     public function getNamespaces()
@@ -148,7 +143,6 @@ class FileLoader implements LoaderInterface
      * Get a file's contents by requiring it.
      *
      * @param string $path
-     *
      * @return mixed
      */
     protected function getRequire($path)
@@ -158,7 +152,6 @@ class FileLoader implements LoaderInterface
 
     /**
      * Get the filesystem instance.
-     *
      * @return \Magister\Services\Filesystem\Filesystem
      */
     public function getFilesystem()

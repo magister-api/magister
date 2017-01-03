@@ -35,7 +35,6 @@ class DatabaseManager implements ConnectionResolverInterface
      * Get a database connection instance.
      *
      * @param string $name
-     *
      * @return \Magister\Services\Database\Connection
      */
     public function connection($name = null)
@@ -53,7 +52,6 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Make the database connection instance.
-     *
      * @return \Magister\Services\Database\Connection
      */
     protected function makeConnection()
@@ -66,7 +64,6 @@ class DatabaseManager implements ConnectionResolverInterface
      *
      * @param string                                          $name
      * @param \Magister\Services\Database\ConnectionInterface $connection
-     *
      * @return void
      */
     public function addConnection($name, ConnectionInterface $connection)
@@ -78,7 +75,6 @@ class DatabaseManager implements ConnectionResolverInterface
      * Set the default connection name.
      *
      * @param string $name
-     *
      * @return void
      */
     public function setDefaultConnection($name)
@@ -88,7 +84,6 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Get the default connection name.
-     *
      * @return string
      */
     public function getDefaultConnection()
@@ -98,7 +93,6 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Return all of the created connections.
-     *
      * @return array
      */
     public function getConnections()
@@ -111,7 +105,6 @@ class DatabaseManager implements ConnectionResolverInterface
      *
      * @param string $method
      * @param array  $parameters
-     *
      * @return mixed
      */
     public function __call($method, $parameters)

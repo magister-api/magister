@@ -24,7 +24,6 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function bind($abstract, $concrete)
@@ -37,7 +36,6 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function singleton($abstract, $concrete)
@@ -51,7 +49,6 @@ class Container implements ArrayAccess, ContainerContract
      * @param string $abstract
      *
      * @throws \InvalidArgumentException
-     *
      * @return mixed
      */
     public function make($abstract)
@@ -69,7 +66,6 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
-     *
      * @return bool
      */
     public function bound($abstract)
@@ -81,7 +77,6 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
-     *
      * @return void
      */
     public function remove($abstract)
@@ -94,7 +89,6 @@ class Container implements ArrayAccess, ContainerContract
      * uniqueness in the scope of this instance of the container.
      *
      * @param \Closure $callable
-     *
      * @return \Closure
      */
     public static function share(Closure $callable)
@@ -114,7 +108,6 @@ class Container implements ArrayAccess, ContainerContract
      * Protects a callable from being interpreted as a service.
      *
      * @param \Closure $callable
-     *
      * @return \Closure
      */
     public static function protect(Closure $callable)
@@ -130,7 +123,6 @@ class Container implements ArrayAccess, ContainerContract
      * @param string $abstract
      *
      * @throws \InvalidArgumentException
-     *
      * @return mixed
      */
     public function raw($abstract)
@@ -149,7 +141,6 @@ class Container implements ArrayAccess, ContainerContract
      * @param \Closure $callable
      *
      * @throws \InvalidArgumentException
-     *
      * @return \Closure
      */
     public function extend($abstract, Closure $callable)
@@ -171,7 +162,6 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Returns all defined value names.
-     *
      * @return array
      */
     public function keys()
@@ -184,7 +174,6 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function __set($abstract, $concrete)
@@ -196,7 +185,6 @@ class Container implements ArrayAccess, ContainerContract
      * Resolve the given type from the container.
      *
      * @param string $abstract
-     *
      * @return mixed
      */
     public function __get($abstract)
@@ -208,7 +196,6 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
-     *
      * @return bool
      */
     public function __isset($abstract)
@@ -220,7 +207,6 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
-     *
      * @return void
      */
     public function __unset($abstract)
@@ -233,7 +219,6 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function offsetSet($abstract, $concrete)
@@ -245,7 +230,6 @@ class Container implements ArrayAccess, ContainerContract
      * Resolve the given type from the container.
      *
      * @param string $abstract
-     *
      * @return mixed
      */
     public function offsetGet($abstract)
@@ -257,7 +241,6 @@ class Container implements ArrayAccess, ContainerContract
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
-     *
      * @return bool
      */
     public function offsetExists($abstract)
@@ -269,7 +252,6 @@ class Container implements ArrayAccess, ContainerContract
      * Remove the specified abstract from the container.
      *
      * @param string $abstract
-     *
      * @return void
      */
     public function offsetUnset($abstract)

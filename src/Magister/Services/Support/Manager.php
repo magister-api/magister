@@ -35,7 +35,6 @@ abstract class Manager
 
     /**
      * Get the default driver name.
-     *
      * @return string
      */
     abstract public function getDefaultDriver();
@@ -44,7 +43,6 @@ abstract class Manager
      * Get the driver instance.
      *
      * @param string $driver
-     *
      * @return mixed
      */
     public function driver($driver = null)
@@ -64,7 +62,6 @@ abstract class Manager
      * @param string $driver
      *
      * @throws \InvalidArgumentException
-     *
      * @return mixed
      */
     protected function createDriver($driver)
@@ -80,7 +77,6 @@ abstract class Manager
 
     /**
      * Get all of the created "drivers".
-     *
      * @return array
      */
     public function getDrivers()
@@ -93,7 +89,6 @@ abstract class Manager
      *
      * @param string $method
      * @param array  $parameters
-     *
      * @return mixed
      */
     public function __call($method, $parameters)

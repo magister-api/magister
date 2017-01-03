@@ -20,7 +20,6 @@ class Enrollment extends Model
 
     /**
      * Get the url associated with the model.
-     *
      * @return string
      */
     public function getUrl()
@@ -30,7 +29,6 @@ class Enrollment extends Model
 
     /**
      * Grab the current enrollment from the collection.
-     *
      * @return mixed
      */
     public static function current()
@@ -42,7 +40,6 @@ class Enrollment extends Model
 
     /**
      * Define a relationship.
-     *
      * @return mixed
      */
     public function counsellors()

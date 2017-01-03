@@ -38,7 +38,6 @@ class SessionCookieJar extends GuzzleCookieJar
      * Save cookies to the client's session.
      *
      * @param \GuzzleHttp\Cookie\SetCookie $cookie
-     *
      * @return bool
      */
     public function setCookie(SetCookie $cookie)
@@ -58,7 +57,6 @@ class SessionCookieJar extends GuzzleCookieJar
      * Load the contents of the client's session into the data array.
      *
      * @param array $cookies
-     *
      * @return array
      */
     protected function load($cookies)

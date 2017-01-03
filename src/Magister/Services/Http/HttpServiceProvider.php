@@ -13,7 +13,6 @@ class HttpServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
-     *
      * @return void
      */
     public function register()
@@ -23,7 +22,6 @@ class HttpServiceProvider extends ServiceProvider
 
     /**
      * Register the Guzzle driver.
-     *
      * @return void
      */
     protected function registerGuzzle()

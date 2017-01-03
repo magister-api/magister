@@ -11,7 +11,6 @@ interface Repository
      * Determine if the given configuration value exists.
      *
      * @param string $key
-     *
      * @return bool
      */
     public function has($key);
@@ -21,7 +20,6 @@ interface Repository
      *
      * @param string $key
      * @param mixed  $value
-     *
      * @return void
      */
     public function set($key, $value);
@@ -32,7 +30,6 @@ interface Repository
      * @param string $key
      * @param array  $replace
      * @param mixed  $default
-     *
      * @return mixed
      */
     public function get($key, array $replace = [], $default = null);
@@ -43,14 +40,12 @@ interface Repository
      * @param string $key
      * @param string $search
      * @param mixed  $replace
-     *
      * @return void
      */
     public function replace($key, $search, $replace);
 
     /**
      * Get all of the configuration items for the application.
-     *
      * @return array
      */
     public function all();

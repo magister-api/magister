@@ -42,7 +42,6 @@ class AliasLoader
      * Create a singleton alias loader instance.
      *
      * @param array $aliases
-     *
      * @return static
      */
     public static function getInstance(array $aliases = [])
@@ -60,7 +59,6 @@ class AliasLoader
 
     /**
      * Register the loader on the auto-loader stack.
-     *
      * @return void
      */
     public function register()
@@ -74,7 +72,6 @@ class AliasLoader
 
     /**
      * Register the class alias auto-loader.
-     *
      * @return void
      */
     protected function registerAutoloader()
@@ -86,7 +83,6 @@ class AliasLoader
      * Load a class alias if it is registered.
      *
      * @param string $alias
-     *
      * @return void
      */
     public function load($alias)
@@ -100,7 +96,6 @@ class AliasLoader
      * Set the registered aliases.
      *
      * @param array $aliases
-     *
      * @return void
      */
     public function setAliases(array $aliases)
@@ -110,7 +105,6 @@ class AliasLoader
 
     /**
      * Get the registered aliases.
-     *
      * @return array
      */
     public function getAliases()
@@ -120,7 +114,6 @@ class AliasLoader
 
     /**
      * Indicates if the loader has been registered.
-     *
      * @return bool
      */
     public function isRegistered()
@@ -132,7 +125,6 @@ class AliasLoader
      * Set the "registered" state of the loader.
      *
      * @param bool $value
-     *
      * @return void
      */
     public function setRegistered($value)
@@ -144,7 +136,6 @@ class AliasLoader
      * Set the value of the singleton alias loader.
      *
      * @param \Magister\Services\Foundation\AliasLoader $loader
-     *
      * @return void
      */
     public static function setInstance($loader)
@@ -154,7 +145,6 @@ class AliasLoader
 
     /**
      * The clone method.
-     *
      * @return void
      */
     private function __clone()

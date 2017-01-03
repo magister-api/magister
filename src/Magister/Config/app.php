@@ -16,7 +16,6 @@ return [
      */
     'providers' => [
 
-        'Magister\Services\Exception\ExceptionServiceProvider',
         'Magister\Services\Filesystem\FilesystemServiceProvider',
         'Magister\Services\Cookie\CookieServiceProvider',
         'Magister\Services\Encryption\EncryptionServiceProvider',

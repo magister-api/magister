@@ -25,7 +25,6 @@ abstract class Surrogate
      * Resolve the surrogate instance from the container.
      *
      * @param string $name
-     *
      * @return mixed
      */
     protected static function resolveSurrogateInstance($name)
@@ -43,7 +42,6 @@ abstract class Surrogate
 
     /**
      * Get the object behind the surrogate.
-     *
      * @return mixed
      */
     public static function getSurrogateRoot()
@@ -53,7 +51,6 @@ abstract class Surrogate
 
     /**
      * Clear all of the instances.
-     *
      * @return void
      */
     public static function clearResolvedInstances()
@@ -65,7 +62,6 @@ abstract class Surrogate
      * Return the name of the service.
      *
      * @throws \RuntimeException
-     *
      * @return void
      */
     protected static function getSurrogateAccessor()
@@ -77,7 +73,6 @@ abstract class Surrogate
      * Set the application instance.
      *
      * @param \Magister\Magister $app
-     *
      * @return void
      */
     public static function setSurrogateApplication($app)
@@ -87,7 +82,6 @@ abstract class Surrogate
 
     /**
      * Get the application instance.
-     *
      * @return \Magister\Magister
      */
     public static function getSurrogateApplication()
@@ -100,7 +94,6 @@ abstract class Surrogate
      *
      * @param string $method
      * @param array  $args
-     *
      * @return mixed
      */
     public static function __callStatic($method, $args)

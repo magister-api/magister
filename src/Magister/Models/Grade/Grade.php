@@ -26,7 +26,6 @@ class Grade extends Model
 
     /**
      * Get the url associated with the model.
-     *
      * @return string
      */
     public function getUrl()
@@ -36,7 +35,6 @@ class Grade extends Model
 
     /**
      * Define a relationship.
-     *
      * @return mixed
      */
     public function info()

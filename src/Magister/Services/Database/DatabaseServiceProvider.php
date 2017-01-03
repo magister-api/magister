@@ -12,7 +12,6 @@ class DatabaseServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
-     *
      * @return void
      */
     public function register()
@@ -24,7 +23,6 @@ class DatabaseServiceProvider extends ServiceProvider
 
     /**
      * Perform booting of services.
-     *
      * @return void
      */
     public function boot()

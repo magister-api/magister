@@ -45,7 +45,6 @@ class QueryException extends \Exception
      * @param string     $query
      * @param array      $bindings
      * @param \Exception $previous
-     *
      * @return string
      */
     protected function formatMessage($query, $bindings, $previous)
@@ -55,7 +54,6 @@ class QueryException extends \Exception
 
     /**
      * Get the url which the query is targeting.
-     *
      * @return string
      */
     public function getQuery()
@@ -65,7 +63,6 @@ class QueryException extends \Exception
 
     /**
      * Get the bindings for the query.
-     *
      * @return array
      */
     public function getBindings()

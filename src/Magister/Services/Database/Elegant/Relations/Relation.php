@@ -55,14 +55,12 @@ abstract class Relation
 
     /**
      * Set the base constraints on the relation query.
-     *
      * @return void
      */
     abstract public function addConstraints();
 
     /**
      * Get the underlying query for the relation.
-     *
      * @return \Magister\Services\Database\Elegant\Builder
      */
     public function getQuery()
@@ -72,7 +70,6 @@ abstract class Relation
 
     /**
      * Get the base query builder driving the Elegant builder.
-     *
      * @return \Magister\Services\Database\Query\Builder
      */
     public function getBaseQuery()
@@ -82,7 +79,6 @@ abstract class Relation
 
     /**
      * Get the parent model of the relation.
-     *
      * @return \Magister\Services\Database\Elegant\Model
      */
     public function getParent()
@@ -92,7 +88,6 @@ abstract class Relation
 
     /**
      * Get the related model of the relation.
-     *
      * @return \Magister\Services\Database\Elegant\Model
      */
     public function getRelated()
@@ -105,7 +100,6 @@ abstract class Relation
      *
      * @param string $method
      * @param array  $parameters
-     *
      * @return mixed
      */
     public function __call($method, $parameters)

@@ -14,7 +14,6 @@ class Processor
      *
      * @param \Magister\Services\Database\Query\Builder $builder
      * @param array                                     $results
-     *
      * @return array
      */
     public function process(Builder $builder, $results)

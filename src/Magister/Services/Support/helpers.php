@@ -5,7 +5,6 @@ if (! function_exists('with')) {
      * Return the given object. Useful for chaining.
      *
      * @param mixed $object
-     *
      * @return mixed
      */
     function with($object)
@@ -21,7 +20,6 @@ if (! function_exists('array_set')) {
      * @param array  $array
      * @param string $key
      * @param mixed  $value
-     *
      * @return array
      */
     function array_set(&$array, $key, $value)
@@ -53,7 +51,6 @@ if (! function_exists('array_get')) {
      * @param array  $array
      * @param string $key
      * @param mixed  $default
-     *
      * @return mixed
      */
     function array_get($array, $key, $default = null)
@@ -83,7 +80,6 @@ if (! function_exists('array_has')) {
      *
      * @param array  $array
      * @param string $key
-     *
      * @return bool
      */
     function array_has($array, $key)
@@ -114,7 +110,6 @@ if (! function_exists('array_first')) {
      * @param array    $array
      * @param callable $callback
      * @param mixed    $default
-     *
      * @return mixed
      */
     function array_first($array, callable $callback, $default = null)
@@ -136,7 +131,6 @@ if (! function_exists('array_last')) {
      * @param array    $array
      * @param callable $callback
      * @param mixed    $default
-     *
      * @return mixed
      */
     function array_last($array, callable $callback, $default = null)
@@ -150,7 +144,6 @@ if (! function_exists('array_flatten')) {
      * Flatten a multi-dimensional array into a single level.
      *
      * @param array $array
-     *
      * @return array
      */
     function array_flatten($array)
@@ -172,7 +165,6 @@ if (! function_exists('array_pluck')) {
      * @param array  $array
      * @param string $value
      * @param string $key
-     *
      * @return array
      */
     function array_pluck($array, $value, $key = null)
@@ -202,7 +194,6 @@ if (! function_exists('data_get')) {
      * @param mixed  $target
      * @param string $key
      * @param mixed  $default
-     *
      * @return mixed
      */
     function data_get($target, $key, $default = null)
@@ -242,7 +233,6 @@ if (! function_exists('starts_with')) {
      *
      * @param string       $haystack
      * @param string|array $needles
-     *
      * @return bool
      */
     function starts_with($haystack, $needles)
@@ -263,7 +253,6 @@ if (! function_exists('snake_case')) {
      *
      * @param string $value
      * @param string $delimiter
-     *
      * @return string
      */
     function snake_case($value, $delimiter = '_')
@@ -281,7 +270,6 @@ if (! function_exists('camel_case')) {
      * Convert a value to camel case.
      *
      * @param string $value
-     *
      * @return string
      */
     function camel_case($value)
@@ -297,7 +285,6 @@ if (! function_exists('class_basename')) {
      * Get the class "basename" of the given object / class.
      *
      * @param string|object $class
-     *
      * @return string
      */
     function class_basename($class)
@@ -315,7 +302,6 @@ if (! function_exists('str_random')) {
      * @param int $length
      *
      * @throws \RuntimeException
-     *
      * @return string
      */
     function str_random($length = 16)
@@ -341,7 +327,6 @@ if (! function_exists('get_random_bytes')) {
      * @param int $length
      *
      * @throws \RuntimeException
-     *
      * @return string
      */
     function get_random_bytes($length = 16)

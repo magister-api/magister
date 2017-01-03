@@ -50,7 +50,6 @@ class Connection implements ConnectionInterface
      * Start a query against the server.
      *
      * @param string $query
-     *
      * @return \Magister\Services\Database\Query\Builder
      */
     public function query($query)
@@ -67,7 +66,6 @@ class Connection implements ConnectionInterface
      *
      * @param string $query
      * @param array  $bindings
-     *
      * @return mixed
      */
     public function select($query, $bindings = [])
@@ -89,7 +87,6 @@ class Connection implements ConnectionInterface
      *
      * @param string $query
      * @param array  $bindings
-     *
      * @return array
      */
     public function prepareBindings($query, array $bindings)
@@ -113,7 +110,6 @@ class Connection implements ConnectionInterface
      * @param string   $query
      * @param array    $bindings
      * @param \Closure $callback
-     *
      * @return mixed
      */
     public function run($query, $bindings, Closure $callback)
@@ -138,7 +134,6 @@ class Connection implements ConnectionInterface
      * @param \Closure $callback
      *
      * @throws \Magister\Services\Database\QueryException
-     *
      * @return mixed
      */
     protected function runQueryCallback($query, $bindings, Closure $callback)
@@ -159,7 +154,6 @@ class Connection implements ConnectionInterface
 
     /**
      * Set the default processor.
-     *
      * @return \Magister\Services\Database\Query\Processors\Processor
      */
     public function setDefaultProcessor()
@@ -169,7 +163,6 @@ class Connection implements ConnectionInterface
 
     /**
      * Use the default processor.
-     *
      * @return void
      */
     public function useDefaultProcessor()
@@ -181,7 +174,6 @@ class Connection implements ConnectionInterface
      * Set the processor used by the connection.
      *
      * @param \Magister\Services\Database\Query\Processors\Processor $processor
-     *
      * @return void
      */
     public function setProcessor(Processor $processor)
@@ -191,7 +183,6 @@ class Connection implements ConnectionInterface
 
     /**
      * Get the processor used by the connection.
-     *
      * @return \Magister\Services\Database\Query\Processors\Processor
      */
     public function getProcessor()
@@ -201,7 +192,6 @@ class Connection implements ConnectionInterface
 
     /**
      * Get the current client.
-     *
      * @return \GuzzleHttp\Client
      */
     public function getClient()
@@ -213,7 +203,6 @@ class Connection implements ConnectionInterface
      * Get the elapsed time since a given starting point.
      *
      * @param int $start
-     *
      * @return float
      */
     protected function getElapsedTime($start)

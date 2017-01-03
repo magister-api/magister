@@ -12,7 +12,6 @@ interface Container
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function bind($abstract, $concrete);
@@ -22,7 +21,6 @@ interface Container
      *
      * @param string $abstract
      * @param mixed  $concrete
-     *
      * @return void
      */
     public function singleton($abstract, $concrete);
@@ -33,7 +31,6 @@ interface Container
      * @param string $abstract
      *
      * @throws \InvalidArgumentException
-     *
      * @return mixed
      */
     public function make($abstract);
@@ -42,7 +39,6 @@ interface Container
      * Determine if the given abstract type has been bound.
      *
      * @param string $abstract
-     *
      * @return bool
      */
     public function bound($abstract);

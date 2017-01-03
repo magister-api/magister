@@ -41,7 +41,6 @@ class Kernel
 
     /**
      * Bootstrap the application for http requests.
-     *
      * @return void
      */
     public function bootstrap()
@@ -53,7 +52,6 @@ class Kernel
 
     /**
      * Get the bootstrap classes for the application.
-     *
      * @return array
      */
     protected function bootstrappers()
@@ -63,7 +61,6 @@ class Kernel
 
     /**
      * Get the Magister application instance.
-     *
      * @return \Magister\Magister
      */
     public function getApplication()

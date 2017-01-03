@@ -29,7 +29,6 @@ abstract class ServiceProvider
 
     /**
      * Register bindings in the container.
-     *
      * @return void
      */
     abstract public function register();

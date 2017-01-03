@@ -42,7 +42,6 @@ class ComposerScripts
 
     /**
      * Generate a safe key for session encryption.
-     *
      * @return void
      */
     protected static function generateKey()
@@ -71,7 +70,6 @@ class ComposerScripts
 
     /**
      * Generate a random key for the application.
-     *
      * @return string
      */
     protected static function generateRandomKey()

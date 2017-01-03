@@ -42,7 +42,6 @@ abstract class HasOneOrMany extends Relation
 
     /**
      * Set the base constraints on the relation query.
-     *
      * @return void
      */
     public function addConstraints()
@@ -54,7 +53,6 @@ abstract class HasOneOrMany extends Relation
 
     /**
      * Get the foreign key for the relationship.
-     *
      * @return string
      */
     public function getForeignKey()
@@ -64,7 +62,6 @@ abstract class HasOneOrMany extends Relation
 
     /**
      * Get the key value of the parent's local key.
-     *
      * @return mixed
      */
     public function getParentKey()

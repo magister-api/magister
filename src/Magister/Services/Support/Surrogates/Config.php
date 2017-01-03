@@ -9,7 +9,6 @@ class Config extends Surrogate
 {
     /**
      * Get the registered name of the component.
-     *
      * @return string
      */
     protected static function getSurrogateAccessor()

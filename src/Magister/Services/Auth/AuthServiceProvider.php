@@ -11,7 +11,6 @@ class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
-     *
      * @return void
      */
     public function register()
@@ -21,7 +20,6 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register the authenticator services.
-     *
      * @return void
      */
     protected function registerAuthenticator()
@@ -33,7 +31,6 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Perform booting of services.
-     *
      * @return void
      */
     public function boot()
