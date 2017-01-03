@@ -4,12 +4,11 @@ namespace Magister\Models\Profile;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Profile.
  */
-class Profile extends Model implements ShouldBeTranslatable
+class Profile extends Model
 {
     /**
      * Get the url associated with the model.

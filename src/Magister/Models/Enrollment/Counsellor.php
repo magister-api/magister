@@ -4,12 +4,11 @@ namespace Magister\Models\Enrollment;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Counsellor.
  */
-class Counsellor extends Model implements ShouldBeTranslatable
+class Counsellor extends Model
 {
     /**
      * Get the url associated with the model.

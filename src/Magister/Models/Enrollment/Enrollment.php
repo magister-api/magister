@@ -5,12 +5,11 @@ namespace Magister\Models\Enrollment;
 use Config;
 use DateTime;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Enrollment.
  */
-class Enrollment extends Model implements ShouldBeTranslatable
+class Enrollment extends Model
 {
     /**
      * The attributes that should be mutated to dates.

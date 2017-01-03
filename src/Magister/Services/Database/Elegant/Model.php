@@ -4,7 +4,6 @@ namespace Magister\Services\Database\Elegant;
 
 use DateTime;
 use LogicException;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 use Magister\Services\Contracts\Support\Arrayable;
 use Magister\Services\Contracts\Support\Jsonable;
 use Magister\Services\Database\ConnectionResolverInterface as Resolver;
@@ -655,10 +654,6 @@ abstract class Model implements Arrayable, \ArrayAccess, Jsonable
      */
     public function __get($key)
     {
-        if ($this instanceof ShouldBeTranslatable) {
-            $key = translate($key, get_class($this));
-        }
-
         return $this->getAttribute($key);
     }
 

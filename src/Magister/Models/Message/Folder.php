@@ -4,12 +4,11 @@ namespace Magister\Models\Message;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Folder.
  */
-class Folder extends Model implements ShouldBeTranslatable
+class Folder extends Model
 {
     /**
      * The attributes that should be mutated to dates.

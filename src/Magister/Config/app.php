@@ -7,7 +7,7 @@ return [
      | Encryption Key
      |--------------------------------------------------------------------------
      */
-    'key' => 'jXLsIlz46VNSysjOoAdZR55twlyNiTEI',
+    'key' => '3DXH81Jc3kblZFeUyrBMbgMxlRMtcXIa',
 
     /*
      |--------------------------------------------------------------------------
@@ -24,7 +24,6 @@ return [
         'Magister\Services\Database\DatabaseServiceProvider',
         'Magister\Services\Events\EventServiceProvider',
         'Magister\Services\Auth\AuthServiceProvider',
-        'Magister\Services\Translation\TranslatorServiceProvider',
 
     ],
 

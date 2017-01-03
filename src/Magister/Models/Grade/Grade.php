@@ -4,12 +4,11 @@ namespace Magister\Models\Grade;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Grade.
  */
-class Grade extends Model implements ShouldBeTranslatable
+class Grade extends Model
 {
     /**
      * The primary key for the model.

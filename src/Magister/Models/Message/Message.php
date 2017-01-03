@@ -4,12 +4,11 @@ namespace Magister\Models\Message;
 
 use Config;
 use Magister\Services\Database\Elegant\Model;
-use Magister\Services\Contracts\Translation\ShouldBeTranslatable;
 
 /**
  * Class Message.
  */
-class Message extends Model implements ShouldBeTranslatable
+class Message extends Model
 {
     /**
      * Get the url associated with the model.
