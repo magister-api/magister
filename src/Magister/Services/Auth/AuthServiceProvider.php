@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         if ($this->app->bound('credentials')) {
             $auth = $this->app->auth;
 
-            if (!$auth->check()) {
+            if (! $auth->check()) {
                 $auth->attempt($this->app['credentials']);
             }
         }

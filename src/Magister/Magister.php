@@ -4,11 +4,11 @@ namespace Magister;
 
 use Magister\Services\Config\FileLoader;
 use Magister\Services\Container\Container;
-use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
 use Magister\Services\Filesystem\Filesystem;
 use Magister\Services\Foundation\Http\Kernel;
-use Magister\Services\Foundation\ProviderRepository;
 use Magister\Services\Support\ServiceProvider;
+use Magister\Services\Foundation\ProviderRepository;
+use Magister\Services\Contracts\Foundation\Application as ApplicationContract;
 
 /**
  * Class Magister.

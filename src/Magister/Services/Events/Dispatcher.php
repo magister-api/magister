@@ -79,7 +79,7 @@ class Dispatcher implements DispatcherContract
     {
         $responses = [];
 
-        if (!is_array($payload)) {
+        if (! is_array($payload)) {
             $payload = [$payload];
         }
 
@@ -88,7 +88,7 @@ class Dispatcher implements DispatcherContract
         foreach ($this->getListeners($event) as $listener) {
             $response = call_user_func_array($listener, $payload);
 
-            if (!is_null($response) && $halt) {
+            if (! is_null($response) && $halt) {
                 return $response;
             }
 
@@ -111,7 +111,7 @@ class Dispatcher implements DispatcherContract
      */
     public function getListeners($eventName)
     {
-        if (!isset($this->sorted[$eventName])) {
+        if (! isset($this->sorted[$eventName])) {
             $this->sortListeners($eventName);
         }
 

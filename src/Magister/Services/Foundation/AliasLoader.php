@@ -65,7 +65,7 @@ class AliasLoader
      */
     public function register()
     {
-        if (!$this->isRegistered()) {
+        if (! $this->isRegistered()) {
             $this->registerAutoloader();
 
             $this->registered = true;
