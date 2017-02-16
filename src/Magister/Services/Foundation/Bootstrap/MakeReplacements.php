@@ -20,7 +20,7 @@ class MakeReplacements
     public function bootstrap(Magister $app)
     {
         if ($app->auth->check()) {
-            if (is_null($app->auth->id()) && !is_null($app->auth->user())) {
+            if (is_null($app->auth->id()) && ! is_null($app->auth->user())) {
                 $app->config->replace('url', 'id', $app->auth->user()->Id);
             } else {
                 $app->config->replace('url', 'id', $app->auth->id());
