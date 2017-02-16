@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Container;
 
-use Closure;
 use ArrayAccess;
+use Closure;
 use InvalidArgumentException;
 use Magister\Services\Contracts\Container\Container as ContainerContract;
 
@@ -56,7 +56,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function make($abstract)
     {
-        if (! $this->bound($abstract)) {
+        if (!$this->bound($abstract)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -135,7 +135,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function raw($abstract)
     {
-        if (! array_key_exists($abstract, $this->bindings)) {
+        if (!array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
@@ -154,13 +154,13 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function extend($abstract, Closure $callable)
     {
-        if (! array_key_exists($abstract, $this->bindings)) {
+        if (!array_key_exists($abstract, $this->bindings)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $abstract));
         }
 
         $factory = $this->bindings[$abstract];
 
-        if (! ($factory instanceof Closure)) {
+        if (!($factory instanceof Closure)) {
             throw new InvalidArgumentException(sprintf('Identifier "%s" does not contain an object definition.', $abstract));
         }
 

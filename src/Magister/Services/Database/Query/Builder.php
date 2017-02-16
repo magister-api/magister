@@ -3,9 +3,9 @@
 namespace Magister\Services\Database\Query;
 
 use BadMethodCallException;
-use Magister\Services\Support\Collection;
 use Magister\Services\Database\ConnectionInterface;
 use Magister\Services\Database\Query\Processors\Processor;
+use Magister\Services\Support\Collection;
 
 /**
  * Class Builder.
