@@ -3,8 +3,8 @@
 namespace Magister\Services\Http;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use Magister\Services\Support\ServiceProvider;
+use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 
 /**
  * Class HttpServiceProvider.
