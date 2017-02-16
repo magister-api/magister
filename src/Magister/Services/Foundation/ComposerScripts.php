@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Foundation;
 
-use Magister\Magister;
 use Composer\Script\Event;
+use Magister\Magister;
 
 class ComposerScripts
 {

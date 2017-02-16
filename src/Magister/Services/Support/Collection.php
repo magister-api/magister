@@ -2,12 +2,12 @@
 
 namespace Magister\Services\Support;
 
-use Countable;
 use ArrayAccess;
 use ArrayIterator;
+use Countable;
 use IteratorAggregate;
-use Magister\Services\Contracts\Support\Jsonable;
 use Magister\Services\Contracts\Support\Arrayable;
+use Magister\Services\Contracts\Support\Jsonable;
 
 /**
  * Class Collection.
@@ -70,7 +70,7 @@ class Collection implements Arrayable, ArrayAccess, Countable, IteratorAggregate
         }
 
         if ($this->useAsCallable($key)) {
-            return ! is_null($this->first($key));
+            return !is_null($this->first($key));
         }
 
         return in_array($key, $this->items);
@@ -245,7 +245,7 @@ class Collection implements Arrayable, ArrayAccess, Countable, IteratorAggregate
         foreach ($this->items as $key => $value) {
             $groupKey = $groupBy($value, $key);
 
-            if (! array_key_exists($groupKey, $results)) {
+            if (!array_key_exists($groupKey, $results)) {
                 $results[$groupKey] = new static();
             }
 
@@ -337,7 +337,7 @@ class Collection implements Arrayable, ArrayAccess, Countable, IteratorAggregate
      */
     protected function useAsCallable($value)
     {
-        return ! is_string($value) && is_callable($value);
+        return !is_string($value) && is_callable($value);
     }
 
     /**
