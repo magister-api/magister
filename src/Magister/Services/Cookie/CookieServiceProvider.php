@@ -21,7 +21,7 @@ class CookieServiceProvider extends ServiceProvider
 
             $config = $app['config']['session'];
 
-            return $cookie->setDefaultPathAndDomain($config['path'], $config['domain']);
+            return $cookie->setDefaultPathAndDomain($config['path'], $config['domain'], $config['secure']);
         });
     }
 }

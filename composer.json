@@ -1,15 +1,17 @@
 {
     "name": "stanvk/magister",
     "description": "An eloquent API for Schoolmaster BV's Magister 6",
-    "keywords": ["api", "magister"],
+    "keywords": ["php", "magister", "api"],
     "homepage": "http://magister-api.nl",
     "license": "MIT",
     "authors": [
         {
-            "name": "Stan van Kraaij"
+            "name": "Stanvk",
+            "email": "stanvankraaij@hotmail.com"
         },
         {
-            "name": "Christopher"
+            "name": "Kickwood",
+            "email": "tkgame001@gmail.com"
         }
     ],
     "require": {
@@ -22,6 +24,7 @@
     },
     "autoload": {
         "files": [
+            "src/Magister/Services/Foundation/helpers.php",
             "src/Magister/Services/Support/helpers.php"
         ],
         "psr-4": {

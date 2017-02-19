@@ -29,11 +29,17 @@ class HttpServiceProvider extends ServiceProvider
     protected function registerGuzzle()
     {
         $this->app->singleton('http', function ($app) {
-            $client = new Client(['base_url' => "https://{$app['school']}.magister.net/api/"]);
+            $client = new Client([
+                'base_url' => "https://{$app['school']}.magister.net/api/"
+            ]);
 
             $client->setDefaultOption('exceptions', false);
-            $client->setDefaultOption('headers', ['X-API-Client-ID' => '12D8']);
+
             $client->setDefaultOption('cookies', new SessionCookieJar($app['cookie']));
+
+            $client->setDefaultOption('headers', [
+                'X-API-Client-ID' => env('MAGISTER_API_KEY', '12D8')
+            ]);
 
             CacheSubscriber::attach($client);
 

@@ -14,6 +14,13 @@ return [
      | Session Cookie Domain
      |--------------------------------------------------------------------------
      */
-    'domain' => null,
+    'domain' => env('MAGISTER_SESSION_DOMAIN', null),
+
+    /*
+     |--------------------------------------------------------------------------
+     | HTTPS Only Cookies
+     |--------------------------------------------------------------------------
+    */
+    'secure' => env('MAGISTER_SESSION_SECURE_COOKIE', false),
 
 ];

@@ -1,6 +1,7 @@
 vendor/
 .idea/
+.env
+composer.lock
 dev.env.php
 example.php
-composer.lock
 index.php

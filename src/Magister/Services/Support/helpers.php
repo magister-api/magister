@@ -1,19 +1,5 @@
 <?php
 
-if (! function_exists('with')) {
-    /**
-     * Return the given object. Useful for chaining.
-     *
-     * @param mixed $object
-     *
-     * @return mixed
-     */
-    function with($object)
-    {
-        return $object;
-    }
-}
-
 if (! function_exists('array_set')) {
     /**
      * Set an array item to a given value using dot notation.
@@ -257,6 +243,26 @@ if (! function_exists('starts_with')) {
     }
 }
 
+if (! function_exists('ends_with')) {
+    /**
+     * Determine if a given string ends with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function ends_with($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if (substr($haystack, -strlen($needle)) === (string) $needle) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
 if (! function_exists('snake_case')) {
     /**
      * Convert a string to snake case.
@@ -359,5 +365,19 @@ if (! function_exists('get_random_bytes')) {
         }
 
         return $bytes;
+    }
+}
+
+if (! function_exists('with')) {
+    /**
+     * Return the given object. Useful for chaining.
+     *
+     * @param mixed $object
+     *
+     * @return mixed
+     */
+    function with($object)
+    {
+        return $object;
     }
 }

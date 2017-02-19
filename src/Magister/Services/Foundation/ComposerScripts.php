@@ -53,7 +53,7 @@ class ComposerScripts
 
         $key = static::generateRandomKey();
 
-        static::setKeyInEnvironmentFile($key);
+        static::setKeyInConfigFile($key);
     }
 
     /**
@@ -63,12 +63,10 @@ class ComposerScripts
      *
      * @return void
      */
-    protected static function setKeyInEnvironmentFile($key)
+    protected static function setKeyInConfigFile($key)
     {
         file_put_contents(static::$magister->configPath().'/app.php', str_replace(
-            '\'key\' => \''.static::$magister['config']['app.key'].'\',',
-            '\'key\' => \''.$key.'\',',
-            file_get_contents(static::$magister->configPath().'/app.php')
+            static::$magister['config']['app.key'], $key, file_get_contents(static::$magister->configPath().'/app.php')
         ));
     }
 
