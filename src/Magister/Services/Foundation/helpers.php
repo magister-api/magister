@@ -32,7 +32,7 @@ if (!function_exists('env')) {
                 return;
         }
 
-        if (startsWith($value, '"') && endsWith($value, '"')) {
+        if (starts_with($value, '"') && ends_with($value, '"')) {
             return substr($value, 1, -1);
         }
 
