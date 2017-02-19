@@ -21,7 +21,7 @@ class MakeReplacements
     {
         if ($app->auth->check()) {
             // Temporary compatibility fix.
-            if (! is_null($app->auth->user()) && is_null($app->auth->id())) {
+            if (!is_null($app->auth->user()) && is_null($app->auth->id())) {
                 $app->config->replace('url', 'id', $app->auth->user()->Id);
             } else {
                 $app->config->replace('url', 'id', $app->auth->id());
