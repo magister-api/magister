@@ -1,22 +1,23 @@
 <?php
 
-if (! function_exists('env'))
-{
+if (!function_exists('env')) {
     /**
      * Gets the value of an environment variable. Supports boolean, empty and null.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     function env($key, $default = null)
     {
         $value = getenv($key);
 
-        if ($value === false) return $default;
+        if ($value === false) {
+            return $default;
+        }
 
-        switch (strtolower($value))
-        {
+        switch (strtolower($value)) {
             case 'true':
             case '(true)':
                 return true;
@@ -31,8 +32,7 @@ if (! function_exists('env'))
                 return;
         }
 
-        if (startsWith($value, '"') && endsWith($value, '"'))
-        {
+        if (startsWith($value, '"') && endsWith($value, '"')) {
             return substr($value, 1, -1);
         }
 

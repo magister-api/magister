@@ -19,7 +19,7 @@ class Processor
      */
     public function process(Builder $builder, $results)
     {
-        if (! isset($results) || isset($results['Fouttype'])) {
+        if (!isset($results) || isset($results['Fouttype'])) {
             return [];
         }
 
@@ -28,7 +28,7 @@ class Processor
         }
 
         foreach ($results as $result) {
-            if (! is_array($result)) {
+            if (!is_array($result)) {
                 return [$results];
             }
         }

@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Support;
 
-use Magister\Magister;
 use BadMethodCallException;
+use Magister\Magister;
 
 /**
  * Class ServiceProvider.
