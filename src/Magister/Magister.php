@@ -20,7 +20,7 @@ class Magister extends Container implements ApplicationContract
      *
      * @var string
      */
-    const VERSION = '2.1.4';
+    const VERSION = '2.1.5';
 
     /**
      * Indicates if the application has been bootstrapped before.
