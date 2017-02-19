@@ -125,11 +125,11 @@ class Encrypter implements EncrypterContract
     {
         $payload = json_decode(base64_decode($payload), true);
 
-        if (! $payload || $this->invalidPayload($payload)) {
+        if (!$payload || $this->invalidPayload($payload)) {
             throw new DecryptException('Invalid data.');
         }
 
-        if (! $this->validMac($payload)) {
+        if (!$this->validMac($payload)) {
             throw new DecryptException('MAC is invalid.');
         }
 
@@ -213,7 +213,7 @@ class Encrypter implements EncrypterContract
      */
     protected function invalidPayload($data)
     {
-        return ! is_array($data) || ! isset($data['iv']) || ! isset($data['value']) || ! isset($data['mac']);
+        return !is_array($data) || !isset($data['iv']) || !isset($data['value']) || !isset($data['mac']);
     }
 
     /**

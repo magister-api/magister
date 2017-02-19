@@ -2,8 +2,8 @@
 
 namespace Magister\Services\Database\Elegant\Relations;
 
-use Magister\Services\Database\Elegant\Model;
 use Magister\Services\Database\Elegant\Builder;
+use Magister\Services\Database\Elegant\Model;
 
 /**
  * Class HasOneOrMany.

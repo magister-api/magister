@@ -2,11 +2,11 @@
 
 namespace Magister\Services\Auth;
 
-use Magister\Services\Cookie\CookieJar;
+use Magister\Services\Contracts\Auth\Authenticable as UserContract;
+use Magister\Services\Contracts\Auth\Guard as GuardContract;
 use Magister\Services\Contracts\Auth\UserProvider;
 use Magister\Services\Contracts\Events\Dispatcher;
-use Magister\Services\Contracts\Auth\Guard as GuardContract;
-use Magister\Services\Contracts\Auth\Authenticable as UserContract;
+use Magister\Services\Cookie\CookieJar;
 
 /**
  * Class Guard.
@@ -65,7 +65,7 @@ class Guard implements GuardContract
      */
     public function check()
     {
-        return ! is_null($this->user());
+        return !is_null($this->user());
     }
 
     /**
@@ -75,7 +75,7 @@ class Guard implements GuardContract
      */
     public function guest()
     {
-        return ! $this->check();
+        return !$this->check();
     }
 
     /**
@@ -92,7 +92,7 @@ class Guard implements GuardContract
         // If we have already retrieved the user for the current request we can just
         // return it back immediately. We do not want to pull the user data every
         // request into the method because that would tremendously slow an app.
-        if (! is_null($this->user)) {
+        if (!is_null($this->user)) {
             return $this->user;
         }
 
@@ -100,7 +100,7 @@ class Guard implements GuardContract
 
         $user = null;
 
-        if (! is_null($id)) {
+        if (!is_null($id)) {
             $user = $this->provider->retrieveByToken();
         }
 
@@ -159,7 +159,7 @@ class Guard implements GuardContract
      */
     protected function hasValidCredentials($user)
     {
-        return ! is_null($user);
+        return !is_null($user);
     }
 
     /**
@@ -314,7 +314,7 @@ class Guard implements GuardContract
      */
     public function getCookieJar()
     {
-        if (! isset($this->cookie)) {
+        if (!isset($this->cookie)) {
             throw new \RuntimeException('Cookie jar has not been set.');
         }
 
