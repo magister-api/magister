@@ -13,7 +13,7 @@ composer require stanvk/magister
 
 ## Officiële Documentatie
 
-De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://www.magister-api.nl). (tijdelijk offline)
+De documentatie van de Magister API kan gevonden worden op de [Magister API website](http://magister-6-api.readthedocs.io). (WIP)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Stanvk/Magister?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
