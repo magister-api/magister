@@ -26,7 +26,7 @@ class Appointment extends Model
     {
         return Config::get('url.appointment');
     }
-    
+
     /**
      * Grab the appointments of today.
      *
@@ -35,7 +35,7 @@ class Appointment extends Model
     public static function today()
     {
         $today = (new DateTime())->format('Y-m-d');
-        
+
         return static::where('status', 1)->where('van', $today)->where('tot', $today)->get();
     }
 }
