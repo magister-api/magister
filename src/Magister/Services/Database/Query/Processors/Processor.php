@@ -19,7 +19,7 @@ class Processor
      */
     public function process(Builder $builder, $results)
     {
-        if (!isset($results) || isset($results['Fouttype'])) {
+        if (!isset($results) || is_string($results) || isset($results['Fouttype'])) {
             return [];
         }
 
