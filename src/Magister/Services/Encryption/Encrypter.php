@@ -87,7 +87,8 @@ class Encrypter implements EncrypterContract
     }
 
     /**
-     * Generate a new key
+     * Generate a new key.
+     *
      * @return string
      */
     public function generateKey()
