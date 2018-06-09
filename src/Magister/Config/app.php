@@ -7,7 +7,7 @@ return [
      | Encryption Key
      |--------------------------------------------------------------------------
      */
-    'key' => env('MAGISTER_ENCRYPTION_KEY', 'dXPgRv9VbsETirCN5MzVMWkx6c4Cm7Dv'),
+    'key' => env('MAGISTER_ENCRYPTION_KEY', 'E7Fph18VN4tibeDpLwz4xxuj9N8YscjA'),
 
     /*
      |--------------------------------------------------------------------------
