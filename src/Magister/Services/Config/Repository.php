@@ -2,7 +2,7 @@
 
 namespace Magister\Services\Config;
 
-class Magister
+class Repository
 {
     protected $files;
 

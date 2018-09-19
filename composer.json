@@ -22,17 +22,9 @@
         "larapack/dd": "1.*"
     },
     "autoload": {
-        "files": [
-            "src/Magister/Services/Foundation/helpers.php",
-            "src/Magister/Services/Support/helpers.php"
-        ],
         "psr-4": {
             "Magister\\": "src/Magister"
         }
     },
-    "minimum-stability": "stable",
-    "scripts": {
-        "post-install-cmd": "Magister\\Services\\Foundation\\ComposerScripts::postInstall",
-        "post-update-cmd": "Magister\\Services\\Foundation\\ComposerScripts::postUpdate"
-    }
+    "minimum-stability": "stable"
 }

@@ -10,7 +10,7 @@ class Magister extends Container
     /**
      *  Holds API version.
      */
-    const VERSION = '1.0.0';
+    const VERSION = '3.0.0';
 
     /**
      * Has the api been bootstapped before.
@@ -22,11 +22,11 @@ class Magister extends Container
     /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct($school, $username, $password)
     {
         $kernel = new Kernel($this);
 
-        $this->registerBinding();
+        $this->registerBindings($school, $username, $password);
         $this->bindPathsInContainer();
 
         $kernel->bootstrap();
@@ -68,29 +68,7 @@ class Magister extends Container
         $this->hasBeenBootstrapped = true;
     }
 
-    /**
-     *	Register bindings to Container.
-     *
-     * @return void
-     */
-    protected function registerBinding()
-    {
-        $this->bind('api', $this);
-    }
-
-    /**
-     * Bind all of the application paths in the container.
-     *
-     * @return void
-     */
-    protected function bindPathsInContainer()
-    {
-        foreach (['base', 'config'] as $path) {
-            $this->bind('path.'.$path, $this->{$path.'Path'}());
-        }
-    }
-
-    /**
+        /**
      * Returns the api's base path.
      *
      * @return string
@@ -101,7 +79,7 @@ class Magister extends Container
     }
 
     /**
-     *	Return the path to the api's configuration files.
+     *  Return the path to the api's configuration files.
      *
      * @return [type] [description]
      */
@@ -124,6 +102,33 @@ class Magister extends Container
     }
 
     /**
+     *	Register bindings to Container.
+     *
+     * @return void
+     */
+    protected function registerBindings($school, $username, $password)
+    {
+        $this->bind('api', $this);
+        $this->setSchool($school);
+
+        if ($username && $password) {
+            $this->setCredentials($username, $password);
+        }
+    }
+
+    /**
+     * Bind all of the application paths in the container.
+     *
+     * @return void
+     */
+    protected function bindPathsInContainer()
+    {
+        foreach (['base', 'config'] as $path) {
+            $this->bind('path.'.$path, $this->{$path.'Path'}());
+        }
+    }
+
+    /**
      * Resolve a model.
      *
      * @param string $name
@@ -136,5 +141,30 @@ class Magister extends Container
         $model = 'Magister\Models\\'.$name.'\\'.$name;
 
         return new $model($this);
+    }
+
+    /**
+     * Set the school for every request.
+     *
+     * @param string $school
+     *
+     * @return void
+     */
+    protected function setSchool($school)
+    {
+        $this->bind('school', $school);
+    }
+
+    /**
+     * Set the credentials used by the authentication service.
+     *
+     * @param string $username
+     * @param string $password
+     *
+     * @return void
+     */
+    protected function setCredentials($username, $password)
+    {
+        $this->bind('credentials', ['Gebruikersnaam' => $username, 'Wachtwoord' => $password]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Magister\Services\Foundation;
 
-use Magister\SkyLines;
+use Magister\Magister;
 
 /**
  * Class Kernel.
@@ -29,7 +29,7 @@ class Kernel
      *
      * @param \LinkedIn\LinkedIn $api
      */
-    public function __construct(SkyLines $api)
+    public function __construct(Magister $api)
     {
         $this->api = $api;
     }
