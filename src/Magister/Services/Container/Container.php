@@ -5,12 +5,11 @@ namespace Magister\Services\Container;
 use ArrayAccess;
 use Closure;
 use InvalidArgumentException;
-use Magister\Services\Contracts\Container\Container as ContainerContract;
 
 /**
  * Class Container.
  */
-class Container implements ArrayAccess, ContainerContract
+class Container implements ArrayAccess
 {
     /**
      * The container's bindings.

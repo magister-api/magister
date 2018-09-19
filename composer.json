@@ -15,12 +15,10 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "~5.0",
-        "guzzlehttp/cache-subscriber": "0.1.*"
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
-        "symfony/var-dumper": "^2.7",
         "larapack/dd": "1.*"
     },
     "autoload": {
