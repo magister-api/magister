@@ -68,7 +68,7 @@ class Magister extends Container
         $this->hasBeenBootstrapped = true;
     }
 
-        /**
+    /**
      * Returns the api's base path.
      *
      * @return string

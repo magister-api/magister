@@ -3,8 +3,8 @@
 namespace Magister\Services\Foundation;
 
 use Exception;
-use Magister\Services\Config\Repository;
 use Magister\Magister;
+use Magister\Services\Config\Repository;
 
 /**
  * Class LoadConfiguration.
