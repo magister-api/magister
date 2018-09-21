@@ -1,5 +1,7 @@
 vendor/
 .idea/
+.phpintel/
+public/
 .env
 composer.lock
 dev.env.php
