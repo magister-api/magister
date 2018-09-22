@@ -1,4 +1,6 @@
 vendor/
+public/
+.phpintel/
 .idea/
 .env
 composer.lock
