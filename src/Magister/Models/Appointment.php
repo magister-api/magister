@@ -3,6 +3,7 @@
 namespace Magister\Models;
 
 use Config;
+use DateTime;
 use Magister\Services\Database\Elegant\Model;
 
 /**
@@ -36,6 +37,6 @@ class Appointment extends Model
     {
         $today = (new DateTime())->format('Y-m-d');
 
-        return static::where('status', 1)->where('van', $today)->where('tot', $today)->get();
+        return static::where('van', $today)->where('tot', $today)->get();
     }
 }
